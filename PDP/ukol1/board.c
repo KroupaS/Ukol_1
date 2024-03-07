@@ -19,6 +19,7 @@ int deleni_dvema_trick(int delenec) {
 }
 
 int move_cost_compare(const void* first_move, const void* second_move) {
+    // Comparison function for stdlib qsort (used to sort available moves by cost)
     MoveAndLowerBound* first = (MoveAndLowerBound*)first_move;
     MoveAndLowerBound* second = (MoveAndLowerBound*)second_move;
     int comparison = first->lower_bound - second->lower_bound;
