@@ -1,0 +1,2 @@
+sbatch -p arm_long -N 1 slurm_script.sh
+sbatch -p arm_fast -N 1 slurm_script.sh
