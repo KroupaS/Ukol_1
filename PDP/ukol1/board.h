@@ -3,7 +3,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-#include <stddef.h>
+//#include <stddef.h>
 
 typedef unsigned int uint;
 
@@ -62,6 +62,7 @@ typedef struct NodeState {
 void NodeDestructor(NodeState* node);
 struct Board* load_board(const char* filename);
 NodeState* initFirstNode(Board* board);
+NodeState* initBestSolution(Board* board);
 void GetAvailableMoves(Board* board, NodeState* state);
 int isPointInBounds(Point point, Board* board);
 int isPointInArea(Point point, Area rea);
