@@ -5,12 +5,12 @@
 
 int abs_value_trick(int val) {
     // Signed right shift -> result is 0000000 or 1111111
-    printf("abs value input = %i\n", val);
+    //printf("abs value input = %i\n", val);
     int tmp = val >> 7;
     // Flip bits and add one if tmp is 11111111;
     val ^= tmp;
     val += tmp & 1;
-    printf("abs value output = %i\n", val);
+    //printf("abs value output = %i\n", val);
     return val;
 }
 
