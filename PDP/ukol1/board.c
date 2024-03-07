@@ -447,7 +447,7 @@ uint getCandidateLowerBound(uint pawn_index, Point dest, NodeState* node, Board*
 
 
 void GetAvailableMoves(Board* board, NodeState* state) {
-    int current_cost; // For calculating costs of each move 
+    //int current_cost; // For calculating costs of each move 
     int candidate_cost;
     Point candidate_dest;
     MoveAndLowerBound valid_move_and_cost;

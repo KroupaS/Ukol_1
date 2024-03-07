@@ -1,11 +1,7 @@
 #include "board.h"
 #include "solve.h"
 #include <time.h>
-#include <unistd.h>
-
-void myFunction() {
-    usleep(500000);
-}
+//#include <unistd.h>
 
 
 int main(int argc, char** argv) {
@@ -35,15 +31,18 @@ int main(int argc, char** argv) {
     clock_gettime(CLOCK_MONOTONIC, &start);
     NodeState* best_solution = solve(chessboard);
     clock_gettime(CLOCK_MONOTONIC, &end);
+    printf("Seconds in timer struct = %ld\n", end.tv_sec - start.tv_sec);
+    printf("Nanoseconds in timer struct = %ld\n", end.tv_nsec - start.tv_nsec);
 
-    if ((end.tv_sec - start.tv_sec) > 0) {
-        cpu_time = (double)(end.tv_sec - start.tv_sec) + ((double)(end.tv_nsec - start.tv_nsec)) / (double)1000000000;
-        printf("========================================\n", cpu_time);
+    cpu_time = (double)((end.tv_sec - start.tv_sec)*1000) + ((double)(end.tv_nsec - start.tv_nsec)) / (double)1000000;
+
+    if (cpu_time > (double)1000) {
+        cpu_time /= (double)1000;
+        printf("========================================\n");
         printf("| Finished in %.4f seconds |\nBest solution:\n", cpu_time);
     } else {
         // display in ms
-        cpu_time = ((double)(end.tv_nsec - start.tv_nsec)) / (double)1000000LL;
-        printf("========================================\n", cpu_time);
+        printf("========================================\n");
         printf("| Finished in %.4f ms |\nBest solution:\n", cpu_time);
     }
 

@@ -1,16 +1,11 @@
 Zapisky o prevedeni na prvni paralelni verzi
 
-1. Nepouzivat clock() - nahradit necim z knihovny chrono, asi na vic decimal places
-2. Pridat prvni parametr pocet vlaken - ignorovany v sekvencni verzi. Druhy parametr bude jmeno souboru
 3. Upravit logy - minimalizovat aktualni a pridat ascii art sachovnici
-4. Zbavit se v solve_recurse toho zbytecnyho checkovani jestli jsou moves - neni to possible pokud to neni reseni.
 
 
 Paralelizace:
-0. Kazdej node by mel destructovat children, ne sam sebe, zmenit. Jinak by node mohl zapnout tasky a nez se dokonci tak jim dealokovat node.
 1. Pridat ty radky jak je v prezentaci na paralelizaci / omp task atd
 2. cc -fopenmp
 3. Uprava reseni musi byt kriticka sekce
 4. Idealne vytvaret minimalne 48 tasku - pocet jader na clusteru. Idealne tisice pry - pred solve_recurse #pragma openmp task if(condition) - condition napr. muze byt current_node.depth < c, kde c je treba 5 az 10
         -> jde to vylepsit asi tim ze nahore se vola verze funkce ktera checkuje tu current hloubku, pokud hloubka dost velka tak zavola solve_recurse_notask ktery uz tu hloubku necheckuje a vse dela bez openmp. Rezie toho #pragma openmp task if() je pry vetsi nez normalni if.
-5. Vymazat counter - muselo by to bejt atomic / kriticka sekce a to hodne stoji.
