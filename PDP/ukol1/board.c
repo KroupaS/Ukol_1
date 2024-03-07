@@ -139,7 +139,7 @@ void PrintNode(NodeState* node) {
     printf("Unfinished black = %u\n", node->unfinished_black);
     printf("Next to turn = %u\n", node->turn);
     printf("Past moves: \n");
-    for (int i=0; i<node->depth; i++) {
+    for (uint i=0; i<node->depth; i++) {
         printf("[%i, %i] -> [%i, %i]\n", node->past_moves[i].Source.X, node->past_moves[i].Source.Y, node->past_moves[i].Dest.X, node->past_moves[i].Dest.Y);
     }
     if (node->available_moves.Count > 0) {
@@ -166,7 +166,7 @@ NodeState* CopyNode(Board* board, NodeState* node) {
     new_node->available_moves.Count = 0;
     new_node->available_moves.MovesAndLowerBounds = NULL;
     new_node->past_moves = (Move *)malloc(sizeof(Move) * board->upper_bound);
-    for(int i=0; i<node->depth; i++) {
+    for(uint i=0; i<node->depth; i++) {
         new_node->past_moves[i] = node->past_moves[i];
     }
     new_node->unfinished_black = node->unfinished_black;
@@ -189,7 +189,7 @@ void CopyNodeIntoNode(Board* board, NodeState* source_node, NodeState* target_no
     target_node->available_moves.Count = 0;
     target_node->available_moves.MovesAndLowerBounds = NULL;
     target_node->past_moves = (Move *)malloc(sizeof(Move) * board->upper_bound);
-    for(int i=0; i<source_node->depth; i++) {
+    for(uint i=0; i<source_node->depth; i++) {
         target_node->past_moves[i] = source_node->past_moves[i];
     }
     target_node->unfinished_black = source_node->unfinished_black;

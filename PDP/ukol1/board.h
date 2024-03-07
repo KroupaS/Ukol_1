@@ -43,9 +43,9 @@ typedef struct Board {
     Area B_area;        // 8
     uint upper_bound;   // 12
     uint lower_bound;   // 16
-    uint k;             // 20 Maximum k should be <= 400/2
-    char m;             // 21
-    char n;             // 22
+    unsigned char k;             // 20 Maximum k should be <= 400/2
+    unsigned char m;             // 21
+    unsigned char n;             // 22
 } Board;
 
 typedef struct NodeState {
@@ -53,10 +53,10 @@ typedef struct NodeState {
     Point* Black_positions;             // 16 bytes - Board.k size arrays
     AvailableMoves available_moves;     // 28 bytes
     Move* past_moves;                   // 36 bytes
-    uint depth;                         // 40 bytes - Depth of current node, depth - 1 = index of last move in self.past_moves - Needed for backtracking also
-    uint unfinished_white;              // 44
-    uint unfinished_black;              // 48
-    char turn;                          // 49 - WHITE_MOVE / BLACK_MOVE depending who is moving next 
+    unsigned char depth;                // - Depth of current node, depth - 1 = index of last move in self.past_moves - Needed for backtracking also
+    unsigned char unfinished_white;     // 
+    unsigned char unfinished_black;     // 
+    unsigned char turn;                 // 40 - WHITE_MOVE / BLACK_MOVE depending who is moving next 
 } NodeState;
 
 void NodeDestructor(NodeState* node);
