@@ -4,13 +4,11 @@
 
 
 int abs_value_trick(int val) {
-    // Signed right shift -> result is 0000000 or 1111111
-    //printf("abs value input = %i\n", val);
-    int tmp = val >> 7;
-    // Flip bits and add one if tmp is 11111111;
+    // Signed right shift -> result is 32 0's or 32 1's
+    int tmp = val >> 31;
+    // Flip bits and add one if tmp is 32 1's;
     val ^= tmp;
     val += tmp & 1;
-    //printf("abs value output = %i\n", val);
     return val;
 }
 
@@ -29,6 +27,7 @@ int move_cost_compare(const void* first_move, const void* second_move) {
 
 
 Board* load_board(const char* filename) {
+    // Set up the board, done once at start of program. Calculates initial upper bound (which is updated later on as solutions are found)
     FILE* file = fopen(filename, "r"); // Open the file for reading
     if (file == NULL) {
         printf("Error opening file \"%s\".\n", filename);
@@ -62,24 +61,6 @@ Board* load_board(const char* filename) {
     board->B_area.bot_right.Y = data[11];
 
     board->upper_bound = initialUpperBound(board);
-    //Point test_point;
-    //test_point.X = 4;
-    //test_point.Y = 0;
-
-    //int farthest_W = getDistanceToFarthestPointInArea(test_point, board->W_area);
-    //int farthest_B = getDistanceToFarthestPointInArea(test_point, board->B_area);
-    //int closest_W = getDistanceToClosestPointInArea(test_point, board->W_area);
-    //int closest_B = getDistanceToClosestPointInArea(test_point, board->B_area);
-
-    //printf("Farthest W = %i\n", farthest_W);
-    //printf("Farthest B = %i\n", farthest_B);
-    //printf("Closest W = %i\n", closest_W);
-    //printf("Closest B = %i\n", closest_B);
-    
-
-    //printf("m,n,k = %u %u %u\n", board->m, board->n, board->k);
-    //printf("W = %u %u %u %u\n", data[4], data[5], data[6], data[7]);
-    //printf("B = %u %u %u %u\n", data[8], data[9], data[10], data[11]);
     return board;
 }
 
@@ -195,8 +176,13 @@ void NodeMakeMove(Board* board, NodeState* node, Move move) {
                 //printf("DEBUG: Move source found\n");
                 node->White_positions[i].X = move.Dest.X;
                 node->White_positions[i].Y = move.Dest.Y;
-                if (getDistanceToClosestPointInArea(move.Dest, board->B_area) == 0) {
+                if ((getDistanceToClosestPointInArea(move.Dest, board->B_area) == 0) && (getDistanceToClosestPointInArea(move.Source, board->B_area) > 0)) {
+                    // If moving into finish zone, decrement unfinished_white
                     node->unfinished_white = node->unfinished_white - 1;
+                }
+                if ((getDistanceToClosestPointInArea(move.Dest, board->B_area) > 0) && (getDistanceToClosestPointInArea(move.Source, board->B_area) == 0)) {
+                    // If moving out of finish zone, increment unfinished_white
+                    node->unfinished_white = node->unfinished_white + 1;
                 }
             }
         }
@@ -206,8 +192,11 @@ void NodeMakeMove(Board* board, NodeState* node, Move move) {
                 //printf("DEBUG: Move source found\n");
                 node->Black_positions[i].X = move.Dest.X;
                 node->Black_positions[i].Y = move.Dest.Y;
-                if (getDistanceToClosestPointInArea(move.Dest, board->W_area) == 0) {
+                if ((getDistanceToClosestPointInArea(move.Dest, board->W_area) == 0) && (getDistanceToClosestPointInArea(move.Source, board->W_area) > 0)) {
                     node->unfinished_black = node->unfinished_black - 1;
+                }
+                if ((getDistanceToClosestPointInArea(move.Dest, board->W_area) > 0) && (getDistanceToClosestPointInArea(move.Source, board->W_area) == 0)) {
+                    node->unfinished_black = node->unfinished_black + 1;
                 }
             }
         }
@@ -451,7 +440,8 @@ void GetAvailableMoves(Board* board, NodeState* state) {
     if (who_turns == WHITE_MOVE) {
         for (uint i = 0; i<board->k; i++) {
             current_cost = getDistanceToClosestPointInArea(state->White_positions[i], board->B_area);
-            if (current_cost > 0) {
+            if (current_cost >= 0) {
+            //if (1) {
                 // Generate moves for White_positions[i], each one that is valid check its cost change and add it to the list
                 // Check moves in X direction
                 candidate_dest.X = state->White_positions[i].X + 1;
@@ -551,7 +541,8 @@ void GetAvailableMoves(Board* board, NodeState* state) {
         // Its blacks turn, because either 1) white is finished and black isnt, turn doesnt matter or 2) its BLACK_MOVE
         for (uint i = 0; i<board->k; i++) {
             current_cost = getDistanceToClosestPointInArea(state->Black_positions[i], board->W_area);
-            if (current_cost > 0) {
+            if (current_cost >= 0) {
+            //if (1) {
                 // Generate moves for Black_positions[i], each one that is valid check its cost change and add it to the list
                 // Check moves in X direction
                 candidate_dest.X = state->Black_positions[i].X + 1;
@@ -645,87 +636,3 @@ void GetAvailableMoves(Board* board, NodeState* state) {
         return;
     }
 }
-
-
-//int getDistanceToClosestPointInArea(Point origin, Area dest) {
-    //// Get the closest corner and then move along the border if it reduces distance
-    //Point closest = dest.top_left;
-    //int distance = ManhattanDist(origin, closest);
-
-    //// Direction to try moving towards if top_left is the closest corner
-    //int x_direction = 1;
-    //int y_direction = 1;
-
-    //// Get distance to the other corners and compare
-    //Point candidate = dest.bot_right;
-    //int distance_candidate = ManhattanDist(origin, candidate);
-    //// Unnecessary conditional 
-    //if (distance_candidate < distance) { 
-        //closest = candidate; 
-        //distance = distance_candidate; 
-        //x_direction = -1;
-        //y_direction = -1;
-    //}
-
-    //candidate.X = dest.top_left.X;
-    //candidate.Y = dest.bot_right.Y;
-    //distance_candidate = ManhattanDist(origin, candidate);
-    //if (distance_candidate < distance) { 
-        //closest = candidate; 
-        //distance = distance_candidate; 
-        //x_direction = 1;
-        //y_direction = -1;
-    //}
-
-    //candidate.X = dest.bot_right.X;
-    //candidate.Y = dest.top_left.Y;
-    //distance_candidate = ManhattanDist(origin, candidate);
-    //if (distance_candidate < distance) { 
-        //closest = candidate; 
-        //distance = distance_candidate; 
-        //x_direction = -1;
-        //y_direction = 1;
-    //}
-
-    //// closest is currently the closest corner, try moving along X
-    //candidate.X = closest.X + x_direction;
-    //candidate.Y = closest.Y;
-    //distance_candidate = ManhattanDist(origin, candidate);
-    //if (distance_candidate < distance) {
-        //// continue along this path as long as it reduces distance
-        //closest = candidate;
-        //distance = distance_candidate;
-        //while (1) {
-            //// TODO make sure its not possible to go out of bounds
-            //candidate.X = closest.X + x_direction;
-            //distance_candidate = ManhattanDist(origin, candidate);
-            //if (distance_candidate < distance) {
-                //closest = candidate;
-                //distance = distance_candidate;
-            //} else {
-                //return distance;
-            //}
-        //}
-    //} else {
-        //candidate.X = closest.X;
-        //candidate.Y = closest.Y + y_direction;
-        //distance_candidate = ManhattanDist(origin, candidate);
-        //if (distance_candidate < distance) {
-            //// continue along this path as long as it reduces distance
-            //closest = candidate;
-            //distance = distance_candidate;
-            //while (1) {
-                //candidate.Y = closest.Y + y_direction;
-                //distance_candidate = ManhattanDist(origin, candidate);
-                //if (distance_candidate < distance) {
-                    //closest = candidate;
-                    //distance = distance_candidate;
-                //} else {
-                    //return distance;
-                //}
-            //}
-        //}
-    //}
-
-    //return distance;
-//}
