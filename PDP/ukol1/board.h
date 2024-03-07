@@ -11,28 +11,28 @@ typedef unsigned int uint;
 #define BLACK_MOVE 1
 
 // [X,Y] -> X is horizontal axis, Y is vertical axis. Origin is top left
-typedef struct Point {
-    char X;
-    char Y;
+typedef struct Point {      // 2 bytes
+    unsigned char X;
+    unsigned char Y;
 } Point;
 
-typedef struct Move {
-    Point Source;
+typedef struct Move {       // 4 bytes
+    Point Source;           
     Point Dest;
 } Move;
 
-typedef struct MoveAndLowerBound {
-    Move move;
+typedef struct MoveAndLowerBound {      // 8 bytes
+    Move move;                          
     uint lower_bound;  // Should be from -2 to +2 including
 } MoveAndLowerBound;
 
 // Used to store possible moves from a position, and moves that were already made
-typedef struct AvailableMoves {
+typedef struct AvailableMoves {         // 4 bytes + pointer
     uint Count;                             // Number of possible moves should be <= (400/2) * 8
     MoveAndLowerBound* MovesAndLowerBounds;
 } AvailableMoves;
 
-typedef struct Area {
+typedef struct Area {       // 4 bytes
     Point top_left;
     Point bot_right;
 } Area;
@@ -49,14 +49,14 @@ typedef struct Board {
 } Board;
 
 typedef struct NodeState {
-    Point* White_positions;     // Board.k size array
-    Point* Black_positions;     // Board.k size array
-    AvailableMoves available_moves;
-    Move* past_moves;          // Shouldnt need to worry about the size since we have the upper bound
-    uint depth;             // Depth of current node, depth - 1 = index of last move in self.past_moves - Needed for backtracking also
-    uint unfinished_white;
-    uint unfinished_black;
-    char turn;              // WHITE_MOVE / BLACK_MOVE depending who is moving next 
+    Point* White_positions;             // 8 bytes
+    Point* Black_positions;             // 16 bytes - Board.k size arrays
+    AvailableMoves available_moves;     // 28 bytes
+    Move* past_moves;                   // 36 bytes
+    uint depth;                         // 40 bytes - Depth of current node, depth - 1 = index of last move in self.past_moves - Needed for backtracking also
+    uint unfinished_white;              // 44
+    uint unfinished_black;              // 48
+    char turn;                          // 49 - WHITE_MOVE / BLACK_MOVE depending who is moving next 
 } NodeState;
 
 void NodeDestructor(NodeState* node);

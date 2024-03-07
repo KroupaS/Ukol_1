@@ -2,7 +2,6 @@
 //#include <stdlib.h>
 #include "board.h"
 
-
 int abs_value_trick(int val) {
     // Signed right shift -> result is 32 0's or 32 1's
     int tmp = val >> 31;
@@ -31,7 +30,6 @@ int move_cost_compare(const void* first_move, const void* second_move) {
     //int i, j;
     //for (i = 1; i < count; i++) {
         //j = i - 1;
-
 
         //while ((j >= 0) && (move_array[j].lower_bound > move_array[i].lower_bound)){
             //move_array[j+1] = move_array[j];
@@ -136,7 +134,6 @@ NodeState* initFirstNode(Board* board) {
 }
 
 void PrintNode(NodeState* node) {
-    printf("=============================\n");
     printf("Node depth = %u\n", node->depth);
     printf("Unfinished white = %u\n", node->unfinished_white);
     printf("Unfinished black = %u\n", node->unfinished_black);
@@ -189,15 +186,12 @@ void CopyNodeIntoNode(Board* board, NodeState* source_node, NodeState* target_no
         target_node->White_positions[i] = source_node->White_positions[i];
         target_node->Black_positions[i] = source_node->Black_positions[i];
     }
-    //target_node->White_positions = source_node->White_positions;
-    //target_node->Black_positions = source_node->Black_positions;
     target_node->available_moves.Count = 0;
     target_node->available_moves.MovesAndLowerBounds = NULL;
     target_node->past_moves = (Move *)malloc(sizeof(Move) * board->upper_bound);
     for(int i=0; i<source_node->depth; i++) {
         target_node->past_moves[i] = source_node->past_moves[i];
     }
-    //target_node->past_moves = source_node->past_moves;
     target_node->unfinished_black = source_node->unfinished_black;
     target_node->unfinished_white = source_node->unfinished_white;
     target_node->depth = source_node->depth;
@@ -208,18 +202,17 @@ void NodeMakeMove(Board* board, NodeState* node, Move move) {
     // Increment depth, check if move ends in finish area -> decrement unfinished, change White/Black positions, flip turn, Add to past moves
     
     // Make move
-    // TODO ineffective - have to find pawn to make move with first, index should be passed
+    // Ineffective - have to find pawn to make move with first, but its still slightly faster than when we carry around an additional index in the Move struct.
+    //      -> TODO Best solution would be to replace move.Source with the index, we should be able to do without that
     if (node->turn == WHITE_MOVE) {
         for (uint i = 0; i<board->k; i++){
             if ((move.Source.X == node->White_positions[i].X) && (move.Source.Y == node->White_positions[i].Y)) {
-                //printf("DEBUG: Move source found\n");
                 node->White_positions[i].X = move.Dest.X;
                 node->White_positions[i].Y = move.Dest.Y;
                 if ((getDistanceToClosestPointInArea(move.Dest, board->B_area) == 0) && (getDistanceToClosestPointInArea(move.Source, board->B_area) > 0)) {
                     // If moving into finish zone, decrement unfinished_white
                     node->unfinished_white = node->unfinished_white - 1;
-                }
-                if ((getDistanceToClosestPointInArea(move.Dest, board->B_area) > 0) && (getDistanceToClosestPointInArea(move.Source, board->B_area) == 0)) {
+                } else if ((getDistanceToClosestPointInArea(move.Dest, board->B_area) > 0) && (getDistanceToClosestPointInArea(move.Source, board->B_area) == 0)) {
                     // If moving out of finish zone, increment unfinished_white
                     node->unfinished_white = node->unfinished_white + 1;
                 }
@@ -231,13 +224,11 @@ void NodeMakeMove(Board* board, NodeState* node, Move move) {
     } else {
         for (uint i = 0; i<board->k; i++){
             if ((move.Source.X == node->Black_positions[i].X) && (move.Source.Y == node->Black_positions[i].Y)) {
-                //printf("DEBUG: Move source found\n");
                 node->Black_positions[i].X = move.Dest.X;
                 node->Black_positions[i].Y = move.Dest.Y;
                 if ((getDistanceToClosestPointInArea(move.Dest, board->W_area) == 0) && (getDistanceToClosestPointInArea(move.Source, board->W_area) > 0)) {
                     node->unfinished_black = node->unfinished_black - 1;
-                }
-                if ((getDistanceToClosestPointInArea(move.Dest, board->W_area) > 0) && (getDistanceToClosestPointInArea(move.Source, board->W_area) == 0)) {
+                } else if ((getDistanceToClosestPointInArea(move.Dest, board->W_area) > 0) && (getDistanceToClosestPointInArea(move.Source, board->W_area) == 0)) {
                     node->unfinished_black = node->unfinished_black + 1;
                 }
             }
@@ -369,30 +360,32 @@ int getDistanceToClosestPointInArea(Point origin, Area dest_area) {
     int dist_2 = abs_value_trick(dest_area.bot_right.X - origin.X);
     // Special case where point's X is between the corners' X
     if (((origin.X > dest_area.top_left.X) && (dest_area.bot_right.X > origin.X)) || ((origin.X > dest_area.bot_right.X) && (dest_area.top_left.X > origin.X))) {
-        dist_1 = 0;
+        dist = 0;
+    } else {
+        if (dist_1 < dist_2) {
+            dist = deleni_dvema_trick(dist_1);
+            //printf("X dist = %i\n", dist);
+        } else {
+            dist = deleni_dvema_trick(dist_2);
+            //printf("X dist = %i\n", dist);
+        }
     }
     //printf("X dist 1 = %i, X dist 2 = %i\n", dist_1, dist_2);
-    if (dist_1 < dist_2) {
-        dist = deleni_dvema_trick(dist_1);
-        //printf("X dist = %i\n", dist);
-    } else {
-        dist = deleni_dvema_trick(dist_2);
-        //printf("X dist = %i\n", dist);
-    }
     
     dist_1 = abs_value_trick(dest_area.top_left.Y - origin.Y);
     dist_2 = abs_value_trick(dest_area.bot_right.Y - origin.Y);
     if (((origin.Y > dest_area.top_left.Y) && (dest_area.bot_right.Y > origin.Y)) || ((origin.Y > dest_area.bot_right.Y) && (dest_area.top_left.Y > origin.Y))) {
-        dist_1 = 0;
+        dist += 0;
+    } else {
+        if (dist_1 < dist_2) {
+            dist += deleni_dvema_trick(dist_1);
+            //printf("Y dist = %i\n", dist);
+        } else {
+            dist += deleni_dvema_trick(dist_2);
+            //printf("Y dist = %i\n", dist);
+        }
     }
     //printf("Y dist 1 = %i, Y dist 2 = %i\n", dist_1, dist_2);
-    if (dist_1 < dist_2) {
-        dist += deleni_dvema_trick(dist_1);
-        //printf("Y dist = %i\n", dist);
-    } else {
-        dist += deleni_dvema_trick(dist_2);
-        //printf("Y dist = %i\n", dist);
-    }
     //printf("Total dist = %i\n", dist);
     return dist;
 }
@@ -452,7 +445,7 @@ void GetAvailableMoves(Board* board, NodeState* state) {
     Point candidate_dest;
     MoveAndLowerBound valid_move_and_cost;
     
-    state->available_moves.Count = 0;
+    //state->available_moves.Count = 0;
     state->available_moves.MovesAndLowerBounds = (MoveAndLowerBound*)malloc(sizeof(MoveAndLowerBound) * board->k * 4); // Each pawn can have at most 4 moves - one move in every direction (Hopping over a pawn means a normal move is not possible). 
 
     //if ((state->unfinished_black == 0) && (state->unfinished_white == 0)) {

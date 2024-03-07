@@ -1,7 +1,6 @@
 #include "board.h"
 #include "solve.h"
 #include <time.h>
-//#include <unistd.h>
 
 
 int main(int argc, char** argv) {
@@ -17,12 +16,14 @@ int main(int argc, char** argv) {
     }
     const int max_thread = atoi(argv[1]);
     if ((max_thread < 0) || (max_thread > 1000)) {
-        printf("Number of threads must be between 1 and 128\n");
+        printf("Number of threads must be between 1 and 128, aborting\n");
+	return 1;
     }
     const char* filename = argv[2];
     Board* chessboard = load_board(filename);
     if (chessboard == NULL) {
         printf("Could not initialize board, aborting\n");
+	return 1;
     }
 
     printf("Solving input \"%s\", starting timer\n", filename);
@@ -31,8 +32,8 @@ int main(int argc, char** argv) {
     clock_gettime(CLOCK_MONOTONIC, &start);
     NodeState* best_solution = solve(chessboard);
     clock_gettime(CLOCK_MONOTONIC, &end);
-    printf("Seconds in timer struct = %ld\n", end.tv_sec - start.tv_sec);
-    printf("Nanoseconds in timer struct = %ld\n", end.tv_nsec - start.tv_nsec);
+    //printf("Seconds in timer struct = %ld\n", end.tv_sec - start.tv_sec);
+    //printf("Nanoseconds in timer struct = %ld\n", end.tv_nsec - start.tv_nsec);
 
     cpu_time = (double)((end.tv_sec - start.tv_sec)*1000) + ((double)(end.tv_nsec - start.tv_nsec)) / (double)1000000;
 
