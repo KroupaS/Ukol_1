@@ -126,6 +126,7 @@ void PrintNode(NodeState* node) {
 
 NodeState* CopyNode(Board* board, NodeState* node) {
     // Copies all members of <node> to new struct except <node.available_moves>
+    // Used for creation of new states
     NodeState* new_node = (NodeState*)malloc(sizeof(NodeState));
     new_node->White_positions = (Point *)malloc(sizeof(Point) * board->k);
     new_node->Black_positions = (Point *)malloc(sizeof(Point) * board->k);
@@ -149,6 +150,7 @@ NodeState* CopyNode(Board* board, NodeState* node) {
 
 void CopyNodeIntoNode(Board* board, NodeState* source_node, NodeState* target_node) {
     // Copies all members of <node> to <target_node> except available moves
+    // Used only to save current best solutions
     target_node->White_positions = source_node->White_positions;
     target_node->Black_positions = source_node->Black_positions;
     target_node->available_moves.Count = 0;
