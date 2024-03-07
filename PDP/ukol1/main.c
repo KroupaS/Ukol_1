@@ -1,34 +1,59 @@
 #include "board.h"
 #include "solve.h"
-
 #include <time.h>
+#include <unistd.h>
+
+void myFunction() {
+    usleep(500000);
+}
 
 
 int main(int argc, char** argv) {
-    clock_t start, end;
+    struct timespec start, end;
     double cpu_time;
-    size_t recursion_counter;
-    size_t* p_counter;
 
-    if (argc != 2) {
-        printf("Error: program expects one argument, Example Usage:\n");
-        printf("./vps.out in_0000.txt\n");
+    // Parse arguments, initialize
+    if (argc != 3) {
+        printf("Error: program expects two arguments - number of threads to use and filename, Example Usage:\n");
+        printf("./vps.out 8 in_0000.txt\n");
+        printf("./vps.out 1 in_0002.txt\n");
         return 1;
     }
-
-    const char* filename = argv[1];
-    recursion_counter = 0;
-    p_counter = &recursion_counter;
+    const int max_thread = atoi(argv[1]);
+    if ((max_thread < 0) || (max_thread > 1000)) {
+        printf("Number of threads must be between 1 and 128\n");
+    }
+    const char* filename = argv[2];
     Board* chessboard = load_board(filename);
+    if (chessboard == NULL) {
+        printf("Could not initialize board, aborting\n");
+    }
+
     printf("Solving input \"%s\", starting timer\n", filename);
-    start = clock();
-    NodeState* best_solution = solve(chessboard, p_counter);
-    end = clock();
-    cpu_time = ((double) (end - start)) / CLOCKS_PER_SEC;
-    printf("Solve recurse finished with %zu recursive calls in %.4f seconds, best solution:\n", recursion_counter, cpu_time);
-    PrintNode(best_solution);
-    NodeDestructor(best_solution);
-    free(chessboard);
+
+    // Time and solve
+    clock_gettime(CLOCK_MONOTONIC, &start);
+    NodeState* best_solution = solve(chessboard);
+    clock_gettime(CLOCK_MONOTONIC, &end);
+
+    if ((end.tv_sec - start.tv_sec) > 0) {
+        cpu_time = (double)(end.tv_sec - start.tv_sec) + ((double)(end.tv_nsec - start.tv_nsec)) / (double)1000000000;
+        printf("========================================\n", cpu_time);
+        printf("| Finished in %.4f seconds |\nBest solution:\n", cpu_time);
+    } else {
+        // display in ms
+        cpu_time = ((double)(end.tv_nsec - start.tv_nsec)) / (double)1000000LL;
+        printf("========================================\n", cpu_time);
+        printf("| Finished in %.4f ms |\nBest solution:\n", cpu_time);
+    }
+
+    if (best_solution->depth == 0) {
+        printf("ERROR best solution has depth 0 - correct solution was never found\n");
+    } else {
+        PrintNode(best_solution);
+        NodeDestructor(best_solution);
+        free(chessboard);
+    }
     
     return 0;
 }

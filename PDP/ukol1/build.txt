@@ -1,2 +1,2 @@
-cl /EHsc /Fe"vps.exe" board.c solve.c main.c && del board.obj && del main.obj && del solve.obj && .\vps.exe
-cc -Wall main.c solve.c board.c -o vps.out --std=c99 && ./vps.out in_0000.txt
+cl /O2 /EHsc /Fe"vps.exe" board.c solve.c main.c && del board.obj && del main.obj && del solve.obj && .\vps.exe 1 in_0000.txt
+cc -O3 -Wall main.c solve.c board.c -o vps.out --std=c99 && ./vps.out 1 in_0000.txt

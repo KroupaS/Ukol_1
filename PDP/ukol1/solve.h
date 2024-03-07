@@ -6,6 +6,6 @@
 #ifndef SOLVE_H
 #define SOLVE_H
 
-struct NodeState* solve(Board* board, size_t* recursion_counter);
+struct NodeState* solve(Board* board);
 
 #endif

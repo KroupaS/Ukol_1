@@ -1,5 +1,5 @@
-#include <stdio.h>
-#include <stdlib.h>
+//#include <stdio.h>
+//#include <stdlib.h>
 #include "board.h"
 
 
@@ -25,6 +25,23 @@ int move_cost_compare(const void* first_move, const void* second_move) {
     int comparison = first->lower_bound - second->lower_bound;
     return comparison;
 }
+
+//void insertion_sort_available_moves(MoveAndLowerBound* move_array, int count) {
+    //// This should be faster than quicksort for small arrays theoretically - but practically its so much slower than stdlib's qsort that the program doesnt even finish
+    //int i, j;
+    //for (i = 1; i < count; i++) {
+        //j = i - 1;
+
+
+        //while ((j >= 0) && (move_array[j].lower_bound > move_array[i].lower_bound)){
+            //move_array[j+1] = move_array[j];
+            //j = j - 1;
+        //}
+        //move_array[j+1] = move_array[i];
+        //printf("i, j = %i, %i\n", i, j);
+    //}
+
+//}
 
 
 Board* load_board(const char* filename) {
@@ -63,6 +80,21 @@ Board* load_board(const char* filename) {
 
     board->upper_bound = initialUpperBound(board);
     return board;
+}
+
+NodeState* initBestSolution(Board* board) {
+    NodeState* node_state = (NodeState *)malloc(sizeof(NodeState));
+    node_state->White_positions = (Point *)malloc(sizeof(Point) * board->k);
+    node_state->Black_positions = (Point *)malloc(sizeof(Point) * board->k);
+    //node_state->available_moves.Count = 0;
+    //node_state->available_moves.MovesAndLowerBounds = NULL;
+    node_state->past_moves = (Move *)malloc(sizeof(Move) * board->upper_bound);
+    //node_state->unfinished_black = board->k;
+    //node_state->unfinished_white = board->k;
+    node_state->depth = 0;
+    //node_state->turn = WHITE_MOVE;
+
+    return node_state;
 }
 
 NodeState* initFirstNode(Board* board) {
@@ -149,13 +181,23 @@ NodeState* CopyNode(Board* board, NodeState* node) {
 }
 
 void CopyNodeIntoNode(Board* board, NodeState* source_node, NodeState* target_node) {
-    // Copies all members of <node> to <target_node> except available moves
+    // Deep copies all members of <node> to <target_node> except available moves
     // Used only to save current best solutions
-    target_node->White_positions = source_node->White_positions;
-    target_node->Black_positions = source_node->Black_positions;
+    target_node->White_positions = (Point *)malloc(sizeof(Point) * board->k);
+    target_node->Black_positions = (Point *)malloc(sizeof(Point) * board->k);
+    for(int i=0; i<board->k; i++){
+        target_node->White_positions[i] = source_node->White_positions[i];
+        target_node->Black_positions[i] = source_node->Black_positions[i];
+    }
+    //target_node->White_positions = source_node->White_positions;
+    //target_node->Black_positions = source_node->Black_positions;
     target_node->available_moves.Count = 0;
     target_node->available_moves.MovesAndLowerBounds = NULL;
-    target_node->past_moves = source_node->past_moves;
+    target_node->past_moves = (Move *)malloc(sizeof(Move) * board->upper_bound);
+    for(int i=0; i<source_node->depth; i++) {
+        target_node->past_moves[i] = source_node->past_moves[i];
+    }
+    //target_node->past_moves = source_node->past_moves;
     target_node->unfinished_black = source_node->unfinished_black;
     target_node->unfinished_white = source_node->unfinished_white;
     target_node->depth = source_node->depth;
@@ -165,14 +207,8 @@ void CopyNodeIntoNode(Board* board, NodeState* source_node, NodeState* target_no
 void NodeMakeMove(Board* board, NodeState* node, Move move) {
     // Increment depth, check if move ends in finish area -> decrement unfinished, change White/Black positions, flip turn, Add to past moves
     
-    //printf("DEBUG: Making");
-    //if (node->turn == WHITE_MOVE) {
-        //printf(" White Move\n");
-    //} else {
-        //printf(" Black Move\n");
-    //}
     // Make move
-    // TODO ineffective - have to find pawn to make move with first
+    // TODO ineffective - have to find pawn to make move with first, index should be passed
     if (node->turn == WHITE_MOVE) {
         for (uint i = 0; i<board->k; i++){
             if ((move.Source.X == node->White_positions[i].X) && (move.Source.Y == node->White_positions[i].Y)) {
@@ -189,6 +225,9 @@ void NodeMakeMove(Board* board, NodeState* node, Move move) {
                 }
             }
         }
+        if (node->unfinished_black > 0) {
+            node->turn = BLACK_MOVE;
+        }
     } else {
         for (uint i = 0; i<board->k; i++){
             if ((move.Source.X == node->Black_positions[i].X) && (move.Source.Y == node->Black_positions[i].Y)) {
@@ -203,17 +242,12 @@ void NodeMakeMove(Board* board, NodeState* node, Move move) {
                 }
             }
         }
+        if (node->unfinished_white > 0) {
+            node->turn = WHITE_MOVE;
+        }
     }
 
     node->depth += 1;
-    node->turn = 1 - node->turn;
-    //printf("Next turn = ");
-    //if (node->turn == BLACK_MOVE) {
-        //printf(" Black Move\n");
-    //} else {
-        //printf(" White Move\n");
-    //}
-
     node->past_moves[(node->depth)-1] = move;
 }
 
@@ -388,10 +422,10 @@ int getDistanceToFarthestPointInArea(Point origin, Area dest) {
     return distance;
 }
 
-uint getCandidateLowerBound(int pawn_color, uint pawn_index, Point dest, NodeState* node, Board* board) {
+uint getCandidateLowerBound(uint pawn_index, Point dest, NodeState* node, Board* board) {
     // Makes a temporary move in the current state - calculates lower bound - removes temporary move
     // Useful to calculate lower bounds of candidates when looking for Available Moves without copying a node
-    if (pawn_color == WHITE_MOVE) {
+    if (node->turn == WHITE_MOVE) {
         Point pawn_backup = node->White_positions[pawn_index];
         node->White_positions[pawn_index].X = dest.X;
         node->White_positions[pawn_index].Y = dest.Y;
@@ -421,220 +455,197 @@ void GetAvailableMoves(Board* board, NodeState* state) {
     state->available_moves.Count = 0;
     state->available_moves.MovesAndLowerBounds = (MoveAndLowerBound*)malloc(sizeof(MoveAndLowerBound) * board->k * 4); // Each pawn can have at most 4 moves - one move in every direction (Hopping over a pawn means a normal move is not possible). 
 
-    if ((state->unfinished_black == 0) && (state->unfinished_white == 0)) {
-        // TODO this is useless - just an assertion. Impossible for both sides to have no moves.
-        printf("ERROR Finished state no turns\n");
-        PrintNode(state);
-        return;
-    }
+    //if ((state->unfinished_black == 0) && (state->unfinished_white == 0)) {
+        //// TODO this is useless - just an assertion. Impossible for both sides to have no moves.
+        //printf("ERROR Finished state no turns\n");
+        //PrintNode(state);
+        //return;
+    //}
 
-    int who_turns;
-    if ((state->turn == WHITE_MOVE) && (state->unfinished_white > 0)) {
-        who_turns = WHITE_MOVE;
-    } else if ((state->turn == BLACK_MOVE) && (state->unfinished_black > 0)) {
-        who_turns = BLACK_MOVE;
-    } else if (state->unfinished_black > 0) {
-        who_turns = BLACK_MOVE;
-    } else {
-        who_turns = WHITE_MOVE;
-    }
-
-    state->turn = who_turns;
-
-    if (who_turns == WHITE_MOVE) {
+    if (state->turn == WHITE_MOVE) {
         for (uint i = 0; i<board->k; i++) {
-            current_cost = getDistanceToClosestPointInArea(state->White_positions[i], board->B_area);
-            // TODO !!! remove this, current_cost >= 0 is always true
-            if (current_cost >= 0) {
-            //if (1) {
-                // Generate moves for White_positions[i], each one that is valid check its cost change and add it to the list
-                // Check moves in X direction
-                candidate_dest.X = state->White_positions[i].X + 1;
+            // Generate moves for White_positions[i], each one that is valid check its cost change and add it to the list
+            // Check moves in X direction
+            candidate_dest.X = state->White_positions[i].X + 1;
+            candidate_dest.Y = state->White_positions[i].Y;
+            if(isDestinationValid(candidate_dest, board, state)) {
+                // TODO calculate lower bound after this move, not cost of the move
+                candidate_cost = getCandidateLowerBound(i, candidate_dest, state, board);
+                valid_move_and_cost.lower_bound = candidate_cost;
+                valid_move_and_cost.move.Source = state->White_positions[i];
+                valid_move_and_cost.move.Dest = candidate_dest;
+                state->available_moves.MovesAndLowerBounds[state->available_moves.Count] = valid_move_and_cost;
+                state->available_moves.Count++;
+            } else {
+                // Regular move is not available, try double move 
+                candidate_dest.X = state->White_positions[i].X + 2;
                 candidate_dest.Y = state->White_positions[i].Y;
                 if(isDestinationValid(candidate_dest, board, state)) {
-                    // TODO calculate lower bound after this move, not cost of the move
-                    candidate_cost = getCandidateLowerBound(who_turns, i, candidate_dest, state, board);
-                    //candidate_cost = getDistanceToClosestPointInArea(candidate_dest, board->B_area);
+                    candidate_cost = getCandidateLowerBound(i, candidate_dest, state, board);
                     valid_move_and_cost.lower_bound = candidate_cost;
                     valid_move_and_cost.move.Source = state->White_positions[i];
                     valid_move_and_cost.move.Dest = candidate_dest;
                     state->available_moves.MovesAndLowerBounds[state->available_moves.Count] = valid_move_and_cost;
                     state->available_moves.Count++;
-                } else {
-                    // Try double move
-                    candidate_dest.X = state->White_positions[i].X + 2;
-                    candidate_dest.Y = state->White_positions[i].Y;
-                    if(isDestinationValid(candidate_dest, board, state)) {
-                        candidate_cost = getCandidateLowerBound(who_turns, i, candidate_dest, state, board);
-                        valid_move_and_cost.lower_bound = candidate_cost;
-                        valid_move_and_cost.move.Source = state->White_positions[i];
-                        valid_move_and_cost.move.Dest = candidate_dest;
-                        state->available_moves.MovesAndLowerBounds[state->available_moves.Count] = valid_move_and_cost;
-                        state->available_moves.Count++;
-                    }
                 }
+            }
+            candidate_dest.X = state->White_positions[i].X - 1;
+            candidate_dest.Y = state->White_positions[i].Y;
+            if(isDestinationValid(candidate_dest, board, state)) {
+                candidate_cost = getCandidateLowerBound(i, candidate_dest, state, board);
+                valid_move_and_cost.lower_bound = candidate_cost; 
+                valid_move_and_cost.move.Source = state->White_positions[i];
+                valid_move_and_cost.move.Dest = candidate_dest;
+                state->available_moves.MovesAndLowerBounds[state->available_moves.Count] = valid_move_and_cost;
+                state->available_moves.Count++;
+            } else {
+                candidate_dest.X = state->White_positions[i].X - 2;
+                candidate_dest.Y = state->White_positions[i].Y;
+                if(isDestinationValid(candidate_dest, board, state)) {
+                    candidate_cost = getCandidateLowerBound(i, candidate_dest, state, board);
+                    valid_move_and_cost.lower_bound = candidate_cost;
+                    valid_move_and_cost.move.Source = state->White_positions[i];
+                    valid_move_and_cost.move.Dest = candidate_dest;
+                    state->available_moves.MovesAndLowerBounds[state->available_moves.Count] = valid_move_and_cost;
+                    state->available_moves.Count++;
+                }
+            }
 
-                candidate_dest.X = state->White_positions[i].X - 1;
-                candidate_dest.Y = state->White_positions[i].Y;
-                if(isDestinationValid(candidate_dest, board, state)) {
-                    candidate_cost = getCandidateLowerBound(who_turns, i, candidate_dest, state, board);
-                    valid_move_and_cost.lower_bound = candidate_cost; 
-                    valid_move_and_cost.move.Source = state->White_positions[i];
-                    valid_move_and_cost.move.Dest = candidate_dest;
-                    state->available_moves.MovesAndLowerBounds[state->available_moves.Count] = valid_move_and_cost;
-                    state->available_moves.Count++;
-                } else {
-                    candidate_dest.X = state->White_positions[i].X - 2;
-                    candidate_dest.Y = state->White_positions[i].Y;
-                    if(isDestinationValid(candidate_dest, board, state)) {
-                        candidate_cost = getCandidateLowerBound(who_turns, i, candidate_dest, state, board);
-                        valid_move_and_cost.lower_bound = candidate_cost;
-                        valid_move_and_cost.move.Source = state->White_positions[i];
-                        valid_move_and_cost.move.Dest = candidate_dest;
-                        state->available_moves.MovesAndLowerBounds[state->available_moves.Count] = valid_move_and_cost;
-                        state->available_moves.Count++;
-                    }
-                }
-                // Check moves in Y direction
+            // Check moves in Y direction
+            candidate_dest.X = state->White_positions[i].X;
+            candidate_dest.Y = state->White_positions[i].Y + 1;
+            if(isDestinationValid(candidate_dest, board, state)) {
+                candidate_cost = getCandidateLowerBound(i, candidate_dest, state, board);
+                valid_move_and_cost.lower_bound = candidate_cost;
+                valid_move_and_cost.move.Source = state->White_positions[i];
+                valid_move_and_cost.move.Dest = candidate_dest;
+                state->available_moves.MovesAndLowerBounds[state->available_moves.Count] = valid_move_and_cost;
+                state->available_moves.Count++;
+            } else {
                 candidate_dest.X = state->White_positions[i].X;
-                candidate_dest.Y = state->White_positions[i].Y + 1;
+                candidate_dest.Y = state->White_positions[i].Y + 2;
                 if(isDestinationValid(candidate_dest, board, state)) {
-                    candidate_cost = getCandidateLowerBound(who_turns, i, candidate_dest, state, board);
+                    candidate_cost = getCandidateLowerBound(i, candidate_dest, state, board);
                     valid_move_and_cost.lower_bound = candidate_cost;
                     valid_move_and_cost.move.Source = state->White_positions[i];
                     valid_move_and_cost.move.Dest = candidate_dest;
                     state->available_moves.MovesAndLowerBounds[state->available_moves.Count] = valid_move_and_cost;
                     state->available_moves.Count++;
-                } else {
-                    candidate_dest.X = state->White_positions[i].X;
-                    candidate_dest.Y = state->White_positions[i].Y + 2;
-                    if(isDestinationValid(candidate_dest, board, state)) {
-                        candidate_cost = getCandidateLowerBound(who_turns, i, candidate_dest, state, board);
-                        valid_move_and_cost.lower_bound = candidate_cost;
-                        valid_move_and_cost.move.Source = state->White_positions[i];
-                        valid_move_and_cost.move.Dest = candidate_dest;
-                        state->available_moves.MovesAndLowerBounds[state->available_moves.Count] = valid_move_and_cost;
-                        state->available_moves.Count++;
-                    }
                 }
+            }
+            candidate_dest.X = state->White_positions[i].X;
+            candidate_dest.Y = state->White_positions[i].Y - 1;
+            if(isDestinationValid(candidate_dest, board, state)) {
+                candidate_cost = getCandidateLowerBound(i, candidate_dest, state, board);
+                valid_move_and_cost.lower_bound = candidate_cost;
+                valid_move_and_cost.move.Source = state->White_positions[i];
+                valid_move_and_cost.move.Dest = candidate_dest;
+                state->available_moves.MovesAndLowerBounds[state->available_moves.Count] = valid_move_and_cost;
+                state->available_moves.Count++;
+            } else {
                 candidate_dest.X = state->White_positions[i].X;
-                candidate_dest.Y = state->White_positions[i].Y - 1;
+                candidate_dest.Y = state->White_positions[i].Y - 2;
                 if(isDestinationValid(candidate_dest, board, state)) {
-                    candidate_cost = getCandidateLowerBound(who_turns, i, candidate_dest, state, board);
+                    candidate_cost = getCandidateLowerBound(i, candidate_dest, state, board);
                     valid_move_and_cost.lower_bound = candidate_cost;
                     valid_move_and_cost.move.Source = state->White_positions[i];
                     valid_move_and_cost.move.Dest = candidate_dest;
                     state->available_moves.MovesAndLowerBounds[state->available_moves.Count] = valid_move_and_cost;
                     state->available_moves.Count++;
-                } else {
-                    candidate_dest.X = state->White_positions[i].X;
-                    candidate_dest.Y = state->White_positions[i].Y - 2;
-                    if(isDestinationValid(candidate_dest, board, state)) {
-                        candidate_cost = getCandidateLowerBound(who_turns, i, candidate_dest, state, board);
-                        valid_move_and_cost.lower_bound = candidate_cost;
-                        valid_move_and_cost.move.Source = state->White_positions[i];
-                        valid_move_and_cost.move.Dest = candidate_dest;
-                        state->available_moves.MovesAndLowerBounds[state->available_moves.Count] = valid_move_and_cost;
-                        state->available_moves.Count++;
-                    }
                 }
             }
         }
         qsort(state->available_moves.MovesAndLowerBounds, state->available_moves.Count, sizeof(MoveAndLowerBound), move_cost_compare);
         return;
-    } else if (who_turns == BLACK_MOVE) {
+    } else {
         // Its blacks turn, because either 1) white is finished and black isnt, turn doesnt matter or 2) its BLACK_MOVE
         for (uint i = 0; i<board->k; i++) {
-            // TODO !!! remove this, current_cost >= 0 is always true
-            current_cost = getDistanceToClosestPointInArea(state->Black_positions[i], board->W_area);
-            if (current_cost >= 0) {
-            //if (1) {
-                // Generate moves for Black_positions[i], each one that is valid check its cost change and add it to the list
-                // Check moves in X direction
-                candidate_dest.X = state->Black_positions[i].X + 1;
+            // Generate moves for Black_positions[i], each one that is valid check its cost change and add it to the list
+            // Check moves in X direction
+            candidate_dest.X = state->Black_positions[i].X + 1;
+            candidate_dest.Y = state->Black_positions[i].Y;
+            if(isDestinationValid(candidate_dest, board, state)) {
+                candidate_cost = getCandidateLowerBound(i, candidate_dest, state, board);
+                valid_move_and_cost.lower_bound = candidate_cost;
+                valid_move_and_cost.move.Source = state->Black_positions[i];
+                valid_move_and_cost.move.Dest = candidate_dest;
+                state->available_moves.MovesAndLowerBounds[state->available_moves.Count] = valid_move_and_cost;
+                state->available_moves.Count++;
+            } else {
+                candidate_dest.X = state->Black_positions[i].X + 2;
                 candidate_dest.Y = state->Black_positions[i].Y;
                 if(isDestinationValid(candidate_dest, board, state)) {
-                    candidate_cost = getCandidateLowerBound(who_turns, i, candidate_dest, state, board);
+                    candidate_cost = getCandidateLowerBound(i, candidate_dest, state, board);
                     valid_move_and_cost.lower_bound = candidate_cost;
                     valid_move_and_cost.move.Source = state->Black_positions[i];
                     valid_move_and_cost.move.Dest = candidate_dest;
                     state->available_moves.MovesAndLowerBounds[state->available_moves.Count] = valid_move_and_cost;
                     state->available_moves.Count++;
-                } else {
-                    candidate_dest.X = state->Black_positions[i].X + 2;
-                    candidate_dest.Y = state->Black_positions[i].Y;
-                    if(isDestinationValid(candidate_dest, board, state)) {
-                        candidate_cost = getCandidateLowerBound(who_turns, i, candidate_dest, state, board);
-                        valid_move_and_cost.lower_bound = candidate_cost;
-                        valid_move_and_cost.move.Source = state->Black_positions[i];
-                        valid_move_and_cost.move.Dest = candidate_dest;
-                        state->available_moves.MovesAndLowerBounds[state->available_moves.Count] = valid_move_and_cost;
-                        state->available_moves.Count++;
-                    }
                 }
-                candidate_dest.X = state->Black_positions[i].X - 1;
+            }
+            candidate_dest.X = state->Black_positions[i].X - 1;
+            candidate_dest.Y = state->Black_positions[i].Y;
+            if(isDestinationValid(candidate_dest, board, state)) {
+                candidate_cost = getCandidateLowerBound(i, candidate_dest, state, board);
+                valid_move_and_cost.lower_bound = candidate_cost;
+                valid_move_and_cost.move.Source = state->Black_positions[i];
+                valid_move_and_cost.move.Dest = candidate_dest;
+                state->available_moves.MovesAndLowerBounds[state->available_moves.Count] = valid_move_and_cost;
+                state->available_moves.Count++;
+            } else {
+                candidate_dest.X = state->Black_positions[i].X - 2;
                 candidate_dest.Y = state->Black_positions[i].Y;
                 if(isDestinationValid(candidate_dest, board, state)) {
-                    candidate_cost = getCandidateLowerBound(who_turns, i, candidate_dest, state, board);
+                    candidate_cost = getCandidateLowerBound(i, candidate_dest, state, board);
                     valid_move_and_cost.lower_bound = candidate_cost;
                     valid_move_and_cost.move.Source = state->Black_positions[i];
                     valid_move_and_cost.move.Dest = candidate_dest;
                     state->available_moves.MovesAndLowerBounds[state->available_moves.Count] = valid_move_and_cost;
                     state->available_moves.Count++;
-                } else {
-                    candidate_dest.X = state->Black_positions[i].X - 2;
-                    candidate_dest.Y = state->Black_positions[i].Y;
-                    if(isDestinationValid(candidate_dest, board, state)) {
-                        candidate_cost = getCandidateLowerBound(who_turns, i, candidate_dest, state, board);
-                        valid_move_and_cost.lower_bound = candidate_cost;
-                        valid_move_and_cost.move.Source = state->Black_positions[i];
-                        valid_move_and_cost.move.Dest = candidate_dest;
-                        state->available_moves.MovesAndLowerBounds[state->available_moves.Count] = valid_move_and_cost;
-                        state->available_moves.Count++;
-                    }
                 }
-                // Check moves in Y direction
+            }
+
+            // Check moves in Y direction
+            candidate_dest.X = state->Black_positions[i].X;
+            candidate_dest.Y = state->Black_positions[i].Y + 1;
+            if(isDestinationValid(candidate_dest, board, state)) {
+                candidate_cost = getCandidateLowerBound(i, candidate_dest, state, board);
+                valid_move_and_cost.lower_bound = candidate_cost;
+                valid_move_and_cost.move.Source = state->Black_positions[i];
+                valid_move_and_cost.move.Dest = candidate_dest;
+                state->available_moves.MovesAndLowerBounds[state->available_moves.Count] = valid_move_and_cost;
+                state->available_moves.Count++;
+            } else {
                 candidate_dest.X = state->Black_positions[i].X;
-                candidate_dest.Y = state->Black_positions[i].Y + 1;
+                candidate_dest.Y = state->Black_positions[i].Y + 2;
                 if(isDestinationValid(candidate_dest, board, state)) {
-                    candidate_cost = getCandidateLowerBound(who_turns, i, candidate_dest, state, board);
+                    candidate_cost = getCandidateLowerBound(i, candidate_dest, state, board);
                     valid_move_and_cost.lower_bound = candidate_cost;
                     valid_move_and_cost.move.Source = state->Black_positions[i];
                     valid_move_and_cost.move.Dest = candidate_dest;
                     state->available_moves.MovesAndLowerBounds[state->available_moves.Count] = valid_move_and_cost;
                     state->available_moves.Count++;
-                } else {
-                    candidate_dest.X = state->Black_positions[i].X;
-                    candidate_dest.Y = state->Black_positions[i].Y + 2;
-                    if(isDestinationValid(candidate_dest, board, state)) {
-                        candidate_cost = getCandidateLowerBound(who_turns, i, candidate_dest, state, board);
-                        valid_move_and_cost.lower_bound = candidate_cost;
-                        valid_move_and_cost.move.Source = state->Black_positions[i];
-                        valid_move_and_cost.move.Dest = candidate_dest;
-                        state->available_moves.MovesAndLowerBounds[state->available_moves.Count] = valid_move_and_cost;
-                        state->available_moves.Count++;
-                    }
                 }
+            }
+            candidate_dest.X = state->Black_positions[i].X;
+            candidate_dest.Y = state->Black_positions[i].Y - 1;
+            if(isDestinationValid(candidate_dest, board, state)) {
+                candidate_cost = getCandidateLowerBound(i, candidate_dest, state, board);
+                valid_move_and_cost.lower_bound = candidate_cost;
+                valid_move_and_cost.move.Source = state->Black_positions[i];
+                valid_move_and_cost.move.Dest = candidate_dest;
+                state->available_moves.MovesAndLowerBounds[state->available_moves.Count] = valid_move_and_cost;
+                state->available_moves.Count++;
+            } else {
                 candidate_dest.X = state->Black_positions[i].X;
-                candidate_dest.Y = state->Black_positions[i].Y - 1;
+                candidate_dest.Y = state->Black_positions[i].Y - 2;
                 if(isDestinationValid(candidate_dest, board, state)) {
-                    candidate_cost = getCandidateLowerBound(who_turns, i, candidate_dest, state, board);
+                    candidate_cost = getCandidateLowerBound(i, candidate_dest, state, board);
                     valid_move_and_cost.lower_bound = candidate_cost;
                     valid_move_and_cost.move.Source = state->Black_positions[i];
                     valid_move_and_cost.move.Dest = candidate_dest;
                     state->available_moves.MovesAndLowerBounds[state->available_moves.Count] = valid_move_and_cost;
                     state->available_moves.Count++;
-                } else {
-                    candidate_dest.X = state->Black_positions[i].X;
-                    candidate_dest.Y = state->Black_positions[i].Y - 2;
-                    if(isDestinationValid(candidate_dest, board, state)) {
-                        candidate_cost = getCandidateLowerBound(who_turns, i, candidate_dest, state, board);
-                        valid_move_and_cost.lower_bound = candidate_cost;
-                        valid_move_and_cost.move.Source = state->Black_positions[i];
-                        valid_move_and_cost.move.Dest = candidate_dest;
-                        state->available_moves.MovesAndLowerBounds[state->available_moves.Count] = valid_move_and_cost;
-                        state->available_moves.Count++;
-                    }
                 }
             }
         }
