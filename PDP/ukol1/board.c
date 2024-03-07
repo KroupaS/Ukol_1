@@ -444,6 +444,7 @@ void GetAvailableMoves(Board* board, NodeState* state) {
     if (who_turns == WHITE_MOVE) {
         for (uint i = 0; i<board->k; i++) {
             current_cost = getDistanceToClosestPointInArea(state->White_positions[i], board->B_area);
+            // TODO !!! remove this, current_cost >= 0 is always true
             if (current_cost >= 0) {
             //if (1) {
                 // Generate moves for White_positions[i], each one that is valid check its cost change and add it to the list
@@ -544,6 +545,7 @@ void GetAvailableMoves(Board* board, NodeState* state) {
     } else if (who_turns == BLACK_MOVE) {
         // Its blacks turn, because either 1) white is finished and black isnt, turn doesnt matter or 2) its BLACK_MOVE
         for (uint i = 0; i<board->k; i++) {
+            // TODO !!! remove this, current_cost >= 0 is always true
             current_cost = getDistanceToClosestPointInArea(state->Black_positions[i], board->W_area);
             if (current_cost >= 0) {
             //if (1) {
