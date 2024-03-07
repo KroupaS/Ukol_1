@@ -423,7 +423,7 @@ void GetAvailableMoves(Board* board, NodeState* state) {
 
     if ((state->unfinished_black == 0) && (state->unfinished_white == 0)) {
         // TODO this is useless - just an assertion. Impossible for both sides to have no moves.
-        printf("Finished state no turns\n");
+        printf("ERROR Finished state no turns\n");
         PrintNode(state);
         return;
     }
