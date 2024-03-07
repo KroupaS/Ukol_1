@@ -3,19 +3,19 @@
 #include "board.h"
 
 
-char abs_value_trick(char val) {
+int abs_value_trick(int val) {
     // Signed right shift -> result is 0000000 or 1111111
-    printf("abs value input = %i", val);
-    char tmp = val >> 7;
+    printf("abs value input = %i\n", val);
+    int tmp = val >> 7;
     // Flip bits and add one if tmp is 11111111;
     val ^= tmp;
     val += tmp & 1;
-    printf("abs value output = %i", val);
+    printf("abs value output = %i\n", val);
     return val;
 }
 
-char deleni_dvema_trick(char delenec) {
-    char zaokruhleni = delenec & 1;
+int deleni_dvema_trick(int delenec) {
+    int zaokruhleni = delenec & 1;
     delenec = (delenec >> 1) + zaokruhleni;
     return delenec;
 }
@@ -66,10 +66,10 @@ Board* load_board(const char* filename) {
     //test_point.X = 4;
     //test_point.Y = 0;
 
-    //char farthest_W = getDistanceToFarthestPointInArea(test_point, board->W_area);
-    //char farthest_B = getDistanceToFarthestPointInArea(test_point, board->B_area);
-    //char closest_W = getDistanceToClosestPointInArea(test_point, board->W_area);
-    //char closest_B = getDistanceToClosestPointInArea(test_point, board->B_area);
+    //int farthest_W = getDistanceToFarthestPointInArea(test_point, board->W_area);
+    //int farthest_B = getDistanceToFarthestPointInArea(test_point, board->B_area);
+    //int closest_W = getDistanceToClosestPointInArea(test_point, board->W_area);
+    //int closest_B = getDistanceToClosestPointInArea(test_point, board->B_area);
 
     //printf("Farthest W = %i\n", farthest_W);
     //printf("Farthest B = %i\n", farthest_B);
@@ -99,8 +99,8 @@ NodeState* initFirstNode(Board* board) {
     // Initialize white positions
     Point bod;
     uint pawn_index = 0;
-    for (char i = board->W_area.top_left.X; i <= board->W_area.bot_right.X; i++) {
-        for (char j = board->W_area.top_left.Y; j <= board->W_area.bot_right.Y; j++) {
+    for (int i = board->W_area.top_left.X; i <= board->W_area.bot_right.X; i++) {
+        for (int j = board->W_area.top_left.Y; j <= board->W_area.bot_right.Y; j++) {
             bod.X = i;
             bod.Y = j;
             initial_state->White_positions[pawn_index] = bod;
@@ -109,8 +109,8 @@ NodeState* initFirstNode(Board* board) {
     }
     // Initialize Black positions
     pawn_index = 0;
-    for (char i = board->B_area.top_left.X; i <= board->B_area.bot_right.X; i++) {
-        for (char j = board->B_area.top_left.Y; j <= board->B_area.bot_right.Y; j++) {
+    for (int i = board->B_area.top_left.X; i <= board->B_area.bot_right.X; i++) {
+        for (int j = board->B_area.top_left.Y; j <= board->B_area.bot_right.Y; j++) {
             bod.X = i;
             bod.Y = j;
             initial_state->Black_positions[pawn_index] = bod;
@@ -236,7 +236,7 @@ void NodeDestructor(NodeState* node) {
     free(node);
 }
 
-char isPointInBounds(Point point, Board* board) {
+int isPointInBounds(Point point, Board* board) {
     if ((point.X < 0) || (point.Y < 0)) {
         return 0;
     }
@@ -246,14 +246,14 @@ char isPointInBounds(Point point, Board* board) {
     return 1;
 }
 
-char isPointInArea(Point point, Area area) {
+int isPointInArea(Point point, Area area) {
     if ((point.X < area.top_left.X) || (point.X > area.bot_right.X) || (point.Y < area.top_left.Y) || (point.Y > area.bot_right.Y)){
         return 0;
     }
     return 1;
 }
 
-char isPawnFinished(Board* board, NodeState* state, Point pawn_position) {
+int isPawnFinished(Board* board, NodeState* state, Point pawn_position) {
     // Unused
     // return 1 if white pawn is in B or black pawn in W
     if (state->turn == WHITE_MOVE) {
@@ -265,7 +265,7 @@ char isPawnFinished(Board* board, NodeState* state, Point pawn_position) {
 }
 
 
-char isDestinationValid(Point point, Board* board, NodeState* state) {
+int isDestinationValid(Point point, Board* board, NodeState* state) {
     // Look through all state positions if there is already a pawn at <point> or if its out of bounds
     if (isPointInBounds(point, board)) {
         // Check taken positions
@@ -287,10 +287,10 @@ char isDestinationValid(Point point, Board* board, NodeState* state) {
 uint initialUpperBound(Board* board) {
     uint upper_bound = 0;
     Point bod;
-    char distance;
+    int distance;
     // First calculate for white pawns
-    for (char i = board->W_area.top_left.X; i <= board->W_area.bot_right.X; i++) {
-        for (char j = board->W_area.top_left.Y; j <= board->W_area.bot_right.Y; j++) {
+    for (int i = board->W_area.top_left.X; i <= board->W_area.bot_right.X; i++) {
+        for (int j = board->W_area.top_left.Y; j <= board->W_area.bot_right.Y; j++) {
             //printf("bod = [%i, %i]\n", i, j);
             bod.X = i;
             bod.Y = j;
@@ -299,8 +299,8 @@ uint initialUpperBound(Board* board) {
             upper_bound += distance;
         }
     }
-    for (char i = board->B_area.top_left.X; i <= board->B_area.bot_right.X; i++) {
-        for (char j = board->B_area.top_left.Y; j <= board->B_area.bot_right.Y; j++) {
+    for (int i = board->B_area.top_left.X; i <= board->B_area.bot_right.X; i++) {
+        for (int j = board->B_area.top_left.Y; j <= board->B_area.bot_right.Y; j++) {
             //printf("bod = [%i, %i]\n", i, j);
             bod.X = i;
             bod.Y = j;
@@ -314,7 +314,7 @@ uint initialUpperBound(Board* board) {
 
 uint getLowerBound(Board* board, NodeState* state) {
     uint lower_bound = 0;
-    char distance;
+    int distance;
 
     // First calculate for white pawns
     for (int i=0; i<board->k; i++) {
@@ -329,18 +329,18 @@ uint getLowerBound(Board* board, NodeState* state) {
     return lower_bound;
 }
 
-char ManhattanDist(Point first, Point second) {
-    char dist = abs_value_trick(first.X - second.X);
+int ManhattanDist(Point first, Point second) {
+    int dist = abs_value_trick(first.X - second.X);
     dist += abs_value_trick(first.Y - second.Y);
     return dist;
 }
 
-char getDistanceToClosestPointInArea(Point origin, Area dest_area) {
+int getDistanceToClosestPointInArea(Point origin, Area dest_area) {
     // First calculate distance in x;
-    char dist = 0;
+    int dist = 0;
     //printf("Point = [%i, %i]\n", origin.X, origin.Y);
-    char dist_1 = abs_value_trick(dest_area.top_left.X - origin.X);
-    char dist_2 = abs_value_trick(dest_area.bot_right.X - origin.X);
+    int dist_1 = abs_value_trick(dest_area.top_left.X - origin.X);
+    int dist_2 = abs_value_trick(dest_area.bot_right.X - origin.X);
     // Special case where point's X is between the corners' X
     if (((origin.X > dest_area.top_left.X) && (dest_area.bot_right.X > origin.X)) || ((origin.X > dest_area.bot_right.X) && (dest_area.top_left.X > origin.X))) {
         dist_1 = 0;
@@ -372,14 +372,14 @@ char getDistanceToClosestPointInArea(Point origin, Area dest_area) {
 }
 
 
-char getDistanceToFarthestPointInArea(Point origin, Area dest) {
+int getDistanceToFarthestPointInArea(Point origin, Area dest) {
     // Pick one corner arbitrarily
     Point farthest = dest.top_left;
-    char distance = ManhattanDist(origin, farthest);
+    int distance = ManhattanDist(origin, farthest);
 
     // Get distance to the other corners and compare
     Point candidate = dest.bot_right;
-    char distance_candidate = ManhattanDist(origin, candidate);
+    int distance_candidate = ManhattanDist(origin, candidate);
     // Unnecessary conditional 
     if (distance_candidate > distance) { farthest = candidate; distance = distance_candidate; }
 
@@ -396,7 +396,7 @@ char getDistanceToFarthestPointInArea(Point origin, Area dest) {
     return distance;
 }
 
-uint getCandidateLowerBound(char pawn_color, uint pawn_index, Point dest, NodeState* node, Board* board) {
+uint getCandidateLowerBound(int pawn_color, uint pawn_index, Point dest, NodeState* node, Board* board) {
     // Makes a temporary move in the current state - calculates lower bound - removes temporary move
     // Useful to calculate lower bounds of candidates when looking for Available Moves without copying a node
     if (pawn_color == WHITE_MOVE) {
@@ -421,8 +421,8 @@ uint getCandidateLowerBound(char pawn_color, uint pawn_index, Point dest, NodeSt
 
 
 void GetAvailableMoves(Board* board, NodeState* state) {
-    char current_cost; // For calculating costs of each move 
-    char candidate_cost;
+    int current_cost; // For calculating costs of each move 
+    int candidate_cost;
     Point candidate_dest;
     MoveAndLowerBound valid_move_and_cost;
     
@@ -435,7 +435,7 @@ void GetAvailableMoves(Board* board, NodeState* state) {
         return;
     }
 
-    char who_turns;
+    int who_turns;
     if ((state->turn == WHITE_MOVE) && (state->unfinished_white > 0)) {
         who_turns = WHITE_MOVE;
     } else if ((state->turn == BLACK_MOVE) && (state->unfinished_black > 0)) {
@@ -647,18 +647,18 @@ void GetAvailableMoves(Board* board, NodeState* state) {
 }
 
 
-//char getDistanceToClosestPointInArea(Point origin, Area dest) {
+//int getDistanceToClosestPointInArea(Point origin, Area dest) {
     //// Get the closest corner and then move along the border if it reduces distance
     //Point closest = dest.top_left;
-    //char distance = ManhattanDist(origin, closest);
+    //int distance = ManhattanDist(origin, closest);
 
     //// Direction to try moving towards if top_left is the closest corner
-    //char x_direction = 1;
-    //char y_direction = 1;
+    //int x_direction = 1;
+    //int y_direction = 1;
 
     //// Get distance to the other corners and compare
     //Point candidate = dest.bot_right;
-    //char distance_candidate = ManhattanDist(origin, candidate);
+    //int distance_candidate = ManhattanDist(origin, candidate);
     //// Unnecessary conditional 
     //if (distance_candidate < distance) { 
         //closest = candidate; 
