@@ -422,6 +422,7 @@ void GetAvailableMoves(Board* board, NodeState* state) {
     state->available_moves.MovesAndLowerBounds = (MoveAndLowerBound*)malloc(sizeof(MoveAndLowerBound) * board->k * 4); // Each pawn can have at most 4 moves - one move in every direction (Hopping over a pawn means a normal move is not possible). 
 
     if ((state->unfinished_black == 0) && (state->unfinished_white == 0)) {
+        // TODO this is useless - just an assertion. Impossible for both sides to have no moves.
         printf("Finished state no turns\n");
         PrintNode(state);
         return;
