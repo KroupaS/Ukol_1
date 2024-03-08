@@ -1,3 +1,0 @@
-Zapisky o prevedeni na prvni paralelni verzi
-
-1. Upravit logy - minimalizovat aktualni a pridat ascii art sachovnici

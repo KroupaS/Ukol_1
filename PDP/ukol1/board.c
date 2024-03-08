@@ -25,22 +25,6 @@ int move_cost_compare(const void* first_move, const void* second_move) {
     return comparison;
 }
 
-//void insertion_sort_available_moves(MoveAndLowerBound* move_array, int count) {
-    //// This should be faster than quicksort for small arrays theoretically - but practically its so much slower than stdlib's qsort that the program doesnt even finish
-    //int i, j;
-    //for (i = 1; i < count; i++) {
-        //j = i - 1;
-
-        //while ((j >= 0) && (move_array[j].lower_bound > move_array[i].lower_bound)){
-            //move_array[j+1] = move_array[j];
-            //j = j - 1;
-        //}
-        //move_array[j+1] = move_array[i];
-        //printf("i, j = %i, %i\n", i, j);
-    //}
-
-//}
-
 
 Board* load_board(const char* filename) {
     // Set up the board, done once at start of program. Calculates initial upper bound (which is updated later on as solutions are found)
@@ -114,7 +98,6 @@ NodeState* initFirstNode(Board* board) {
     initial_state->depth = 0;
     initial_state->turn = WHITE_MOVE;
 
-
     // Initialize white positions
     Point bod;
     uint pawn_index = 0;
@@ -160,6 +143,7 @@ void PrintNode(NodeState* node) {
 
 }
 
+
 NodeState* CopyNode(Board* board, NodeState* node) {
     // Copies all members of <node> to new struct except <node.available_moves>
     // Used for creation of new states
@@ -184,26 +168,6 @@ NodeState* CopyNode(Board* board, NodeState* node) {
     return new_node;
 }
 
-//void CopyNodeIntoNode(Board* board, NodeState* source_node, NodeState* target_node) {
-    //// Deep copies all members of <node> to <target_node> except available moves
-    //// Used only to save current best solutions
-    //target_node->White_positions = (Point *)malloc(sizeof(Point) * board->k);
-    //target_node->Black_positions = (Point *)malloc(sizeof(Point) * board->k);
-    //for(int i=0; i<board->k; i++){
-        //target_node->White_positions[i] = source_node->White_positions[i];
-        //target_node->Black_positions[i] = source_node->Black_positions[i];
-    //}
-    //target_node->available_moves.Count = 0;
-    //target_node->available_moves.MovesAndLowerBounds = NULL;
-    //target_node->past_moves = (Move *)malloc(sizeof(Move) * board->upper_bound);
-    //for(uint i=0; i<source_node->depth; i++) {
-        //target_node->past_moves[i] = source_node->past_moves[i];
-    //}
-    //target_node->unfinished_black = source_node->unfinished_black;
-    //target_node->unfinished_white = source_node->unfinished_white;
-    //target_node->depth = source_node->depth;
-    //target_node->turn = source_node->turn;
-//}
 
 void NodeMakeMove(Board* board, NodeState* node, Move move) {
     // Increment depth, check if move ends in finish area -> decrement unfinished, change White/Black positions, flip turn, Add to past moves
