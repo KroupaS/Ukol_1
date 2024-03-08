@@ -1,5 +1,3 @@
-//#include <stdio.h>
-//#include <stdlib.h>
 #include "board.h"
 
 int abs_value_trick(int val) {
@@ -24,22 +22,6 @@ int move_cost_compare(const void* first_move, const void* second_move) {
     int comparison = first->lower_bound - second->lower_bound;
     return comparison;
 }
-
-//void insertion_sort_available_moves(MoveAndLowerBound* move_array, int count) {
-    //// This should be faster than quicksort for small arrays theoretically - but practically its so much slower than stdlib's qsort that the program doesnt even finish
-    //int i, j;
-    //for (i = 1; i < count; i++) {
-        //j = i - 1;
-
-        //while ((j >= 0) && (move_array[j].lower_bound > move_array[i].lower_bound)){
-            //move_array[j+1] = move_array[j];
-            //j = j - 1;
-        //}
-        //move_array[j+1] = move_array[i];
-        //printf("i, j = %i, %i\n", i, j);
-    //}
-
-//}
 
 
 Board* load_board(const char* filename) {
@@ -80,17 +62,24 @@ Board* load_board(const char* filename) {
     return board;
 }
 
+void CopyMoves(NodeState* source_node, NodeState* target_node) {
+    target_node->depth = source_node->depth;
+    for (int i=0; i < source_node->depth; i++) {
+        target_node->past_moves[i] = source_node->past_moves[i];
+    }
+}
+
 NodeState* initBestSolution(Board* board) {
     NodeState* node_state = (NodeState *)malloc(sizeof(NodeState));
-    node_state->White_positions = (Point *)malloc(sizeof(Point) * board->k);
-    node_state->Black_positions = (Point *)malloc(sizeof(Point) * board->k);
-    //node_state->available_moves.Count = 0;
-    //node_state->available_moves.MovesAndLowerBounds = NULL;
-    node_state->past_moves = (Move *)malloc(sizeof(Move) * board->upper_bound);
-    //node_state->unfinished_black = board->k;
-    //node_state->unfinished_white = board->k;
+    node_state->White_positions = NULL;
+    node_state->Black_positions = NULL;
+    node_state->available_moves.Count = 0;
+    node_state->available_moves.MovesAndLowerBounds = NULL;
+    node_state->past_moves = (Move *)malloc(sizeof(Move) * (board->upper_bound));
+    node_state->unfinished_black = 0;
+    node_state->unfinished_white = 0;
     node_state->depth = 0;
-    //node_state->turn = WHITE_MOVE;
+    node_state->turn = WHITE_MOVE;
 
     return node_state;
 }
@@ -106,7 +95,6 @@ NodeState* initFirstNode(Board* board) {
     initial_state->unfinished_white = board->k;
     initial_state->depth = 0;
     initial_state->turn = WHITE_MOVE;
-
 
     // Initialize white positions
     Point bod;
@@ -153,6 +141,7 @@ void PrintNode(NodeState* node) {
 
 }
 
+
 NodeState* CopyNode(Board* board, NodeState* node) {
     // Copies all members of <node> to new struct except <node.available_moves>
     // Used for creation of new states
@@ -177,26 +166,6 @@ NodeState* CopyNode(Board* board, NodeState* node) {
     return new_node;
 }
 
-void CopyNodeIntoNode(Board* board, NodeState* source_node, NodeState* target_node) {
-    // Deep copies all members of <node> to <target_node> except available moves
-    // Used only to save current best solutions
-    target_node->White_positions = (Point *)malloc(sizeof(Point) * board->k);
-    target_node->Black_positions = (Point *)malloc(sizeof(Point) * board->k);
-    for(int i=0; i<board->k; i++){
-        target_node->White_positions[i] = source_node->White_positions[i];
-        target_node->Black_positions[i] = source_node->Black_positions[i];
-    }
-    target_node->available_moves.Count = 0;
-    target_node->available_moves.MovesAndLowerBounds = NULL;
-    target_node->past_moves = (Move *)malloc(sizeof(Move) * board->upper_bound);
-    for(uint i=0; i<source_node->depth; i++) {
-        target_node->past_moves[i] = source_node->past_moves[i];
-    }
-    target_node->unfinished_black = source_node->unfinished_black;
-    target_node->unfinished_white = source_node->unfinished_white;
-    target_node->depth = source_node->depth;
-    target_node->turn = source_node->turn;
-}
 
 void NodeMakeMove(Board* board, NodeState* node, Move move) {
     // Increment depth, check if move ends in finish area -> decrement unfinished, change White/Black positions, flip turn, Add to past moves
@@ -251,6 +220,16 @@ void NodeDestructor(NodeState* node) {
     }
     free(node->past_moves);
     free(node);
+}
+
+void FreeNodeMembers(NodeState* node) {
+    // Cant call if GetAvailableMoves was not called on this node - would free nullptr
+    free(node->White_positions);
+    free(node->Black_positions);
+    if(node->available_moves.MovesAndLowerBounds != NULL) {
+        free(node->available_moves.MovesAndLowerBounds);
+    }
+    free(node->past_moves);
 }
 
 int isPointInBounds(Point point, Board* board) {

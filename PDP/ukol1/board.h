@@ -3,7 +3,9 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-//#include <stddef.h>
+#include <omp.h>
+#include <string.h>
+#include <stddef.h>
 
 typedef unsigned int uint;
 
@@ -59,11 +61,8 @@ typedef struct NodeState {
     unsigned char turn;                 // 40 - WHITE_MOVE / BLACK_MOVE depending who is moving next 
 } NodeState;
 
-void NodeDestructor(NodeState* node);
 struct Board* load_board(const char* filename);
-NodeState* initFirstNode(Board* board);
 NodeState* initBestSolution(Board* board);
-void GetAvailableMoves(Board* board, NodeState* state);
 int isPointInBounds(Point point, Board* board);
 int isPointInArea(Point point, Area rea);
 uint initialUpperBound(Board* board);
@@ -72,9 +71,16 @@ int getDistanceToClosestPointInArea(Point origin, Area dest);
 int getDistanceToFarthestPointInArea(Point origin, Area dest);
 int abs_value_trick(int val);
 int deleni_dvema_trick(int delenec);
+
+NodeState* initFirstNode(Board* board);
 void PrintNode(NodeState* node);
 NodeState* CopyNode(Board* board, NodeState* node);
 void CopyNodeIntoNode(Board* board, NodeState* source_node, NodeState* target_node);
 void NodeMakeMove(Board* board, NodeState* node, Move move);
+void NodeDestructor(NodeState* node);
+void FreeNodeMembers(NodeState* node);
+
+void GetAvailableMoves(Board* board, NodeState* state);
+void CopyMoves(NodeState* source_node, NodeState* target_node);
 
 #endif

@@ -20,39 +20,26 @@ NodeState* solve(Board* board) {
 }
 
 void solve_recurse(Board* board, NodeState* current_node, NodeState* current_best) {
-    if (current_node->depth >= board->upper_bound) {
+    if (current_node->depth >= current_best->depth) {
         // Exit if depth exceeds upper bound
         return;
     }
 
     if ((current_node->unfinished_black == 0) && (current_node->unfinished_white == 0)) {
         // If all white pawns are in B and vice versa, update best solution
-        if (current_node->depth <= board->lower_bound) {
-            printf("Solution matches lower bound, ending\n");
-            CopyNodeIntoNode(board, current_node, current_best);
-            //free(current_node);
-            // Optimal solution, end early by setting upper bound of the board to 0 - every recursive call should exit immediatelly. Didnt happen yet so not sure this works
-            board->upper_bound = 0;
-        } else {
-            // Solution - compare & update best but dont quit early
-            if (current_node->depth < current_best->depth) {
-                // Best solution will be updated - by deep copy from current solution
-                CopyNodeIntoNode(board, current_node, current_best);
-                board->upper_bound = current_best->depth;
-            } 
+        if (current_node->depth < current_best->depth) {
+            CopyMoves(current_node, current_best);
         }
     } else {
         // Unfinished, continue and recurse
         GetAvailableMoves(board, current_node);
-        //PrintNode(current_node);
         if (current_node->available_moves.Count > 0){
             for (int i = 0; i < current_node->available_moves.Count; i++) {
-                if ((current_node->depth + current_node->available_moves.MovesAndLowerBounds[i].lower_bound + 1) < board->upper_bound) {
+                if ((current_node->depth + current_node->available_moves.MovesAndLowerBounds[i].lower_bound + 1) < current_best->depth) {
                     // Check that S + d(S') + 1 < upper_bound, so recurse on these moves
                     NodeState* new_node = CopyNode(board, current_node);
                     NodeMakeMove(board, new_node, current_node->available_moves.MovesAndLowerBounds[i].move);
                     solve_recurse(board, new_node, current_best);
-                    // TODO Destruct child after it is done
                     NodeDestructor(new_node);
                 }
             }
