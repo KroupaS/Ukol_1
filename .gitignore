@@ -1,3 +1,3 @@
-PDP/ukol1/vps.out
-PDP/ukol1/vps.exe
 PDP/ukol1/slurm_out/*
+./**/*.out
+./**/*.exe

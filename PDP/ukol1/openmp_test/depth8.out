@@ -1,0 +1,2150 @@
+Solving input "in_0000.txt", starting timer
+========================================
+| Finished in 112.1345 ms |
+Best solution:
+Node depth = 20
+Unfinished white = 0
+Unfinished black = 0
+Next to turn = 0
+Past moves: 
+[4, 0] -> [3, 0]
+[0, 0] -> [2, 0]
+[5, 1] -> [3, 1]
+[1, 1] -> [2, 1]
+[3, 1] -> [1, 1]
+[2, 0] -> [4, 0]
+[4, 1] -> [3, 1]
+[1, 0] -> [2, 0]
+[3, 0] -> [1, 0]
+[2, 1] -> [4, 1]
+[5, 0] -> [3, 0]
+[0, 1] -> [2, 1]
+[1, 0] -> [0, 0]
+[4, 1] -> [5, 1]
+[3, 0] -> [1, 0]
+[2, 1] -> [4, 1]
+[3, 1] -> [2, 1]
+[2, 0] -> [3, 0]
+[2, 1] -> [0, 1]
+[3, 0] -> [5, 0]
+Available move count = 0
+Solving input "in_0000.txt", starting timer
+========================================
+| Finished in 114.5216 ms |
+Best solution:
+Node depth = 20
+Unfinished white = 0
+Unfinished black = 0
+Next to turn = 0
+Past moves: 
+[4, 0] -> [3, 0]
+[1, 1] -> [2, 1]
+[5, 1] -> [3, 1]
+[0, 0] -> [2, 0]
+[3, 1] -> [1, 1]
+[2, 0] -> [4, 0]
+[4, 1] -> [3, 1]
+[1, 0] -> [2, 0]
+[3, 0] -> [1, 0]
+[2, 1] -> [4, 1]
+[5, 0] -> [3, 0]
+[0, 1] -> [2, 1]
+[1, 0] -> [0, 0]
+[4, 1] -> [5, 1]
+[3, 0] -> [1, 0]
+[2, 1] -> [4, 1]
+[3, 1] -> [2, 1]
+[2, 0] -> [3, 0]
+[2, 1] -> [0, 1]
+[3, 0] -> [5, 0]
+Available move count = 0
+Solving input "in_0000.txt", starting timer
+========================================
+| Finished in 111.8947 ms |
+Best solution:
+Node depth = 20
+Unfinished white = 0
+Unfinished black = 0
+Next to turn = 0
+Past moves: 
+[4, 1] -> [3, 1]
+[0, 0] -> [2, 0]
+[4, 0] -> [3, 0]
+[2, 0] -> [4, 0]
+[3, 0] -> [2, 0]
+[0, 1] -> [2, 1]
+[2, 0] -> [0, 0]
+[2, 1] -> [4, 1]
+[5, 0] -> [3, 0]
+[1, 1] -> [2, 1]
+[3, 1] -> [1, 1]
+[1, 0] -> [2, 0]
+[5, 1] -> [3, 1]
+[4, 1] -> [5, 1]
+[3, 0] -> [1, 0]
+[2, 1] -> [4, 1]
+[3, 1] -> [2, 1]
+[2, 0] -> [3, 0]
+[2, 1] -> [0, 1]
+[3, 0] -> [5, 0]
+Available move count = 0
+Solving input "in_0000.txt", starting timer
+========================================
+| Finished in 178.0911 ms |
+Best solution:
+Node depth = 20
+Unfinished white = 0
+Unfinished black = 0
+Next to turn = 0
+Past moves: 
+[5, 0] -> [3, 0]
+[0, 1] -> [2, 1]
+[3, 0] -> [2, 0]
+[1, 0] -> [3, 0]
+[4, 1] -> [3, 1]
+[2, 1] -> [4, 1]
+[2, 0] -> [1, 0]
+[0, 0] -> [2, 0]
+[3, 1] -> [2, 1]
+[3, 0] -> [5, 0]
+[2, 1] -> [0, 1]
+[1, 1] -> [2, 1]
+[5, 1] -> [3, 1]
+[2, 0] -> [3, 0]
+[4, 0] -> [2, 0]
+[3, 0] -> [4, 0]
+[3, 1] -> [1, 1]
+[2, 1] -> [3, 1]
+[2, 0] -> [0, 0]
+[3, 1] -> [5, 1]
+Available move count = 0
+Solving input "in_0000.txt", starting timer
+========================================
+| Finished in 143.8435 ms |
+Best solution:
+Node depth = 20
+Unfinished white = 0
+Unfinished black = 0
+Next to turn = 0
+Past moves: 
+[5, 1] -> [3, 1]
+[0, 0] -> [2, 0]
+[3, 1] -> [2, 1]
+[1, 1] -> [3, 1]
+[4, 0] -> [3, 0]
+[2, 0] -> [4, 0]
+[2, 1] -> [1, 1]
+[0, 1] -> [2, 1]
+[3, 0] -> [2, 0]
+[3, 1] -> [5, 1]
+[2, 0] -> [0, 0]
+[1, 0] -> [2, 0]
+[5, 0] -> [3, 0]
+[2, 1] -> [3, 1]
+[4, 1] -> [2, 1]
+[3, 1] -> [4, 1]
+[3, 0] -> [1, 0]
+[2, 0] -> [3, 0]
+[2, 1] -> [0, 1]
+[3, 0] -> [5, 0]
+Available move count = 0
+Solving input "in_0000.txt", starting timer
+========================================
+| Finished in 310.7757 ms |
+Best solution:
+Node depth = 20
+Unfinished white = 0
+Unfinished black = 0
+Next to turn = 0
+Past moves: 
+[4, 1] -> [3, 1]
+[0, 0] -> [2, 0]
+[4, 0] -> [3, 0]
+[2, 0] -> [4, 0]
+[3, 0] -> [2, 0]
+[0, 1] -> [2, 1]
+[2, 0] -> [0, 0]
+[2, 1] -> [4, 1]
+[5, 0] -> [3, 0]
+[1, 1] -> [2, 1]
+[3, 1] -> [1, 1]
+[1, 0] -> [2, 0]
+[5, 1] -> [3, 1]
+[4, 1] -> [5, 1]
+[3, 0] -> [1, 0]
+[2, 1] -> [4, 1]
+[3, 1] -> [2, 1]
+[2, 0] -> [3, 0]
+[2, 1] -> [0, 1]
+[3, 0] -> [5, 0]
+Available move count = 0
+Solving input "in_0000.txt", starting timer
+========================================
+| Finished in 141.2266 ms |
+Best solution:
+Node depth = 20
+Unfinished white = 0
+Unfinished black = 0
+Next to turn = 0
+Past moves: 
+[4, 0] -> [3, 0]
+[1, 1] -> [2, 1]
+[5, 1] -> [3, 1]
+[0, 0] -> [2, 0]
+[3, 1] -> [1, 1]
+[2, 0] -> [4, 0]
+[4, 1] -> [3, 1]
+[1, 0] -> [2, 0]
+[3, 0] -> [1, 0]
+[2, 1] -> [4, 1]
+[5, 0] -> [3, 0]
+[0, 1] -> [2, 1]
+[1, 0] -> [0, 0]
+[4, 1] -> [5, 1]
+[3, 0] -> [1, 0]
+[2, 1] -> [4, 1]
+[3, 1] -> [2, 1]
+[2, 0] -> [3, 0]
+[2, 1] -> [0, 1]
+[3, 0] -> [5, 0]
+Available move count = 0
+Solving input "in_0000.txt", starting timer
+========================================
+| Finished in 598.4526 ms |
+Best solution:
+Node depth = 20
+Unfinished white = 0
+Unfinished black = 0
+Next to turn = 0
+Past moves: 
+[4, 0] -> [3, 0]
+[1, 1] -> [2, 1]
+[5, 1] -> [3, 1]
+[0, 0] -> [2, 0]
+[3, 1] -> [1, 1]
+[2, 0] -> [4, 0]
+[4, 1] -> [3, 1]
+[1, 0] -> [2, 0]
+[3, 0] -> [1, 0]
+[2, 1] -> [4, 1]
+[5, 0] -> [3, 0]
+[0, 1] -> [2, 1]
+[1, 0] -> [0, 0]
+[4, 1] -> [5, 1]
+[3, 0] -> [1, 0]
+[2, 1] -> [4, 1]
+[3, 1] -> [2, 1]
+[2, 0] -> [3, 0]
+[2, 1] -> [0, 1]
+[3, 0] -> [5, 0]
+Available move count = 0
+Solving input "in_0000.txt", starting timer
+========================================
+| Finished in 113.9743 ms |
+Best solution:
+Node depth = 20
+Unfinished white = 0
+Unfinished black = 0
+Next to turn = 0
+Past moves: 
+[5, 1] -> [3, 1]
+[1, 1] -> [2, 1]
+[4, 0] -> [3, 0]
+[0, 0] -> [2, 0]
+[3, 1] -> [1, 1]
+[2, 0] -> [4, 0]
+[4, 1] -> [3, 1]
+[1, 0] -> [2, 0]
+[3, 0] -> [1, 0]
+[2, 1] -> [4, 1]
+[5, 0] -> [3, 0]
+[0, 1] -> [2, 1]
+[1, 0] -> [0, 0]
+[4, 1] -> [5, 1]
+[3, 0] -> [1, 0]
+[2, 1] -> [4, 1]
+[3, 1] -> [2, 1]
+[2, 0] -> [3, 0]
+[2, 1] -> [0, 1]
+[3, 0] -> [5, 0]
+Available move count = 0
+Solving input "in_0000.txt", starting timer
+========================================
+| Finished in 152.1636 ms |
+Best solution:
+Node depth = 20
+Unfinished white = 0
+Unfinished black = 0
+Next to turn = 0
+Past moves: 
+[5, 1] -> [3, 1]
+[0, 0] -> [2, 0]
+[3, 1] -> [2, 1]
+[1, 1] -> [3, 1]
+[4, 0] -> [3, 0]
+[2, 0] -> [4, 0]
+[2, 1] -> [1, 1]
+[0, 1] -> [2, 1]
+[3, 0] -> [2, 0]
+[3, 1] -> [5, 1]
+[2, 0] -> [0, 0]
+[1, 0] -> [2, 0]
+[5, 0] -> [3, 0]
+[2, 1] -> [3, 1]
+[4, 1] -> [2, 1]
+[3, 1] -> [4, 1]
+[3, 0] -> [1, 0]
+[2, 0] -> [3, 0]
+[2, 1] -> [0, 1]
+[3, 0] -> [5, 0]
+Available move count = 0
+Solving input "in_0001.txt", starting timer
+========================================
+| Finished in 2.5356 seconds |
+Best solution:
+Node depth = 20
+Unfinished white = 0
+Unfinished black = 0
+Next to turn = 0
+Past moves: 
+[4, 2] -> [3, 2]
+[0, 2] -> [1, 2]
+[3, 2] -> [2, 2]
+[0, 0] -> [1, 0]
+[2, 2] -> [0, 2]
+[1, 0] -> [2, 0]
+[4, 0] -> [3, 0]
+[1, 2] -> [1, 1]
+[3, 0] -> [1, 0]
+[0, 1] -> [2, 1]
+[1, 0] -> [0, 0]
+[2, 1] -> [3, 1]
+[4, 1] -> [2, 1]
+[3, 1] -> [4, 1]
+[2, 1] -> [0, 1]
+[1, 1] -> [1, 0]
+[1, 0] -> [3, 0]
+[2, 0] -> [4, 0]
+[4, 0] -> [4, 2]
+[3, 0] -> [4, 0]
+Available move count = 0
+Solving input "in_0001.txt", starting timer
+========================================
+| Finished in 2.6485 seconds |
+Best solution:
+Node depth = 20
+Unfinished white = 0
+Unfinished black = 0
+Next to turn = 0
+Past moves: 
+[4, 0] -> [3, 0]
+[0, 2] -> [1, 2]
+[3, 0] -> [3, 1]
+[0, 0] -> [0, 2]
+[4, 1] -> [2, 1]
+[0, 2] -> [2, 2]
+[2, 1] -> [1, 1]
+[2, 2] -> [3, 2]
+[4, 2] -> [2, 2]
+[0, 1] -> [2, 1]
+[2, 2] -> [0, 2]
+[2, 1] -> [4, 1]
+[3, 1] -> [2, 1]
+[1, 2] -> [2, 2]
+[2, 1] -> [0, 1]
+[2, 2] -> [4, 2]
+[0, 1] -> [0, 0]
+[4, 2] -> [4, 0]
+[1, 1] -> [0, 1]
+[3, 2] -> [4, 2]
+Available move count = 0
+Solving input "in_0001.txt", starting timer
+========================================
+| Finished in 2.5479 seconds |
+Best solution:
+Node depth = 20
+Unfinished white = 0
+Unfinished black = 0
+Next to turn = 0
+Past moves: 
+[4, 0] -> [3, 0]
+[0, 2] -> [1, 2]
+[4, 2] -> [3, 2]
+[1, 2] -> [2, 2]
+[3, 0] -> [2, 0]
+[2, 2] -> [4, 2]
+[2, 0] -> [1, 0]
+[0, 0] -> [2, 0]
+[3, 2] -> [3, 1]
+[2, 0] -> [3, 0]
+[4, 1] -> [2, 1]
+[3, 0] -> [4, 0]
+[2, 1] -> [1, 1]
+[0, 1] -> [2, 1]
+[1, 0] -> [0, 0]
+[2, 1] -> [4, 1]
+[3, 1] -> [2, 1]
+[2, 1] -> [0, 1]
+[1, 1] -> [1, 2]
+[1, 2] -> [0, 2]
+Available move count = 0
+Solving input "in_0001.txt", starting timer
+========================================
+| Finished in 2.5085 seconds |
+Best solution:
+Node depth = 20
+Unfinished white = 0
+Unfinished black = 0
+Next to turn = 0
+Past moves: 
+[4, 0] -> [3, 0]
+[0, 0] -> [1, 0]
+[3, 0] -> [3, 1]
+[0, 1] -> [0, 0]
+[4, 1] -> [2, 1]
+[0, 0] -> [2, 0]
+[3, 1] -> [1, 1]
+[1, 0] -> [3, 0]
+[2, 1] -> [0, 1]
+[2, 0] -> [4, 0]
+[1, 1] -> [1, 2]
+[0, 2] -> [2, 2]
+[4, 2] -> [3, 2]
+[2, 2] -> [4, 2]
+[3, 2] -> [2, 2]
+[3, 0] -> [3, 1]
+[2, 2] -> [0, 2]
+[3, 1] -> [4, 1]
+[0, 2] -> [0, 0]
+[1, 2] -> [0, 2]
+Available move count = 0
+Solving input "in_0001.txt", starting timer
+========================================
+| Finished in 2.5638 seconds |
+Best solution:
+Node depth = 20
+Unfinished white = 0
+Unfinished black = 0
+Next to turn = 0
+Past moves: 
+[4, 2] -> [3, 2]
+[0, 2] -> [1, 2]
+[4, 0] -> [3, 0]
+[1, 2] -> [2, 2]
+[3, 0] -> [2, 0]
+[2, 2] -> [4, 2]
+[2, 0] -> [1, 0]
+[0, 0] -> [2, 0]
+[3, 2] -> [3, 1]
+[2, 0] -> [3, 0]
+[4, 1] -> [2, 1]
+[3, 0] -> [4, 0]
+[2, 1] -> [1, 1]
+[0, 1] -> [2, 1]
+[1, 0] -> [0, 0]
+[2, 1] -> [4, 1]
+[3, 1] -> [2, 1]
+[2, 1] -> [0, 1]
+[1, 1] -> [1, 2]
+[1, 2] -> [0, 2]
+Available move count = 0
+Solving input "in_0001.txt", starting timer
+========================================
+| Finished in 2.5080 seconds |
+Best solution:
+Node depth = 20
+Unfinished white = 0
+Unfinished black = 0
+Next to turn = 0
+Past moves: 
+[4, 2] -> [3, 2]
+[0, 1] -> [1, 1]
+[4, 0] -> [4, 2]
+[0, 2] -> [0, 1]
+[4, 2] -> [2, 2]
+[0, 1] -> [2, 1]
+[3, 2] -> [1, 2]
+[2, 1] -> [3, 1]
+[4, 1] -> [2, 1]
+[3, 1] -> [4, 1]
+[2, 1] -> [0, 1]
+[1, 1] -> [1, 0]
+[2, 2] -> [0, 2]
+[0, 0] -> [2, 0]
+[0, 2] -> [0, 0]
+[1, 0] -> [3, 0]
+[1, 2] -> [0, 2]
+[2, 0] -> [4, 0]
+[4, 0] -> [4, 2]
+[3, 0] -> [4, 0]
+Available move count = 0
+Solving input "in_0001.txt", starting timer
+========================================
+| Finished in 2.4912 seconds |
+Best solution:
+Node depth = 20
+Unfinished white = 0
+Unfinished black = 0
+Next to turn = 0
+Past moves: 
+[4, 2] -> [3, 2]
+[0, 0] -> [1, 0]
+[3, 2] -> [2, 2]
+[0, 2] -> [1, 2]
+[2, 2] -> [0, 2]
+[1, 0] -> [2, 0]
+[4, 0] -> [3, 0]
+[1, 2] -> [1, 1]
+[3, 0] -> [1, 0]
+[0, 1] -> [2, 1]
+[1, 0] -> [0, 0]
+[2, 1] -> [3, 1]
+[4, 1] -> [2, 1]
+[3, 1] -> [4, 1]
+[2, 1] -> [0, 1]
+[1, 1] -> [1, 0]
+[1, 0] -> [3, 0]
+[2, 0] -> [4, 0]
+[4, 0] -> [4, 2]
+[3, 0] -> [4, 0]
+Available move count = 0
+Solving input "in_0001.txt", starting timer
+========================================
+| Finished in 2.8115 seconds |
+Best solution:
+Node depth = 20
+Unfinished white = 0
+Unfinished black = 0
+Next to turn = 0
+Past moves: 
+[4, 2] -> [3, 2]
+[0, 0] -> [1, 0]
+[3, 2] -> [2, 2]
+[0, 2] -> [1, 2]
+[4, 0] -> [3, 0]
+[1, 0] -> [2, 0]
+[2, 2] -> [0, 2]
+[1, 2] -> [1, 1]
+[3, 0] -> [1, 0]
+[0, 1] -> [2, 1]
+[1, 0] -> [0, 0]
+[2, 1] -> [3, 1]
+[4, 1] -> [2, 1]
+[3, 1] -> [4, 1]
+[2, 1] -> [0, 1]
+[1, 1] -> [1, 0]
+[1, 0] -> [3, 0]
+[2, 0] -> [4, 0]
+[4, 0] -> [4, 2]
+[3, 0] -> [4, 0]
+Available move count = 0
+Solving input "in_0001.txt", starting timer
+========================================
+| Finished in 2.9746 seconds |
+Best solution:
+Node depth = 20
+Unfinished white = 0
+Unfinished black = 0
+Next to turn = 0
+Past moves: 
+[4, 1] -> [3, 1]
+[0, 1] -> [1, 1]
+[3, 1] -> [2, 1]
+[0, 2] -> [1, 2]
+[2, 1] -> [0, 1]
+[1, 2] -> [2, 2]
+[4, 2] -> [3, 2]
+[1, 1] -> [1, 0]
+[3, 2] -> [1, 2]
+[0, 0] -> [2, 0]
+[1, 2] -> [0, 2]
+[2, 0] -> [3, 0]
+[4, 0] -> [2, 0]
+[2, 2] -> [3, 2]
+[2, 0] -> [0, 0]
+[1, 0] -> [2, 0]
+[2, 0] -> [4, 0]
+[3, 2] -> [4, 2]
+[3, 0] -> [3, 1]
+[3, 1] -> [4, 1]
+Available move count = 0
+Solving input "in_0001.txt", starting timer
+========================================
+| Finished in 2.4832 seconds |
+Best solution:
+Node depth = 20
+Unfinished white = 0
+Unfinished black = 0
+Next to turn = 0
+Past moves: 
+[4, 1] -> [3, 1]
+[0, 0] -> [1, 0]
+[4, 0] -> [4, 1]
+[0, 1] -> [0, 0]
+[4, 1] -> [2, 1]
+[0, 0] -> [2, 0]
+[3, 1] -> [1, 1]
+[1, 0] -> [3, 0]
+[2, 1] -> [0, 1]
+[2, 0] -> [4, 0]
+[1, 1] -> [1, 2]
+[0, 2] -> [2, 2]
+[4, 2] -> [3, 2]
+[2, 2] -> [4, 2]
+[3, 2] -> [2, 2]
+[3, 0] -> [3, 1]
+[2, 2] -> [0, 2]
+[3, 1] -> [4, 1]
+[0, 2] -> [0, 0]
+[1, 2] -> [0, 2]
+Available move count = 0
+Solving input "in_0002.txt", starting timer
+========================================
+| Finished in 45.7529 ms |
+Best solution:
+Node depth = 16
+Unfinished white = 0
+Unfinished black = 0
+Next to turn = 0
+Past moves: 
+[3, 3] -> [1, 3]
+[0, 0] -> [0, 2]
+[3, 2] -> [1, 2]
+[0, 1] -> [0, 3]
+[2, 3] -> [2, 1]
+[0, 3] -> [2, 3]
+[2, 2] -> [2, 0]
+[1, 1] -> [3, 1]
+[1, 3] -> [1, 1]
+[0, 2] -> [2, 2]
+[2, 1] -> [0, 1]
+[1, 0] -> [3, 0]
+[1, 2] -> [1, 0]
+[3, 0] -> [3, 2]
+[2, 0] -> [0, 0]
+[3, 1] -> [3, 3]
+Available move count = 0
+Solving input "in_0002.txt", starting timer
+========================================
+| Finished in 11.0354 ms |
+Best solution:
+Node depth = 16
+Unfinished white = 0
+Unfinished black = 0
+Next to turn = 0
+Past moves: 
+[3, 3] -> [1, 3]
+[0, 0] -> [2, 0]
+[3, 2] -> [1, 2]
+[1, 0] -> [3, 0]
+[2, 2] -> [0, 2]
+[0, 1] -> [2, 1]
+[2, 3] -> [0, 3]
+[2, 0] -> [2, 2]
+[0, 3] -> [0, 1]
+[1, 1] -> [3, 1]
+[0, 2] -> [0, 0]
+[2, 1] -> [2, 3]
+[1, 3] -> [1, 1]
+[3, 0] -> [3, 2]
+[1, 2] -> [1, 0]
+[3, 1] -> [3, 3]
+Available move count = 0
+Solving input "in_0002.txt", starting timer
+========================================
+| Finished in 7.6818 ms |
+Best solution:
+Node depth = 16
+Unfinished white = 0
+Unfinished black = 0
+Next to turn = 0
+Past moves: 
+[3, 3] -> [1, 3]
+[0, 1] -> [2, 1]
+[2, 3] -> [0, 3]
+[0, 0] -> [2, 0]
+[3, 2] -> [1, 2]
+[1, 0] -> [3, 0]
+[2, 2] -> [0, 2]
+[2, 0] -> [2, 2]
+[0, 3] -> [0, 1]
+[1, 1] -> [3, 1]
+[0, 2] -> [0, 0]
+[2, 1] -> [2, 3]
+[1, 3] -> [1, 1]
+[3, 0] -> [3, 2]
+[1, 2] -> [1, 0]
+[3, 1] -> [3, 3]
+Available move count = 0
+Solving input "in_0002.txt", starting timer
+========================================
+| Finished in 14.7989 ms |
+Best solution:
+Node depth = 16
+Unfinished white = 0
+Unfinished black = 0
+Next to turn = 0
+Past moves: 
+[3, 3] -> [1, 3]
+[1, 0] -> [1, 2]
+[2, 3] -> [2, 1]
+[0, 0] -> [0, 2]
+[2, 2] -> [2, 0]
+[1, 1] -> [3, 1]
+[3, 2] -> [3, 0]
+[0, 1] -> [0, 3]
+[3, 0] -> [1, 0]
+[0, 2] -> [2, 2]
+[2, 0] -> [0, 0]
+[0, 3] -> [2, 3]
+[1, 3] -> [1, 1]
+[1, 2] -> [3, 2]
+[2, 1] -> [0, 1]
+[3, 1] -> [3, 3]
+Available move count = 0
+Solving input "in_0002.txt", starting timer
+========================================
+| Finished in 32.7209 ms |
+Best solution:
+Node depth = 16
+Unfinished white = 0
+Unfinished black = 0
+Next to turn = 0
+Past moves: 
+[2, 3] -> [2, 1]
+[0, 0] -> [0, 2]
+[2, 2] -> [2, 0]
+[1, 0] -> [1, 2]
+[3, 3] -> [3, 1]
+[0, 1] -> [0, 3]
+[3, 2] -> [3, 0]
+[0, 2] -> [2, 2]
+[3, 0] -> [1, 0]
+[1, 1] -> [1, 3]
+[2, 0] -> [0, 0]
+[0, 3] -> [2, 3]
+[3, 1] -> [1, 1]
+[1, 2] -> [3, 2]
+[2, 1] -> [0, 1]
+[1, 3] -> [3, 3]
+Available move count = 0
+Solving input "in_0002.txt", starting timer
+========================================
+| Finished in 16.7410 ms |
+Best solution:
+Node depth = 16
+Unfinished white = 0
+Unfinished black = 0
+Next to turn = 0
+Past moves: 
+[2, 3] -> [2, 1]
+[1, 0] -> [1, 2]
+[2, 2] -> [2, 0]
+[0, 0] -> [0, 2]
+[3, 3] -> [3, 1]
+[0, 1] -> [0, 3]
+[3, 2] -> [3, 0]
+[0, 2] -> [2, 2]
+[3, 0] -> [1, 0]
+[1, 1] -> [1, 3]
+[2, 0] -> [0, 0]
+[0, 3] -> [2, 3]
+[3, 1] -> [1, 1]
+[1, 2] -> [3, 2]
+[2, 1] -> [0, 1]
+[1, 3] -> [3, 3]
+Available move count = 0
+Solving input "in_0002.txt", starting timer
+========================================
+| Finished in 9.5008 ms |
+Best solution:
+Node depth = 16
+Unfinished white = 0
+Unfinished black = 0
+Next to turn = 0
+Past moves: 
+[2, 3] -> [2, 1]
+[1, 0] -> [1, 2]
+[3, 3] -> [3, 1]
+[0, 0] -> [0, 2]
+[2, 2] -> [2, 0]
+[0, 1] -> [0, 3]
+[3, 2] -> [3, 0]
+[0, 2] -> [2, 2]
+[3, 0] -> [1, 0]
+[1, 1] -> [1, 3]
+[2, 0] -> [0, 0]
+[0, 3] -> [2, 3]
+[3, 1] -> [1, 1]
+[1, 2] -> [3, 2]
+[2, 1] -> [0, 1]
+[1, 3] -> [3, 3]
+Available move count = 0
+Solving input "in_0002.txt", starting timer
+========================================
+| Finished in 12.5559 ms |
+Best solution:
+Node depth = 16
+Unfinished white = 0
+Unfinished black = 0
+Next to turn = 0
+Past moves: 
+[3, 2] -> [1, 2]
+[0, 0] -> [2, 0]
+[2, 2] -> [0, 2]
+[1, 0] -> [3, 0]
+[3, 3] -> [1, 3]
+[0, 1] -> [2, 1]
+[2, 3] -> [0, 3]
+[2, 0] -> [2, 2]
+[0, 3] -> [0, 1]
+[1, 1] -> [3, 1]
+[0, 2] -> [0, 0]
+[2, 1] -> [2, 3]
+[1, 3] -> [1, 1]
+[3, 0] -> [3, 2]
+[1, 2] -> [1, 0]
+[3, 1] -> [3, 3]
+Available move count = 0
+Solving input "in_0002.txt", starting timer
+========================================
+| Finished in 25.1815 ms |
+Best solution:
+Node depth = 16
+Unfinished white = 0
+Unfinished black = 0
+Next to turn = 0
+Past moves: 
+[3, 2] -> [1, 2]
+[0, 0] -> [0, 2]
+[3, 3] -> [1, 3]
+[0, 1] -> [2, 1]
+[2, 2] -> [2, 0]
+[1, 0] -> [3, 0]
+[2, 3] -> [0, 3]
+[1, 1] -> [3, 1]
+[0, 3] -> [0, 1]
+[0, 2] -> [2, 2]
+[1, 3] -> [1, 1]
+[2, 1] -> [2, 3]
+[1, 2] -> [1, 0]
+[3, 0] -> [3, 2]
+[2, 0] -> [0, 0]
+[3, 1] -> [3, 3]
+Available move count = 0
+Solving input "in_0002.txt", starting timer
+========================================
+| Finished in 25.1563 ms |
+Best solution:
+Node depth = 16
+Unfinished white = 0
+Unfinished black = 0
+Next to turn = 0
+Past moves: 
+[2, 3] -> [2, 1]
+[0, 0] -> [2, 0]
+[3, 3] -> [3, 1]
+[1, 0] -> [1, 2]
+[2, 2] -> [0, 2]
+[0, 1] -> [0, 3]
+[3, 2] -> [3, 0]
+[1, 1] -> [1, 3]
+[3, 0] -> [1, 0]
+[2, 0] -> [2, 2]
+[3, 1] -> [1, 1]
+[0, 3] -> [2, 3]
+[2, 1] -> [0, 1]
+[1, 2] -> [3, 2]
+[0, 2] -> [0, 0]
+[1, 3] -> [3, 3]
+Available move count = 0
+Solving input "in_0009.txt", starting timer
+========================================
+| Finished in 22.9294 ms |
+Best solution:
+Node depth = 18
+Unfinished white = 0
+Unfinished black = 0
+Next to turn = 0
+Past moves: 
+[0, 1] -> [1, 1]
+[4, 4] -> [4, 2]
+[0, 0] -> [0, 1]
+[4, 3] -> [3, 3]
+[0, 1] -> [2, 1]
+[3, 3] -> [3, 2]
+[1, 1] -> [3, 1]
+[4, 2] -> [2, 2]
+[2, 1] -> [4, 1]
+[3, 2] -> [1, 2]
+[4, 1] -> [4, 2]
+[2, 2] -> [0, 2]
+[3, 1] -> [4, 1]
+[1, 2] -> [1, 1]
+[4, 1] -> [4, 3]
+[1, 1] -> [0, 1]
+[4, 2] -> [4, 4]
+[0, 2] -> [0, 0]
+Available move count = 0
+Solving input "in_0009.txt", starting timer
+========================================
+| Finished in 19.3290 ms |
+Best solution:
+Node depth = 18
+Unfinished white = 0
+Unfinished black = 0
+Next to turn = 0
+Past moves: 
+[0, 0] -> [0, 2]
+[4, 4] -> [4, 2]
+[0, 1] -> [0, 3]
+[4, 3] -> [4, 1]
+[0, 2] -> [1, 2]
+[4, 1] -> [3, 1]
+[1, 2] -> [1, 3]
+[4, 2] -> [4, 1]
+[0, 3] -> [2, 3]
+[4, 1] -> [2, 1]
+[1, 3] -> [3, 3]
+[3, 1] -> [1, 1]
+[2, 3] -> [4, 3]
+[2, 1] -> [0, 1]
+[3, 3] -> [3, 4]
+[1, 1] -> [1, 0]
+[3, 4] -> [4, 4]
+[1, 0] -> [0, 0]
+Available move count = 0
+Solving input "in_0009.txt", starting timer
+========================================
+| Finished in 14.1067 ms |
+Best solution:
+Node depth = 18
+Unfinished white = 0
+Unfinished black = 0
+Next to turn = 0
+Past moves: 
+[0, 1] -> [1, 1]
+[4, 4] -> [4, 2]
+[0, 0] -> [0, 1]
+[4, 2] -> [3, 2]
+[0, 1] -> [2, 1]
+[4, 3] -> [4, 2]
+[1, 1] -> [3, 1]
+[4, 2] -> [2, 2]
+[2, 1] -> [4, 1]
+[3, 2] -> [1, 2]
+[4, 1] -> [4, 2]
+[2, 2] -> [0, 2]
+[3, 1] -> [4, 1]
+[0, 2] -> [0, 1]
+[4, 1] -> [4, 3]
+[1, 2] -> [0, 2]
+[4, 2] -> [4, 4]
+[0, 2] -> [0, 0]
+Available move count = 0
+Solving input "in_0009.txt", starting timer
+========================================
+| Finished in 14.4213 ms |
+Best solution:
+Node depth = 18
+Unfinished white = 0
+Unfinished black = 0
+Next to turn = 0
+Past moves: 
+[0, 1] -> [1, 1]
+[4, 3] -> [3, 3]
+[0, 0] -> [0, 1]
+[4, 4] -> [4, 3]
+[0, 1] -> [2, 1]
+[4, 3] -> [2, 3]
+[1, 1] -> [3, 1]
+[3, 3] -> [1, 3]
+[2, 1] -> [4, 1]
+[2, 3] -> [0, 3]
+[4, 1] -> [4, 2]
+[1, 3] -> [1, 2]
+[3, 1] -> [4, 1]
+[1, 2] -> [0, 2]
+[4, 1] -> [4, 3]
+[0, 3] -> [0, 1]
+[4, 2] -> [4, 4]
+[0, 2] -> [0, 0]
+Available move count = 0
+Solving input "in_0009.txt", starting timer
+========================================
+| Finished in 16.0277 ms |
+Best solution:
+Node depth = 18
+Unfinished white = 0
+Unfinished black = 0
+Next to turn = 0
+Past moves: 
+[0, 0] -> [0, 2]
+[4, 4] -> [4, 2]
+[0, 1] -> [0, 3]
+[4, 3] -> [4, 1]
+[0, 3] -> [1, 3]
+[4, 1] -> [3, 1]
+[0, 2] -> [0, 3]
+[4, 2] -> [4, 1]
+[0, 3] -> [2, 3]
+[4, 1] -> [2, 1]
+[1, 3] -> [3, 3]
+[3, 1] -> [1, 1]
+[2, 3] -> [4, 3]
+[2, 1] -> [0, 1]
+[4, 3] -> [4, 4]
+[1, 1] -> [1, 0]
+[3, 3] -> [4, 3]
+[1, 0] -> [0, 0]
+Available move count = 0
+Solving input "in_0009.txt", starting timer
+========================================
+| Finished in 16.7568 ms |
+Best solution:
+Node depth = 18
+Unfinished white = 0
+Unfinished black = 0
+Next to turn = 0
+Past moves: 
+[0, 0] -> [0, 2]
+[4, 4] -> [4, 2]
+[0, 1] -> [1, 1]
+[4, 3] -> [4, 1]
+[1, 1] -> [1, 2]
+[4, 1] -> [3, 1]
+[0, 2] -> [2, 2]
+[4, 2] -> [4, 1]
+[1, 2] -> [3, 2]
+[4, 1] -> [2, 1]
+[2, 2] -> [4, 2]
+[3, 1] -> [1, 1]
+[4, 2] -> [4, 3]
+[2, 1] -> [0, 1]
+[3, 2] -> [4, 2]
+[1, 1] -> [1, 0]
+[4, 2] -> [4, 4]
+[1, 0] -> [0, 0]
+Available move count = 0
+Solving input "in_0009.txt", starting timer
+========================================
+| Finished in 17.6989 ms |
+Best solution:
+Node depth = 18
+Unfinished white = 0
+Unfinished black = 0
+Next to turn = 0
+Past moves: 
+[0, 0] -> [1, 0]
+[4, 4] -> [4, 2]
+[1, 0] -> [1, 1]
+[4, 3] -> [3, 3]
+[0, 1] -> [2, 1]
+[3, 3] -> [3, 2]
+[1, 1] -> [3, 1]
+[4, 2] -> [2, 2]
+[3, 1] -> [3, 3]
+[3, 2] -> [1, 2]
+[2, 1] -> [2, 3]
+[2, 2] -> [0, 2]
+[2, 3] -> [4, 3]
+[1, 2] -> [1, 1]
+[3, 3] -> [3, 4]
+[1, 1] -> [0, 1]
+[3, 4] -> [4, 4]
+[0, 2] -> [0, 0]
+Available move count = 0
+Solving input "in_0009.txt", starting timer
+========================================
+| Finished in 19.2070 ms |
+Best solution:
+Node depth = 18
+Unfinished white = 0
+Unfinished black = 0
+Next to turn = 0
+Past moves: 
+[0, 0] -> [1, 0]
+[4, 4] -> [4, 2]
+[1, 0] -> [1, 1]
+[4, 3] -> [3, 3]
+[0, 1] -> [2, 1]
+[3, 3] -> [3, 2]
+[1, 1] -> [3, 1]
+[4, 2] -> [2, 2]
+[3, 1] -> [3, 3]
+[3, 2] -> [1, 2]
+[2, 1] -> [2, 3]
+[2, 2] -> [0, 2]
+[2, 3] -> [4, 3]
+[1, 2] -> [1, 1]
+[3, 3] -> [3, 4]
+[1, 1] -> [0, 1]
+[3, 4] -> [4, 4]
+[0, 2] -> [0, 0]
+Available move count = 0
+Solving input "in_0009.txt", starting timer
+========================================
+| Finished in 21.0815 ms |
+Best solution:
+Node depth = 18
+Unfinished white = 0
+Unfinished black = 0
+Next to turn = 0
+Past moves: 
+[0, 0] -> [0, 2]
+[4, 4] -> [4, 2]
+[0, 2] -> [1, 2]
+[4, 3] -> [4, 1]
+[0, 1] -> [0, 2]
+[4, 1] -> [3, 1]
+[0, 2] -> [2, 2]
+[4, 2] -> [4, 1]
+[1, 2] -> [3, 2]
+[4, 1] -> [2, 1]
+[2, 2] -> [4, 2]
+[3, 1] -> [1, 1]
+[3, 2] -> [3, 3]
+[2, 1] -> [0, 1]
+[3, 3] -> [4, 3]
+[1, 1] -> [1, 0]
+[4, 2] -> [4, 4]
+[1, 0] -> [0, 0]
+Available move count = 0
+Solving input "in_0009.txt", starting timer
+========================================
+| Finished in 15.9384 ms |
+Best solution:
+Node depth = 18
+Unfinished white = 0
+Unfinished black = 0
+Next to turn = 0
+Past moves: 
+[0, 1] -> [1, 1]
+[4, 3] -> [3, 3]
+[0, 0] -> [0, 1]
+[4, 4] -> [4, 3]
+[0, 1] -> [2, 1]
+[4, 3] -> [2, 3]
+[1, 1] -> [3, 1]
+[3, 3] -> [1, 3]
+[2, 1] -> [4, 1]
+[2, 3] -> [0, 3]
+[4, 1] -> [4, 2]
+[1, 3] -> [1, 2]
+[3, 1] -> [4, 1]
+[1, 2] -> [0, 2]
+[4, 1] -> [4, 3]
+[0, 3] -> [0, 1]
+[4, 2] -> [4, 4]
+[0, 2] -> [0, 0]
+Available move count = 0
+Solving input "in_0011.txt", starting timer
+========================================
+| Finished in 5.8517 ms |
+Best solution:
+Node depth = 12
+Unfinished white = 0
+Unfinished black = 0
+Next to turn = 0
+Past moves: 
+[2, 3] -> [1, 3]
+[1, 2] -> [1, 0]
+[2, 2] -> [1, 2]
+[0, 1] -> [0, 3]
+[2, 1] -> [0, 1]
+[0, 3] -> [2, 3]
+[2, 0] -> [0, 0]
+[0, 2] -> [2, 2]
+[0, 0] -> [0, 2]
+[1, 1] -> [2, 1]
+[1, 3] -> [1, 1]
+[1, 0] -> [2, 0]
+Available move count = 0
+Solving input "in_0011.txt", starting timer
+========================================
+| Finished in 7.0362 ms |
+Best solution:
+Node depth = 12
+Unfinished white = 0
+Unfinished black = 0
+Next to turn = 0
+Past moves: 
+[2, 3] -> [1, 3]
+[1, 1] -> [1, 0]
+[2, 1] -> [1, 1]
+[0, 2] -> [0, 3]
+[2, 0] -> [0, 0]
+[0, 1] -> [2, 1]
+[2, 2] -> [0, 2]
+[0, 3] -> [2, 3]
+[0, 0] -> [0, 1]
+[1, 2] -> [2, 2]
+[1, 3] -> [1, 2]
+[1, 0] -> [2, 0]
+Available move count = 0
+Solving input "in_0011.txt", starting timer
+========================================
+| Finished in 6.2108 ms |
+Best solution:
+Node depth = 12
+Unfinished white = 0
+Unfinished black = 0
+Next to turn = 0
+Past moves: 
+[2, 3] -> [1, 3]
+[1, 1] -> [1, 0]
+[2, 1] -> [1, 1]
+[0, 1] -> [2, 1]
+[2, 0] -> [0, 0]
+[0, 2] -> [0, 3]
+[0, 0] -> [0, 1]
+[0, 3] -> [2, 3]
+[2, 2] -> [0, 2]
+[1, 2] -> [2, 2]
+[1, 3] -> [1, 2]
+[1, 0] -> [2, 0]
+Available move count = 0
+Solving input "in_0011.txt", starting timer
+========================================
+| Finished in 8.1573 ms |
+Best solution:
+Node depth = 12
+Unfinished white = 0
+Unfinished black = 0
+Next to turn = 0
+Past moves: 
+[2, 0] -> [1, 0]
+[0, 2] -> [0, 0]
+[2, 2] -> [0, 2]
+[1, 1] -> [1, 3]
+[2, 3] -> [0, 3]
+[0, 0] -> [2, 0]
+[2, 1] -> [1, 1]
+[0, 1] -> [2, 1]
+[0, 3] -> [0, 1]
+[1, 2] -> [2, 2]
+[1, 0] -> [1, 2]
+[1, 3] -> [2, 3]
+Available move count = 0
+Solving input "in_0011.txt", starting timer
+========================================
+| Finished in 6.1426 ms |
+Best solution:
+Node depth = 12
+Unfinished white = 0
+Unfinished black = 0
+Next to turn = 0
+Past moves: 
+[2, 0] -> [1, 0]
+[1, 2] -> [1, 3]
+[2, 2] -> [1, 2]
+[0, 1] -> [0, 0]
+[2, 3] -> [0, 3]
+[0, 2] -> [2, 2]
+[2, 1] -> [0, 1]
+[0, 0] -> [2, 0]
+[0, 3] -> [0, 2]
+[1, 1] -> [2, 1]
+[1, 0] -> [1, 1]
+[1, 3] -> [2, 3]
+Available move count = 0
+Solving input "in_0011.txt", starting timer
+========================================
+| Finished in 9.4055 ms |
+Best solution:
+Node depth = 12
+Unfinished white = 0
+Unfinished black = 0
+Next to turn = 0
+Past moves: 
+[2, 3] -> [1, 3]
+[1, 2] -> [1, 0]
+[2, 2] -> [1, 2]
+[0, 1] -> [0, 3]
+[2, 0] -> [0, 0]
+[0, 3] -> [2, 3]
+[2, 1] -> [0, 1]
+[0, 2] -> [2, 2]
+[0, 0] -> [0, 2]
+[1, 1] -> [2, 1]
+[1, 3] -> [1, 1]
+[1, 0] -> [2, 0]
+Available move count = 0
+Solving input "in_0011.txt", starting timer
+========================================
+| Finished in 6.0263 ms |
+Best solution:
+Node depth = 12
+Unfinished white = 0
+Unfinished black = 0
+Next to turn = 0
+Past moves: 
+[2, 3] -> [1, 3]
+[0, 1] -> [0, 3]
+[2, 1] -> [0, 1]
+[1, 2] -> [1, 0]
+[2, 0] -> [0, 0]
+[0, 3] -> [2, 3]
+[2, 2] -> [1, 2]
+[0, 2] -> [2, 2]
+[0, 0] -> [0, 2]
+[1, 1] -> [2, 1]
+[1, 3] -> [1, 1]
+[1, 0] -> [2, 0]
+Available move count = 0
+Solving input "in_0011.txt", starting timer
+========================================
+| Finished in 8.0012 ms |
+Best solution:
+Node depth = 12
+Unfinished white = 0
+Unfinished black = 0
+Next to turn = 0
+Past moves: 
+[2, 3] -> [1, 3]
+[1, 1] -> [1, 0]
+[2, 1] -> [1, 1]
+[0, 1] -> [2, 1]
+[2, 0] -> [0, 0]
+[0, 2] -> [0, 3]
+[0, 0] -> [0, 1]
+[0, 3] -> [2, 3]
+[2, 2] -> [0, 2]
+[1, 2] -> [2, 2]
+[1, 3] -> [1, 2]
+[1, 0] -> [2, 0]
+Available move count = 0
+Solving input "in_0011.txt", starting timer
+========================================
+| Finished in 5.9997 ms |
+Best solution:
+Node depth = 12
+Unfinished white = 0
+Unfinished black = 0
+Next to turn = 0
+Past moves: 
+[2, 3] -> [1, 3]
+[0, 2] -> [0, 3]
+[2, 2] -> [0, 2]
+[1, 1] -> [1, 0]
+[2, 0] -> [0, 0]
+[0, 3] -> [2, 3]
+[2, 1] -> [1, 1]
+[0, 1] -> [2, 1]
+[0, 0] -> [0, 1]
+[1, 2] -> [2, 2]
+[1, 3] -> [1, 2]
+[1, 0] -> [2, 0]
+Available move count = 0
+Solving input "in_0011.txt", starting timer
+========================================
+| Finished in 9.5084 ms |
+Best solution:
+Node depth = 12
+Unfinished white = 0
+Unfinished black = 0
+Next to turn = 0
+Past moves: 
+[2, 3] -> [1, 3]
+[0, 2] -> [0, 3]
+[2, 2] -> [0, 2]
+[1, 1] -> [1, 0]
+[2, 1] -> [1, 1]
+[0, 3] -> [2, 3]
+[2, 0] -> [0, 0]
+[0, 1] -> [2, 1]
+[0, 0] -> [0, 1]
+[1, 2] -> [2, 2]
+[1, 3] -> [1, 2]
+[1, 0] -> [2, 0]
+Available move count = 0
+Solving input "in_0015.txt", starting timer
+========================================
+| Finished in 30.0581 ms |
+Best solution:
+Node depth = 16
+Unfinished white = 0
+Unfinished black = 0
+Next to turn = 0
+Past moves: 
+[3, 1] -> [2, 1]
+[1, 2] -> [2, 2]
+[3, 2] -> [1, 2]
+[1, 1] -> [3, 1]
+[4, 2] -> [3, 2]
+[0, 1] -> [1, 1]
+[2, 1] -> [0, 1]
+[2, 2] -> [4, 2]
+[4, 1] -> [2, 1]
+[0, 2] -> [2, 2]
+[1, 2] -> [0, 2]
+[3, 1] -> [4, 1]
+[3, 2] -> [1, 2]
+[1, 1] -> [3, 1]
+[2, 1] -> [1, 1]
+[2, 2] -> [3, 2]
+Available move count = 0
+Solving input "in_0015.txt", starting timer
+========================================
+| Finished in 15.6650 ms |
+Best solution:
+Node depth = 16
+Unfinished white = 0
+Unfinished black = 0
+Next to turn = 0
+Past moves: 
+[3, 1] -> [2, 1]
+[1, 2] -> [2, 2]
+[3, 2] -> [1, 2]
+[1, 1] -> [3, 1]
+[4, 2] -> [3, 2]
+[0, 1] -> [1, 1]
+[2, 1] -> [0, 1]
+[2, 2] -> [4, 2]
+[4, 1] -> [2, 1]
+[0, 2] -> [2, 2]
+[1, 2] -> [0, 2]
+[3, 1] -> [4, 1]
+[3, 2] -> [1, 2]
+[1, 1] -> [3, 1]
+[2, 1] -> [1, 1]
+[2, 2] -> [3, 2]
+Available move count = 0
+Solving input "in_0015.txt", starting timer
+========================================
+| Finished in 17.2199 ms |
+Best solution:
+Node depth = 16
+Unfinished white = 0
+Unfinished black = 0
+Next to turn = 0
+Past moves: 
+[3, 1] -> [2, 1]
+[1, 2] -> [2, 2]
+[3, 2] -> [1, 2]
+[1, 1] -> [3, 1]
+[4, 2] -> [3, 2]
+[0, 1] -> [1, 1]
+[2, 1] -> [0, 1]
+[2, 2] -> [4, 2]
+[4, 1] -> [2, 1]
+[0, 2] -> [2, 2]
+[1, 2] -> [0, 2]
+[3, 1] -> [4, 1]
+[3, 2] -> [1, 2]
+[1, 1] -> [3, 1]
+[2, 1] -> [1, 1]
+[2, 2] -> [3, 2]
+Available move count = 0
+Solving input "in_0015.txt", starting timer
+========================================
+| Finished in 14.5110 ms |
+Best solution:
+Node depth = 16
+Unfinished white = 0
+Unfinished black = 0
+Next to turn = 0
+Past moves: 
+[3, 1] -> [2, 1]
+[1, 2] -> [2, 2]
+[3, 2] -> [1, 2]
+[1, 1] -> [3, 1]
+[4, 2] -> [3, 2]
+[0, 1] -> [1, 1]
+[2, 1] -> [0, 1]
+[2, 2] -> [4, 2]
+[4, 1] -> [2, 1]
+[0, 2] -> [2, 2]
+[1, 2] -> [0, 2]
+[3, 1] -> [4, 1]
+[3, 2] -> [1, 2]
+[1, 1] -> [3, 1]
+[2, 1] -> [1, 1]
+[2, 2] -> [3, 2]
+Available move count = 0
+Solving input "in_0015.txt", starting timer
+========================================
+| Finished in 21.3348 ms |
+Best solution:
+Node depth = 16
+Unfinished white = 0
+Unfinished black = 0
+Next to turn = 0
+Past moves: 
+[3, 1] -> [2, 1]
+[1, 2] -> [2, 2]
+[3, 2] -> [1, 2]
+[1, 1] -> [3, 1]
+[4, 2] -> [3, 2]
+[0, 1] -> [1, 1]
+[2, 1] -> [0, 1]
+[2, 2] -> [4, 2]
+[4, 1] -> [2, 1]
+[0, 2] -> [2, 2]
+[1, 2] -> [0, 2]
+[3, 1] -> [4, 1]
+[3, 2] -> [1, 2]
+[1, 1] -> [3, 1]
+[2, 1] -> [1, 1]
+[2, 2] -> [3, 2]
+Available move count = 0
+Solving input "in_0015.txt", starting timer
+========================================
+| Finished in 14.4143 ms |
+Best solution:
+Node depth = 16
+Unfinished white = 0
+Unfinished black = 0
+Next to turn = 0
+Past moves: 
+[3, 1] -> [2, 1]
+[1, 2] -> [2, 2]
+[3, 2] -> [1, 2]
+[1, 1] -> [3, 1]
+[4, 2] -> [3, 2]
+[0, 1] -> [1, 1]
+[2, 1] -> [0, 1]
+[2, 2] -> [4, 2]
+[4, 1] -> [2, 1]
+[0, 2] -> [2, 2]
+[1, 2] -> [0, 2]
+[3, 1] -> [4, 1]
+[3, 2] -> [1, 2]
+[1, 1] -> [3, 1]
+[2, 1] -> [1, 1]
+[2, 2] -> [3, 2]
+Available move count = 0
+Solving input "in_0015.txt", starting timer
+========================================
+| Finished in 18.5371 ms |
+Best solution:
+Node depth = 16
+Unfinished white = 0
+Unfinished black = 0
+Next to turn = 0
+Past moves: 
+[3, 1] -> [2, 1]
+[1, 2] -> [2, 2]
+[3, 2] -> [1, 2]
+[1, 1] -> [3, 1]
+[4, 2] -> [3, 2]
+[0, 1] -> [1, 1]
+[2, 1] -> [0, 1]
+[2, 2] -> [4, 2]
+[4, 1] -> [2, 1]
+[0, 2] -> [2, 2]
+[1, 2] -> [0, 2]
+[3, 1] -> [4, 1]
+[3, 2] -> [1, 2]
+[1, 1] -> [3, 1]
+[2, 1] -> [1, 1]
+[2, 2] -> [3, 2]
+Available move count = 0
+Solving input "in_0015.txt", starting timer
+========================================
+| Finished in 18.6430 ms |
+Best solution:
+Node depth = 16
+Unfinished white = 0
+Unfinished black = 0
+Next to turn = 0
+Past moves: 
+[3, 1] -> [2, 1]
+[1, 2] -> [2, 2]
+[3, 2] -> [1, 2]
+[1, 1] -> [3, 1]
+[4, 2] -> [3, 2]
+[0, 1] -> [1, 1]
+[2, 1] -> [0, 1]
+[2, 2] -> [4, 2]
+[4, 1] -> [2, 1]
+[0, 2] -> [2, 2]
+[1, 2] -> [0, 2]
+[3, 1] -> [4, 1]
+[3, 2] -> [1, 2]
+[1, 1] -> [3, 1]
+[2, 1] -> [1, 1]
+[2, 2] -> [3, 2]
+Available move count = 0
+Solving input "in_0015.txt", starting timer
+========================================
+| Finished in 18.8045 ms |
+Best solution:
+Node depth = 16
+Unfinished white = 0
+Unfinished black = 0
+Next to turn = 0
+Past moves: 
+[3, 1] -> [2, 1]
+[1, 2] -> [2, 2]
+[3, 2] -> [1, 2]
+[1, 1] -> [3, 1]
+[4, 2] -> [3, 2]
+[0, 1] -> [1, 1]
+[2, 1] -> [0, 1]
+[2, 2] -> [4, 2]
+[4, 1] -> [2, 1]
+[0, 2] -> [2, 2]
+[1, 2] -> [0, 2]
+[3, 1] -> [4, 1]
+[3, 2] -> [1, 2]
+[1, 1] -> [3, 1]
+[2, 1] -> [1, 1]
+[2, 2] -> [3, 2]
+Available move count = 0
+Solving input "in_0015.txt", starting timer
+========================================
+| Finished in 23.4474 ms |
+Best solution:
+Node depth = 16
+Unfinished white = 0
+Unfinished black = 0
+Next to turn = 0
+Past moves: 
+[3, 1] -> [2, 1]
+[1, 2] -> [2, 2]
+[3, 2] -> [1, 2]
+[1, 1] -> [3, 1]
+[4, 2] -> [3, 2]
+[0, 1] -> [1, 1]
+[2, 1] -> [0, 1]
+[2, 2] -> [4, 2]
+[4, 1] -> [2, 1]
+[0, 2] -> [2, 2]
+[1, 2] -> [0, 2]
+[3, 1] -> [4, 1]
+[3, 2] -> [1, 2]
+[1, 1] -> [3, 1]
+[2, 1] -> [1, 1]
+[2, 2] -> [3, 2]
+Available move count = 0
+Solving input "in_0016.txt", starting timer
+========================================
+| Finished in 40.5976 ms |
+Best solution:
+Node depth = 17
+Unfinished white = 0
+Unfinished black = 0
+Next to turn = 0
+Past moves: 
+[3, 3] -> [1, 3]
+[1, 0] -> [1, 1]
+[2, 3] -> [2, 1]
+[1, 1] -> [1, 2]
+[1, 3] -> [1, 1]
+[0, 0] -> [0, 1]
+[2, 2] -> [0, 2]
+[2, 0] -> [2, 2]
+[0, 2] -> [0, 0]
+[3, 0] -> [3, 1]
+[2, 1] -> [2, 0]
+[0, 1] -> [2, 1]
+[3, 2] -> [3, 0]
+[2, 1] -> [2, 3]
+[1, 1] -> [1, 0]
+[1, 2] -> [3, 2]
+[3, 1] -> [3, 3]
+Available move count = 0
+Solving input "in_0016.txt", starting timer
+========================================
+| Finished in 54.9813 ms |
+Best solution:
+Node depth = 17
+Unfinished white = 0
+Unfinished black = 0
+Next to turn = 0
+Past moves: 
+[3, 3] -> [1, 3]
+[3, 0] -> [3, 1]
+[1, 3] -> [1, 2]
+[3, 1] -> [3, 3]
+[2, 3] -> [2, 1]
+[0, 0] -> [0, 1]
+[2, 2] -> [0, 2]
+[2, 0] -> [2, 2]
+[0, 2] -> [0, 0]
+[1, 0] -> [1, 1]
+[2, 1] -> [2, 0]
+[0, 1] -> [2, 1]
+[1, 2] -> [1, 0]
+[1, 1] -> [3, 1]
+[3, 2] -> [3, 0]
+[2, 1] -> [2, 3]
+[3, 1] -> [3, 2]
+Available move count = 0
+Solving input "in_0016.txt", starting timer
+========================================
+| Finished in 48.6535 ms |
+Best solution:
+Node depth = 17
+Unfinished white = 0
+Unfinished black = 0
+Next to turn = 0
+Past moves: 
+[2, 3] -> [2, 1]
+[1, 0] -> [1, 1]
+[3, 2] -> [1, 2]
+[3, 0] -> [3, 1]
+[3, 3] -> [3, 2]
+[3, 1] -> [3, 3]
+[2, 2] -> [0, 2]
+[2, 0] -> [2, 2]
+[2, 1] -> [2, 0]
+[0, 0] -> [0, 1]
+[0, 2] -> [0, 0]
+[0, 1] -> [2, 1]
+[1, 2] -> [1, 0]
+[1, 1] -> [3, 1]
+[3, 2] -> [3, 0]
+[2, 1] -> [2, 3]
+[3, 1] -> [3, 2]
+Available move count = 0
+Solving input "in_0016.txt", starting timer
+========================================
+| Finished in 57.4446 ms |
+Best solution:
+Node depth = 17
+Unfinished white = 0
+Unfinished black = 0
+Next to turn = 0
+Past moves: 
+[2, 3] -> [2, 1]
+[3, 0] -> [3, 1]
+[3, 2] -> [3, 0]
+[3, 1] -> [3, 2]
+[3, 3] -> [3, 1]
+[0, 0] -> [0, 1]
+[3, 1] -> [1, 1]
+[1, 0] -> [1, 2]
+[2, 2] -> [0, 2]
+[2, 0] -> [2, 2]
+[0, 2] -> [0, 0]
+[1, 2] -> [1, 3]
+[2, 1] -> [2, 0]
+[0, 1] -> [2, 1]
+[1, 1] -> [1, 0]
+[2, 1] -> [2, 3]
+[1, 3] -> [3, 3]
+Available move count = 0
+Solving input "in_0016.txt", starting timer
+========================================
+| Finished in 83.3725 ms |
+Best solution:
+Node depth = 17
+Unfinished white = 0
+Unfinished black = 0
+Next to turn = 0
+Past moves: 
+[2, 3] -> [2, 1]
+[3, 0] -> [3, 1]
+[3, 2] -> [3, 0]
+[3, 1] -> [3, 2]
+[3, 3] -> [3, 1]
+[0, 0] -> [0, 1]
+[3, 1] -> [1, 1]
+[1, 0] -> [1, 2]
+[2, 2] -> [0, 2]
+[2, 0] -> [2, 2]
+[0, 2] -> [0, 0]
+[1, 2] -> [1, 3]
+[2, 1] -> [2, 0]
+[0, 1] -> [2, 1]
+[1, 1] -> [1, 0]
+[2, 1] -> [2, 3]
+[1, 3] -> [3, 3]
+Available move count = 0
+Solving input "in_0016.txt", starting timer
+========================================
+| Finished in 93.3146 ms |
+Best solution:
+Node depth = 17
+Unfinished white = 0
+Unfinished black = 0
+Next to turn = 0
+Past moves: 
+[3, 3] -> [1, 3]
+[0, 0] -> [0, 1]
+[1, 3] -> [1, 2]
+[1, 0] -> [1, 1]
+[2, 3] -> [2, 1]
+[3, 0] -> [3, 1]
+[2, 2] -> [0, 2]
+[2, 0] -> [2, 2]
+[0, 2] -> [0, 0]
+[3, 1] -> [3, 3]
+[2, 1] -> [2, 0]
+[0, 1] -> [2, 1]
+[1, 2] -> [1, 0]
+[1, 1] -> [3, 1]
+[3, 2] -> [3, 0]
+[2, 1] -> [2, 3]
+[3, 1] -> [3, 2]
+Available move count = 0
+Solving input "in_0016.txt", starting timer
+========================================
+| Finished in 48.0246 ms |
+Best solution:
+Node depth = 17
+Unfinished white = 0
+Unfinished black = 0
+Next to turn = 0
+Past moves: 
+[3, 2] -> [1, 2]
+[1, 0] -> [1, 1]
+[2, 3] -> [2, 1]
+[3, 0] -> [3, 1]
+[2, 1] -> [0, 1]
+[0, 0] -> [0, 2]
+[0, 1] -> [0, 0]
+[2, 0] -> [2, 1]
+[2, 2] -> [2, 0]
+[0, 2] -> [2, 2]
+[1, 2] -> [1, 0]
+[1, 1] -> [1, 2]
+[3, 3] -> [3, 2]
+[2, 1] -> [2, 3]
+[3, 2] -> [3, 0]
+[1, 2] -> [3, 2]
+[3, 1] -> [3, 3]
+Available move count = 0
+Solving input "in_0016.txt", starting timer
+========================================
+| Finished in 60.3125 ms |
+Best solution:
+Node depth = 17
+Unfinished white = 0
+Unfinished black = 0
+Next to turn = 0
+Past moves: 
+[2, 3] -> [2, 1]
+[1, 0] -> [1, 1]
+[3, 3] -> [3, 1]
+[1, 1] -> [1, 2]
+[2, 2] -> [0, 2]
+[2, 0] -> [2, 2]
+[3, 1] -> [1, 1]
+[0, 0] -> [0, 1]
+[0, 2] -> [0, 0]
+[3, 0] -> [3, 1]
+[2, 1] -> [2, 0]
+[0, 1] -> [2, 1]
+[3, 2] -> [3, 0]
+[2, 1] -> [2, 3]
+[1, 1] -> [1, 0]
+[1, 2] -> [3, 2]
+[3, 1] -> [3, 3]
+Available move count = 0
+Solving input "in_0016.txt", starting timer
+========================================
+| Finished in 51.7810 ms |
+Best solution:
+Node depth = 17
+Unfinished white = 0
+Unfinished black = 0
+Next to turn = 0
+Past moves: 
+[2, 2] -> [2, 1]
+[1, 0] -> [1, 1]
+[3, 3] -> [3, 1]
+[2, 0] -> [2, 2]
+[2, 1] -> [0, 1]
+[0, 0] -> [0, 2]
+[3, 2] -> [1, 2]
+[3, 0] -> [3, 2]
+[2, 3] -> [2, 1]
+[2, 2] -> [2, 3]
+[3, 1] -> [3, 0]
+[0, 2] -> [2, 2]
+[1, 2] -> [1, 0]
+[1, 1] -> [3, 1]
+[0, 1] -> [0, 0]
+[3, 1] -> [3, 3]
+[2, 1] -> [2, 0]
+Available move count = 0
+Solving input "in_0016.txt", starting timer
+========================================
+| Finished in 60.7449 ms |
+Best solution:
+Node depth = 17
+Unfinished white = 0
+Unfinished black = 0
+Next to turn = 0
+Past moves: 
+[2, 2] -> [2, 1]
+[2, 0] -> [2, 2]
+[3, 3] -> [3, 1]
+[1, 0] -> [1, 1]
+[2, 1] -> [0, 1]
+[0, 0] -> [0, 2]
+[3, 2] -> [1, 2]
+[3, 0] -> [3, 2]
+[2, 3] -> [2, 1]
+[2, 2] -> [2, 3]
+[3, 1] -> [3, 0]
+[0, 2] -> [2, 2]
+[1, 2] -> [1, 0]
+[1, 1] -> [3, 1]
+[0, 1] -> [0, 0]
+[3, 1] -> [3, 3]
+[2, 1] -> [2, 0]
+Available move count = 0
+Solving input "in_0017.txt", starting timer
+========================================
+| Finished in 49.7462 ms |
+Best solution:
+Node depth = 16
+Unfinished white = 0
+Unfinished black = 0
+Next to turn = 0
+Past moves: 
+[2, 2] -> [3, 2]
+[4, 1] -> [3, 1]
+[2, 1] -> [4, 1]
+[4, 2] -> [2, 2]
+[1, 1] -> [2, 1]
+[5, 2] -> [4, 2]
+[3, 2] -> [5, 2]
+[3, 1] -> [1, 1]
+[1, 2] -> [3, 2]
+[5, 1] -> [3, 1]
+[4, 1] -> [5, 1]
+[2, 2] -> [1, 2]
+[2, 1] -> [4, 1]
+[4, 2] -> [2, 2]
+[3, 2] -> [4, 2]
+[3, 1] -> [2, 1]
+Available move count = 0
+Solving input "in_0017.txt", starting timer
+========================================
+| Finished in 57.6046 ms |
+Best solution:
+Node depth = 16
+Unfinished white = 0
+Unfinished black = 0
+Next to turn = 0
+Past moves: 
+[2, 2] -> [3, 2]
+[4, 1] -> [3, 1]
+[2, 1] -> [4, 1]
+[4, 2] -> [2, 2]
+[1, 1] -> [2, 1]
+[5, 2] -> [4, 2]
+[3, 2] -> [5, 2]
+[3, 1] -> [1, 1]
+[1, 2] -> [3, 2]
+[5, 1] -> [3, 1]
+[4, 1] -> [5, 1]
+[2, 2] -> [1, 2]
+[2, 1] -> [4, 1]
+[4, 2] -> [2, 2]
+[3, 2] -> [4, 2]
+[3, 1] -> [2, 1]
+Available move count = 0
+Solving input "in_0017.txt", starting timer
+========================================
+| Finished in 73.9269 ms |
+Best solution:
+Node depth = 16
+Unfinished white = 0
+Unfinished black = 0
+Next to turn = 0
+Past moves: 
+[2, 2] -> [3, 2]
+[4, 1] -> [3, 1]
+[2, 1] -> [4, 1]
+[4, 2] -> [2, 2]
+[1, 1] -> [2, 1]
+[5, 2] -> [4, 2]
+[3, 2] -> [5, 2]
+[3, 1] -> [1, 1]
+[1, 2] -> [3, 2]
+[5, 1] -> [3, 1]
+[4, 1] -> [5, 1]
+[2, 2] -> [1, 2]
+[2, 1] -> [4, 1]
+[4, 2] -> [2, 2]
+[3, 2] -> [4, 2]
+[3, 1] -> [2, 1]
+Available move count = 0
+Solving input "in_0017.txt", starting timer
+========================================
+| Finished in 45.8781 ms |
+Best solution:
+Node depth = 16
+Unfinished white = 0
+Unfinished black = 0
+Next to turn = 0
+Past moves: 
+[2, 1] -> [3, 1]
+[4, 2] -> [3, 2]
+[2, 2] -> [4, 2]
+[4, 1] -> [2, 1]
+[1, 2] -> [2, 2]
+[5, 1] -> [4, 1]
+[3, 1] -> [5, 1]
+[3, 2] -> [1, 2]
+[1, 1] -> [3, 1]
+[5, 2] -> [3, 2]
+[4, 2] -> [5, 2]
+[2, 1] -> [1, 1]
+[2, 2] -> [4, 2]
+[4, 1] -> [2, 1]
+[3, 1] -> [4, 1]
+[3, 2] -> [2, 2]
+Available move count = 0
+Solving input "in_0017.txt", starting timer
+========================================
+| Finished in 38.5049 ms |
+Best solution:
+Node depth = 16
+Unfinished white = 0
+Unfinished black = 0
+Next to turn = 0
+Past moves: 
+[2, 1] -> [3, 1]
+[4, 2] -> [3, 2]
+[2, 2] -> [4, 2]
+[4, 1] -> [2, 1]
+[1, 2] -> [2, 2]
+[5, 1] -> [4, 1]
+[3, 1] -> [5, 1]
+[3, 2] -> [1, 2]
+[1, 1] -> [3, 1]
+[5, 2] -> [3, 2]
+[4, 2] -> [5, 2]
+[2, 1] -> [1, 1]
+[2, 2] -> [4, 2]
+[4, 1] -> [2, 1]
+[3, 1] -> [4, 1]
+[3, 2] -> [2, 2]
+Available move count = 0
+Solving input "in_0017.txt", starting timer
+========================================
+| Finished in 35.4603 ms |
+Best solution:
+Node depth = 16
+Unfinished white = 0
+Unfinished black = 0
+Next to turn = 0
+Past moves: 
+[2, 2] -> [3, 2]
+[4, 1] -> [3, 1]
+[2, 1] -> [4, 1]
+[4, 2] -> [2, 2]
+[1, 1] -> [2, 1]
+[5, 2] -> [4, 2]
+[3, 2] -> [5, 2]
+[3, 1] -> [1, 1]
+[1, 2] -> [3, 2]
+[5, 1] -> [3, 1]
+[4, 1] -> [5, 1]
+[2, 2] -> [1, 2]
+[2, 1] -> [4, 1]
+[4, 2] -> [2, 2]
+[3, 2] -> [4, 2]
+[3, 1] -> [2, 1]
+Available move count = 0
+Solving input "in_0017.txt", starting timer
+========================================
+| Finished in 48.5901 ms |
+Best solution:
+Node depth = 16
+Unfinished white = 0
+Unfinished black = 0
+Next to turn = 0
+Past moves: 
+[2, 1] -> [3, 1]
+[4, 2] -> [3, 2]
+[2, 2] -> [4, 2]
+[4, 1] -> [2, 1]
+[1, 2] -> [2, 2]
+[5, 1] -> [4, 1]
+[3, 1] -> [5, 1]
+[3, 2] -> [1, 2]
+[1, 1] -> [3, 1]
+[5, 2] -> [3, 2]
+[4, 2] -> [5, 2]
+[2, 1] -> [1, 1]
+[2, 2] -> [4, 2]
+[4, 1] -> [2, 1]
+[3, 1] -> [4, 1]
+[3, 2] -> [2, 2]
+Available move count = 0
+Solving input "in_0017.txt", starting timer
+========================================
+| Finished in 25.9022 ms |
+Best solution:
+Node depth = 16
+Unfinished white = 0
+Unfinished black = 0
+Next to turn = 0
+Past moves: 
+[2, 1] -> [3, 1]
+[4, 2] -> [3, 2]
+[2, 2] -> [4, 2]
+[4, 1] -> [2, 1]
+[1, 2] -> [2, 2]
+[5, 1] -> [4, 1]
+[3, 1] -> [5, 1]
+[3, 2] -> [1, 2]
+[1, 1] -> [3, 1]
+[5, 2] -> [3, 2]
+[4, 2] -> [5, 2]
+[2, 1] -> [1, 1]
+[2, 2] -> [4, 2]
+[4, 1] -> [2, 1]
+[3, 1] -> [4, 1]
+[3, 2] -> [2, 2]
+Available move count = 0
+Solving input "in_0017.txt", starting timer
+========================================
+| Finished in 35.0469 ms |
+Best solution:
+Node depth = 16
+Unfinished white = 0
+Unfinished black = 0
+Next to turn = 0
+Past moves: 
+[2, 2] -> [3, 2]
+[4, 1] -> [3, 1]
+[2, 1] -> [4, 1]
+[4, 2] -> [2, 2]
+[1, 1] -> [2, 1]
+[5, 2] -> [4, 2]
+[3, 2] -> [5, 2]
+[3, 1] -> [1, 1]
+[1, 2] -> [3, 2]
+[5, 1] -> [3, 1]
+[4, 1] -> [5, 1]
+[2, 2] -> [1, 2]
+[2, 1] -> [4, 1]
+[4, 2] -> [2, 2]
+[3, 2] -> [4, 2]
+[3, 1] -> [2, 1]
+Available move count = 0
+Solving input "in_0017.txt", starting timer
+========================================
+| Finished in 34.7114 ms |
+Best solution:
+Node depth = 16
+Unfinished white = 0
+Unfinished black = 0
+Next to turn = 0
+Past moves: 
+[2, 2] -> [3, 2]
+[4, 1] -> [3, 1]
+[2, 1] -> [4, 1]
+[4, 2] -> [2, 2]
+[1, 1] -> [2, 1]
+[5, 2] -> [4, 2]
+[3, 2] -> [5, 2]
+[3, 1] -> [1, 1]
+[1, 2] -> [3, 2]
+[5, 1] -> [3, 1]
+[4, 1] -> [5, 1]
+[2, 2] -> [1, 2]
+[2, 1] -> [4, 1]
+[4, 2] -> [2, 2]
+[3, 2] -> [4, 2]
+[3, 1] -> [2, 1]
+Available move count = 0

@@ -26,6 +26,7 @@ NodeState* solve(Board* board) {
 
 
 void solve_recurse(Board* board, NodeState* current_node, NodeState* current_best) {
+    // Not needed since depth is max 4 here
     if (current_node->depth >= current_best->depth) {
         // Exit if depth exceeds upper bound
         return;
@@ -38,9 +39,7 @@ void solve_recurse(Board* board, NodeState* current_node, NodeState* current_bes
             {
                 if (current_node->depth < current_best->depth) {
                     // Update best solution by deep copy from current solution
-                    //printf("Copy Moves\n");
                     CopyMoves(current_node, current_best);
-                    //board->upper_bound = current_best->depth;
                 }
             }
         }
@@ -49,13 +48,11 @@ void solve_recurse(Board* board, NodeState* current_node, NodeState* current_bes
         GetAvailableMoves(board, current_node);
         //PrintNode(current_node);
         if (current_node->available_moves.Count > 0){
-            if (current_node->depth < 5) {
+            if (current_node->depth < 4) {
                 for (int i = 0; i < current_node->available_moves.Count; i++) {
                     if ((current_node->depth + current_node->available_moves.MovesAndLowerBounds[i].lower_bound + 1) < current_best->depth) {
-                    //if ((current_node->depth + current_node->available_moves.MovesAndLowerBounds[i].lower_bound + 1) < board->upper_bound) {
                         // S + d(S') + 1 < upper_bound, recurse on these moves
 
-                        //printf("Current depth = %i\n", current_node->depth);
                         NodeState* new_node = CopyNode(board, current_node);
                         NodeMakeMove(board, new_node, current_node->available_moves.MovesAndLowerBounds[i].move);
                         #pragma omp task 
@@ -63,19 +60,10 @@ void solve_recurse(Board* board, NodeState* current_node, NodeState* current_bes
                             solve_recurse(board, new_node, current_best);
                             NodeDestructor(new_node);
                         }
-                        //#pragma omp taskwait
-                        // I think #pragma omp taskwait is necessary here, because otherwise something like this happens
-                        // 1. we create task X 
-                        // 2. Task X calls solve_recurse -> it creates additional tasks Y and Z for its two available moves and returns
-                        // 3. Task X destructs its node
-                        // 4. if any of the tasks Y,Z,W havent yet finished copying task X's node, they will be reading from freed heap memory
-
-                        // Also might have to do with local variables and returning from this function early
                     }
                 }
             } else {
                 for (int i = 0; i < current_node->available_moves.Count; i++) {
-                    //if ((current_node->depth + current_node->available_moves.MovesAndLowerBounds[i].lower_bound + 1) < board->upper_bound) {
                     if ((current_node->depth + current_node->available_moves.MovesAndLowerBounds[i].lower_bound + 1) < current_best->depth) {
                         NodeState* new_node = CopyNode(board, current_node);
                         NodeMakeMove(board, new_node, current_node->available_moves.MovesAndLowerBounds[i].move);
@@ -103,9 +91,6 @@ void sequential_solve_recurse(Board* board, NodeState* current_node, NodeState* 
                 if (current_node->depth < current_best->depth) {
                     // Update best solution by deep copy from current solution
                     CopyMoves(current_node, current_best);
-                    //FreeNodeMembers(current_best);
-                    //CopyNodeIntoNode(board, current_node, current_best);
-                    //board->upper_bound = current_best->depth;
                 }
             }
         }
