@@ -7,5 +7,7 @@
 #define SOLVE_H
 
 struct NodeState* solve(Board* board);
+void sequential_solve_recurse(Board* board, NodeState* current_node, NodeState* current_best);
+void solve_recurse(Board* board, NodeState* current_node, NodeState* current_best);
 
 #endif
