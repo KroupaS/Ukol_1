@@ -1,2 +1,3 @@
-sbatch -p arm_long -N 1 slurm_script.sh
-sbatch -p arm_fast -N 1 slurm_script.sh
+sbatch -p arm_long -c 48 slurm_script.sh
+
+// fronty arm_long / arm_fast. -N 20 for more nodes (probably only relevant for MPI solution)
