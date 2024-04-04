@@ -20,18 +20,16 @@ NodeState* solve(Board* board) {
     uint lower_bound = getLowerBound(board, initial_state);
     board->lower_bound = lower_bound;
 
-    //printf("Initial upper bound = %u\n", upper_bound);
-    //printf("Initial lower bound = %u\n", lower_bound);
-
+    // Solve in main thread until depth 4, then add all new states to the queue
     solve_recurse_seq(board, initial_state, best_solution, state_queue, ptr_counter);
     
-    // Queue is ready
-
+    // Queue is ready, solve states from queue in parallel loop
     #pragma omp parallel for
     for (int i=0; i<state_counter; i++) {
         solve_recurse_parallel(board, state_queue[i], best_solution);
         NodeDestructor(state_queue[i]);
     }
+
     return best_solution;
 }
 
