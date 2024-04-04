@@ -1,3 +1,1 @@
-// MSVC build doesnt work anymore because librt.so
-//cl /O2 /EHsc /Fe"vps.exe" board.c solve.c main.c && del board.obj && del main.obj && del solve.obj && .\vps.exe 1 in_0000.txt
-cc -O3 -Wall main.c solve.c board.c -lrt -o vps.out && ./vps.out 1 in_0000.txt
+cc -O3 -Wall main.c solve.c board.c -fopenmp -lrt -o vps.out && ./vps.out 1 in_0000.txt -v

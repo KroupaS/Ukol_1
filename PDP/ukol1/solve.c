@@ -1,7 +1,7 @@
 #include "solve.h"
 #include "board.h"
 
-#define MAX_STATE_COUNT (100000)
+#define MAX_STATE_COUNT (2000000)
 
 void solve_recurse_seq(Board* board, NodeState* current_node, NodeState* current_best, NodeState** state_queue, uint* state_counter);
 void solve_recurse_parallel(Board* board, NodeState* current_node, NodeState* current_best);
@@ -24,7 +24,7 @@ NodeState* solve(Board* board) {
     solve_recurse_seq(board, initial_state, best_solution, state_queue, ptr_counter);
     
     // Queue is ready, solve states from queue in parallel loop
-    #pragma omp parallel for
+    #pragma omp parallel for schedule(dynamic)
     for (int i=0; i<state_counter; i++) {
         solve_recurse_parallel(board, state_queue[i], best_solution);
         NodeDestructor(state_queue[i]);

@@ -9,10 +9,10 @@ int main(int argc, char** argv) {
     double cpu_time;
 
     // Parse arguments, initialize
-    if (argc != 3) {
-        printf("Error: program expects two arguments - number of threads to use and filename, Example Usage:\n");
-        printf("./vps.out 8 in_0000.txt\n");
-        printf("./vps.out 1 in_0002.txt\n");
+    if (argc != 4) {
+        printf("Error: program expects three arguments - number of processes to use filename, and '-v' for verbosity, '-s' for summary Example Usage:\n");
+        printf("./vps.out 8 in_0000.txt -s\n");
+        printf("./vps.out 1 in_0002.txt -v\n");
         return 1;
     }
     const int max_thread = atoi(argv[1]);
@@ -27,6 +27,12 @@ int main(int argc, char** argv) {
 	return 1;
     }
 
+    if ((strlen(argv[3]) < 2) || ((argv[3][1] != 'v') && (argv[3][1] != 's'))) {
+        printf("Could not parse verbosity, use '-v' or '-s' as the last commandline option!\n");
+	return 1;
+    }
+    const char verbosity = argv[3][1];
+
     printf("Solving input \"%s\", starting timer\n", filename);
 
     // Time and solve
@@ -40,11 +46,15 @@ int main(int argc, char** argv) {
 
     if (cpu_time > (double)1000) {
         cpu_time /= (double)1000;
-        printf("========================================\n");
+	if (verbosity == 'v') {
+        	printf("========================================\n");
+	}
         printf("| Finished in %.4f seconds |\nBest solution (%u moves):\n", cpu_time, best_solution->depth);
     } else {
         // display in ms
-        printf("========================================\n");
+	if (verbosity == 'v') {
+        	printf("========================================\n");
+	}
         printf("| Finished in %.4f ms |\nBest solution (%u moves):\n", cpu_time, best_solution->depth);
     }
 
@@ -52,7 +62,9 @@ int main(int argc, char** argv) {
         printf("ERROR best solution has depth 0 - correct solution was never found\n");
     } else {
         //PrintNode(best_solution);
-        PrintMoves(best_solution, chessboard);
+	if (verbosity == 'v') {
+        	PrintMoves(best_solution, chessboard);
+	}
         NodeDestructor(best_solution);
         free(chessboard);
     }
