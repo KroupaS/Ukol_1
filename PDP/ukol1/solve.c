@@ -12,9 +12,6 @@ NodeState* solve(Board* board) {
     uint lower_bound = getLowerBound(board, initial_state);
     board->lower_bound = lower_bound;
 
-    //printf("Initial upper bound = %u\n", upper_bound);
-    //printf("Initial lower bound = %u\n", lower_bound);
-
     solve_recurse(board, initial_state, best_solution);
     return best_solution;
 }
@@ -36,7 +33,7 @@ void solve_recurse(Board* board, NodeState* current_node, NodeState* current_bes
         if (current_node->available_moves.Count > 0){
             for (int i = 0; i < current_node->available_moves.Count; i++) {
                 if ((current_node->depth + current_node->available_moves.MovesAndLowerBounds[i].lower_bound + 1) < current_best->depth) {
-                    // Check that S + d(S') + 1 < upper_bound, so recurse on these moves
+                    // Check that S + d(S') + 1 < upper_bound, if so, recurse on these moves
                     NodeState* new_node = CopyNode(board, current_node);
                     NodeMakeMove(board, new_node, current_node->available_moves.MovesAndLowerBounds[i].move);
                     solve_recurse(board, new_node, current_best);
