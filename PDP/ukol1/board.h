@@ -34,20 +34,26 @@ typedef struct AvailableMoves {         // 4 bytes + pointer
     MoveAndLowerBound* MovesAndLowerBounds;
 } AvailableMoves;
 
-typedef struct Area {       // 4 bytes
-    Point top_left;
-    Point bot_right;
+typedef struct AvailableMovesSerial {
+    uint Count;                                                                             // 4
+    MoveAndLowerBound MovesAndLowerBoundsArray[sizeof(MoveAndLowerBound) * 8 * 4];          // 260
+} AvailableMovesSerial;
+
+typedef struct Area {    
+    Point top_left;  
+    Point bot_right; // 4 bytes
 } Area;
 
 // This struct will be initialized once, all nodes have a pointer to it
 typedef struct Board {
-    Area W_area;        // 4 
-    Area B_area;        // 8
-    uint upper_bound;   // 12
-    uint lower_bound;   // 16
+    Area W_area;                 // 4 
+    Area B_area;                 // 8
+    uint upper_bound;            // 12
+    uint lower_bound;            // 16
     unsigned char k;             // 20 Maximum k should be <= 400/2
     unsigned char m;             // 21
     unsigned char n;             // 22
+    unsigned char padding[2];    // 24   
 } Board;
 
 typedef struct NodeState {
@@ -60,6 +66,18 @@ typedef struct NodeState {
     unsigned char unfinished_black;     // 
     unsigned char turn;                 // 40 - WHITE_MOVE / BLACK_MOVE depending who is moving next 
 } NodeState;
+
+// Serialized NodeState - array sizes are just as big as needed for the known input data
+typedef struct NodeStateSerial {
+    Board board;                            // 24
+    Point White_positions[8];               // 32
+    Point Black_positions[8];               // 40
+    Move past_moves[48];                    // 88
+    unsigned char depth;                    //
+    unsigned char unfinished_white;         //
+    unsigned char unfinished_black;         //
+    unsigned char turn;                     // 92
+} NodeStateSerial;
 
 struct Board* load_board(const char* filename);
 NodeState* initBestSolution(Board* board);
@@ -78,9 +96,16 @@ NodeState* CopyNode(Board* board, NodeState* node);
 void CopyNodeIntoNode(Board* board, NodeState* source_node, NodeState* target_node);
 void NodeMakeMove(Board* board, NodeState* node, Move move);
 void NodeDestructor(NodeState* node);
-void FreeNodeMembers(NodeState* node);
+void FreeBestSolution(NodeState* node);
 
 void GetAvailableMoves(Board* board, NodeState* state);
 void CopyMoves(NodeState* source_node, NodeState* target_node);
+
+void UpdateSolutionFromSerial(NodeStateSerial* serialized_state, NodeState* best_solution);
+
+void SerializeNodeState(NodeStateSerial* serialized_state, Board* board, NodeState* node);
+void SerializeSolution(NodeStateSerial* serialized_state, NodeState* node);
+NodeState* DeSerializeNodeState(Board* board, NodeStateSerial* serialized_state);
+NodeState* DeSerializeSolution(NodeStateSerial* serialized_state);
 
 #endif
