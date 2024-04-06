@@ -1,9 +1,7 @@
-//#include <stdio.h>
-//#include <stdlib.h>
 #include "board.h"
 
 int abs_value_trick(int val) {
-    // Signed right shift -> result is 32 0's or 32 1's
+    // Signed right shift -> result is 32 0's if val is positive, 32 1's if val is negative
     int tmp = val >> 31;
     // Flip bits and add one if tmp is 32 1's;
     val ^= tmp;
@@ -224,15 +222,11 @@ void NodeDestructor(NodeState* node) {
     free(node);
 }
 
-void FreeNodeMembers(NodeState* node) {
-    // Cant call if GetAvailableMoves was not called on this node - would free nullptr
-    free(node->White_positions);
-    free(node->Black_positions);
-    if(node->available_moves.MovesAndLowerBounds != NULL) {
-        free(node->available_moves.MovesAndLowerBounds);
-    }
+void FreeBestSolution(NodeState* node) {
     free(node->past_moves);
+    free(node);
 }
+
 
 int isPointInBounds(Point point, Board* board) {
     if ((point.X < 0) || (point.Y < 0)) {
@@ -336,7 +330,6 @@ int ManhattanDist(Point first, Point second) {
 int getDistanceToClosestPointInArea(Point origin, Area dest_area) {
     // First calculate distance in x;
     int dist = 0;
-    //printf("Point = [%i, %i]\n", origin.X, origin.Y);
     int dist_1 = abs_value_trick(dest_area.top_left.X - origin.X);
     int dist_2 = abs_value_trick(dest_area.bot_right.X - origin.X);
     // Special case where point's X is between the corners' X
@@ -351,7 +344,6 @@ int getDistanceToClosestPointInArea(Point origin, Area dest_area) {
             //printf("X dist = %i\n", dist);
         }
     }
-    //printf("X dist 1 = %i, X dist 2 = %i\n", dist_1, dist_2);
     
     dist_1 = abs_value_trick(dest_area.top_left.Y - origin.Y);
     dist_2 = abs_value_trick(dest_area.bot_right.Y - origin.Y);
@@ -360,14 +352,10 @@ int getDistanceToClosestPointInArea(Point origin, Area dest_area) {
     } else {
         if (dist_1 < dist_2) {
             dist += deleni_dvema_trick(dist_1);
-            //printf("Y dist = %i\n", dist);
         } else {
             dist += deleni_dvema_trick(dist_2);
-            //printf("Y dist = %i\n", dist);
         }
     }
-    //printf("Y dist 1 = %i, Y dist 2 = %i\n", dist_1, dist_2);
-    //printf("Total dist = %i\n", dist);
     return dist;
 }
 
@@ -416,7 +404,84 @@ uint getCandidateLowerBound(uint pawn_index, Point dest, NodeState* node, Board*
         node->Black_positions[pawn_index].Y = pawn_backup.Y;
         return lower_bound;
     }
+}
 
+
+void SerializeNodeState(NodeStateSerial* serialized_state, Board* board, NodeState* node) {
+    serialized_state->board = *board;
+
+    serialized_state->depth = node->depth;
+    serialized_state->unfinished_black = node->unfinished_black;
+    serialized_state->unfinished_white = node->unfinished_white;
+    serialized_state->turn = node->turn;
+    
+    for(int i=0; i<board->k; i++){
+        serialized_state->White_positions[i] = node->White_positions[i];
+        serialized_state->Black_positions[i] = node->Black_positions[i];
+    }
+
+    for(uint i=0; i<node->depth; i++) {
+        serialized_state->past_moves[i] = node->past_moves[i];
+    }
+}
+
+void SerializeSolution(NodeStateSerial* serialized_state, NodeState* node) {
+    serialized_state->depth = node->depth;
+    for(uint i=0; i<node->depth; i++) {
+        serialized_state->past_moves[i] = node->past_moves[i];
+    }
+}
+
+
+NodeState* DeSerializeNodeState(Board* board, NodeStateSerial* serialized_state) {
+    // Deserializes state into a new NodeState, also updates board
+    *board = serialized_state->board;
+
+    NodeState* new_node = (NodeState*)malloc(sizeof(NodeState));
+    new_node->White_positions = (Point *)malloc(sizeof(Point) * board->k);
+    new_node->Black_positions = (Point *)malloc(sizeof(Point) * board->k);
+    new_node->past_moves = (Move *)malloc(sizeof(Move) * board->upper_bound);
+
+    new_node->available_moves.Count = 0;
+    new_node->available_moves.MovesAndLowerBounds = NULL;
+
+    //printf("Serialized state unfinished white %d\n", serialized_state->unfinished_white); fflush(stdout);
+    //printf("Serialized state unfinished black %d\n", serialized_state->unfinished_black); fflush(stdout);
+
+    new_node->unfinished_black = serialized_state->unfinished_black;
+    new_node->unfinished_white = serialized_state->unfinished_white;
+    new_node->depth = serialized_state->depth;
+    new_node->turn = serialized_state->turn;
+    
+
+    for(int i=0; i<board->k; i++) {
+        new_node->White_positions[i] = serialized_state->White_positions[i];
+        new_node->Black_positions[i] = serialized_state->Black_positions[i];
+    }
+    for(uint i=0; i<serialized_state->depth; i++) {
+        new_node->past_moves[i] = serialized_state->past_moves[i];
+    }
+
+    return new_node;
+}
+
+NodeState* DeSerializeSolution(NodeStateSerial* serialized_state) {
+    NodeState* new_node = (NodeState*)malloc(sizeof(NodeState));
+    new_node->past_moves = (Move *)malloc(sizeof(Move) * 48);
+    new_node->depth = serialized_state->depth;
+
+    for(uint i=0; i<serialized_state->depth; i++) {
+        new_node->past_moves[i] = serialized_state->past_moves[i];
+    }
+
+    return new_node;
+}
+
+void UpdateSolutionFromSerial(NodeStateSerial* serialized_state, NodeState* best_solution) {
+    best_solution->depth = serialized_state->depth;
+    for(uint i=0; i<serialized_state->depth; i++) {
+        best_solution->past_moves[i] = serialized_state->past_moves[i];
+    }
 }
 
 
@@ -426,15 +491,7 @@ void GetAvailableMoves(Board* board, NodeState* state) {
     Point candidate_dest;
     MoveAndLowerBound valid_move_and_cost;
     
-    //state->available_moves.Count = 0;
     state->available_moves.MovesAndLowerBounds = (MoveAndLowerBound*)malloc(sizeof(MoveAndLowerBound) * board->k * 4); // Each pawn can have at most 4 moves - one move in every direction (Hopping over a pawn means a normal move is not possible). 
-
-    //if ((state->unfinished_black == 0) && (state->unfinished_white == 0)) {
-        //// TODO this is useless - just an assertion. Impossible for both sides to have no moves.
-        //printf("ERROR Finished state no turns\n");
-        //PrintNode(state);
-        //return;
-    //}
 
     if (state->turn == WHITE_MOVE) {
         for (uint i = 0; i<board->k; i++) {
@@ -443,7 +500,6 @@ void GetAvailableMoves(Board* board, NodeState* state) {
             candidate_dest.X = state->White_positions[i].X + 1;
             candidate_dest.Y = state->White_positions[i].Y;
             if(isDestinationValid(candidate_dest, board, state)) {
-                // TODO calculate lower bound after this move, not cost of the move
                 candidate_cost = getCandidateLowerBound(i, candidate_dest, state, board);
                 valid_move_and_cost.lower_bound = candidate_cost;
                 valid_move_and_cost.move.Source = state->White_positions[i];
