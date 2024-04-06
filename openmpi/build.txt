@@ -1,0 +1,1 @@
+mpicc -O3 -Wall main.c solve.c board.c -fopenmp -lrt -o vps.out && mpirun -np 12 ./vps.out in_0000.txt -v

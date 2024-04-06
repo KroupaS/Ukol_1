@@ -1,0 +1,11 @@
+Zapisky o prevedeni na prvni paralelni verzi
+
+3. Upravit logy - minimalizovat aktualni a pridat ascii art sachovnici
+
+
+Paralelizace:
+1. Pridat ty radky jak je v prezentaci na paralelizaci / omp task atd
+2. cc -fopenmp
+3. Uprava reseni musi byt kriticka sekce
+4. Idealne vytvaret minimalne 48 tasku - pocet jader na clusteru. Idealne tisice pry - pred solve_recurse #pragma openmp task if(condition) - condition napr. muze byt current_node.depth < c, kde c je treba 5 az 10
+        -> jde to vylepsit asi tim ze nahore se vola verze funkce ktera checkuje tu current hloubku, pokud hloubka dost velka tak zavola solve_recurse_notask ktery uz tu hloubku necheckuje a vse dela bez openmp. Rezie toho #pragma openmp task if() je pry vetsi nez normalni if.
