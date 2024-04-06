@@ -2,12 +2,14 @@
 
 cc -O3 -Wall main.c solve.c board.c -fopenmp -lrt -o vps.out
 
+# Aktivace HPE CPE
+source /etc/profile.d/zz-cray-pe.sh
+
 success_all=true
 
 for file in $(ls -1 in_*.txt | sort); do
     # Run the program on each file
-    # srun -p arm_long -c 48 ./vps.out "$file" -s
-    ./vps.out "$file$" -s
+    srun -p arm_long -c 48 ./vps.out "$file" -s
     if [ $? -ne 0 ]; then
 	success_all=false
     fi

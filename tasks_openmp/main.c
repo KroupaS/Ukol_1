@@ -10,22 +10,22 @@ int main(int argc, char** argv) {
 
     // Parse arguments, initialize
     if (argc != 3) {
-        printf("Error: program expects two arguments - number of threads to use and filename, Example Usage:\n");
-        printf("./vps.out 8 in_0000.txt\n");
-        printf("./vps.out 1 in_0002.txt\n");
+        printf("Error: program expects two arguments - filename and '-v' for verbosity or '-s' for summary\n Example Usage:\n");
+        printf("./vps.out in_0000.txt -s\n");
+        printf("./vps.out in_0002.txt -v\n");
         return 1;
     }
-    const int max_thread = atoi(argv[1]);
-    if ((max_thread < 0) || (max_thread > 1000)) {
-        printf("Number of threads must be between 1 and 128, aborting\n");
-	return 1;
-    }
-    const char* filename = argv[2];
+    const char* filename = argv[1];
     Board* chessboard = load_board(filename);
     if (chessboard == NULL) {
         printf("Could not initialize board, aborting\n");
 	return 1;
     }
+    if ((strlen(argv[2]) < 2) || ((argv[2][1] != 'v') && (argv[2][1] != 's'))) {
+        printf("Could not parse verbosity, use '-v' or '-s' as the last commandline option!\n");
+	return 1;
+    }
+    const char verbosity = argv[2][1];
 
     printf("Solving input \"%s\", starting timer\n", filename);
 
@@ -40,19 +40,24 @@ int main(int argc, char** argv) {
 
     if (cpu_time > (double)1000) {
         cpu_time /= (double)1000;
-        printf("========================================\n");
+	if (verbosity == 'v') {
+            printf("========================================\n");
+	}
         printf("| Finished in %.4f seconds |\nBest solution (%u moves):\n", cpu_time, best_solution->depth);
     } else {
         // display in ms
-        printf("========================================\n");
+	if (verbosity == 'v') {
+            printf("========================================\n");
+	}
         printf("| Finished in %.4f ms |\nBest solution (%u moves):\n", cpu_time, best_solution->depth);
     }
 
     if (best_solution->depth == 0) {
         printf("ERROR best solution has depth 0 - correct solution was never found\n");
     } else {
-        //PrintNode(best_solution);
-        PrintMoves(best_solution, chessboard);
+	if (verbosity == 'v') {
+            PrintMoves(best_solution, chessboard);
+	}
         NodeDestructor(best_solution);
         free(chessboard);
     }
