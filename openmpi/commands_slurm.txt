@@ -1,1 +1,0 @@
-sbatch -p arm_fast -N 6 -c 48 slurm_script.sh

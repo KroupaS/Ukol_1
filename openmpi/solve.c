@@ -88,7 +88,7 @@ NodeState* solve_master(Board* board, int* process_count) {
     
     // job_count == state_counter now, so all states have been handed out as tasks 
     // Wait until all workers send final outputs
-    tag = 0;    // Set tag to kill
+    tag = 0;    // Set tag to 0 -> kill
     //printf("Master: Time to kill \n"); fflush(stdout);
     while (SlavesUnfinished(ptr_slave_count, available_slaves)) {
         MPI_Recv(&received_msg, sizeof(NodeStateSerial), MPI_PACKED, MPI_ANY_SOURCE, MPI_ANY_TAG, MPI_COMM_WORLD, &status);

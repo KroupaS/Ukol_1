@@ -1,1 +1,0 @@
-cc -O3 -Wall main.c solve.c board.c -lrt -o vps.out && ./vps.out in_0000.txt -v
