@@ -1,0 +1,284 @@
+Slave 1: starting
+Slave 2: starting
+Slave 3: starting
+Master: Solving input "in_0001.txt", starting timer
+Master: sending job 0 to Slave 1
+Master: sending job 1 to Slave 2
+Master: sending job 2 to Slave 3
+Slave 1: Received job from master, working...
+Slave 2: Received job from master, working...
+Slave 3: Received job from master, working...
+Slave 3: finished job, sending to master
+Master: Received finished message from Slave 3, sending new job 3
+Slave 3: master received finished job, waiting for next message
+Slave 3: Received job from master, working...
+Master: Received finished message from Slave 1, sending new job 4
+Slave 1: finished job, sending to master
+Slave 1: master received finished job, waiting for next message
+Slave 1: Received job from master, working...
+Master: Received finished message from Slave 1, sending new job 5
+Slave 1: finished job, sending to master
+Slave 1: master received finished job, waiting for next message
+Slave 1: Received job from master, working...
+Master: Received finished message from Slave 3, sending new job 6
+Slave 3: finished job, sending to master
+Slave 3: master received finished job, waiting for next message
+Slave 3: Received job from master, working...
+Master: Received finished message from Slave 3, sending new job 7
+Slave 3: finished job, sending to master
+Slave 3: master received finished job, waiting for next message
+Slave 3: Received job from master, working...
+Slave 1: finished job, sending to master
+Master: Received finished message from Slave 1, sending new job 8
+Slave 1: master received finished job, waiting for next message
+Slave 1: Received job from master, working...
+Master: Received finished message from Slave 1, sending new job 9
+Slave 1: finished job, sending to master
+Slave 1: master received finished job, waiting for next message
+Slave 1: Received job from master, working...
+Master: Received finished message from Slave 3, sending new job 10
+Slave 3: finished job, sending to master
+Slave 3: master received finished job, waiting for next message
+Slave 3: Received job from master, working...
+Master: Received finished message from Slave 1, sending new job 11
+Slave 1: finished job, sending to master
+Slave 1: master received finished job, waiting for next message
+Slave 1: Received job from master, working...
+Master: Received finished message from Slave 1, sending new job 12
+Slave 1: finished job, sending to master
+Slave 1: master received finished job, waiting for next message
+Slave 1: Received job from master, working...
+Master: Received finished message from Slave 3, sending new job 13
+Slave 3: finished job, sending to master
+Slave 3: master received finished job, waiting for next message
+Slave 3: Received job from master, working...
+Master: Received finished message from Slave 3, sending new job 14
+Slave 3: finished job, sending to master
+Slave 3: master received finished job, waiting for next message
+Slave 3: Received job from master, working...
+Master: Received finished message from Slave 1, sending new job 15
+Slave 1: finished job, sending to master
+Slave 1: master received finished job, waiting for next message
+Slave 1: Received job from master, working...
+Master: Received finished message from Slave 1, sending new job 16
+Slave 1: finished job, sending to master
+Slave 1: master received finished job, waiting for next message
+Slave 1: Received job from master, working...
+Master: Received finished message from Slave 1, sending new job 17
+Slave 1: finished job, sending to master
+Slave 1: master received finished job, waiting for next message
+Slave 1: Received job from master, working...
+Master: Received finished message from Slave 3, sending new job 18
+Slave 3: finished job, sending to master
+Slave 3: master received finished job, waiting for next message
+Slave 3: Received job from master, working...
+Master: Received finished message from Slave 3, sending new job 19
+Slave 3: finished job, sending to master
+Slave 3: master received finished job, waiting for next message
+Slave 3: Received job from master, working...
+Master: Received finished message from Slave 1, sending new job 20
+Slave 1: finished job, sending to master
+Slave 1: master received finished job, waiting for next message
+Slave 1: Received job from master, working...
+Master: Received finished message from Slave 1, sending new job 21
+Slave 1: finished job, sending to master
+Slave 1: master received finished job, waiting for next message
+Slave 1: Received job from master, working...
+Master: Received finished message from Slave 3, sending new job 22
+Slave 3: finished job, sending to master
+Slave 3: master received finished job, waiting for next message
+Slave 3: Received job from master, working...
+Master: Received finished message from Slave 1, sending new job 23
+Slave 1: finished job, sending to master
+Slave 1: master received finished job, waiting for next message
+Slave 1: Received job from master, working...
+Slave 1: finished job, sending to master
+Master: Received finished message from Slave 1, sending new job 24
+Slave 1: master received finished job, waiting for next message
+Slave 1: Received job from master, working...
+Master: Received finished message from Slave 1, sending new job 25
+Slave 1: finished job, sending to master
+Slave 1: master received finished job, waiting for next message
+Slave 1: Received job from master, working...
+Master: Received finished message from Slave 1, sending new job 26
+Slave 1: finished job, sending to master
+Slave 1: master received finished job, waiting for next message
+Slave 1: Received job from master, working...
+Master: Received finished message from Slave 3, sending new job 27
+Slave 3: finished job, sending to master
+Slave 3: master received finished job, waiting for next message
+Slave 3: Received job from master, working...
+Master: Received finished message from Slave 1, sending new job 28
+Slave 1: finished job, sending to master
+Slave 1: master received finished job, waiting for next message
+Slave 1: Received job from master, working...
+Master: Received finished message from Slave 1, sending new job 29
+Slave 1: finished job, sending to master
+Slave 1: master received finished job, waiting for next message
+Slave 1: Received job from master, working...
+Master: Received finished message from Slave 3, sending new job 30
+Slave 3: finished job, sending to master
+Slave 3: master received finished job, waiting for next message
+Slave 3: Received job from master, working...
+Slave 1: finished job, sending to master
+Master: Received finished message from Slave 1, sending new job 31
+Slave 1: master received finished job, waiting for next message
+Slave 1: Received job from master, working...
+Master: Received finished message from Slave 1, sending new job 32
+Slave 1: finished job, sending to master
+Slave 1: master received finished job, waiting for next message
+Slave 1: Received job from master, working...
+Master: Received finished message from Slave 1, sending new job 33
+Slave 1: finished job, sending to master
+Slave 1: master received finished job, waiting for next message
+Slave 1: Received job from master, working...
+Master: Received finished message from Slave 1, sending new job 34
+Slave 1: finished job, sending to master
+Slave 1: master received finished job, waiting for next message
+Slave 1: Received job from master, working...
+Master: Received finished message from Slave 3, sending new job 35
+Slave 3: finished job, sending to master
+Slave 3: master received finished job, waiting for next message
+Slave 3: Received job from master, working...
+Master: Received finished message from Slave 1, sending new job 36
+Slave 1: finished job, sending to master
+Slave 1: master received finished job, waiting for next message
+Slave 1: Received job from master, working...
+Master: Received finished message from Slave 1, sending new job 37
+Slave 1: finished job, sending to master
+Slave 1: master received finished job, waiting for next message
+Slave 1: Received job from master, working...
+Master: Received finished message from Slave 2, sending new job 38
+Slave 2: finished job, sending to master
+Slave 2: master received finished job, waiting for next message
+Slave 2: Received job from master, working...
+Master: Received finished message from Slave 3, sending new job 39
+Slave 3: finished job, sending to master
+Slave 3: master received finished job, waiting for next message
+Slave 3: Received job from master, working...
+Master: Received finished message from Slave 3, sending new job 40
+Slave 3: finished job, sending to master
+Slave 3: master received finished job, waiting for next message
+Slave 3: Received job from master, working...
+Master: Received finished message from Slave 3, sending new job 41
+Slave 3: finished job, sending to master
+Slave 3: master received finished job, waiting for next message
+Slave 3: Received job from master, working...
+Master: Received finished message from Slave 1, sending new job 42
+Slave 1: finished job, sending to master
+Slave 1: master received finished job, waiting for next message
+Slave 1: Received job from master, working...
+Master: Received finished message from Slave 3, sending new job 43
+Slave 3: finished job, sending to master
+Slave 3: master received finished job, waiting for next message
+Slave 3: Received job from master, working...
+Master: Received finished message from Slave 1, sending new job 44
+Slave 1: finished job, sending to master
+Slave 1: master received finished job, waiting for next message
+Slave 1: Received job from master, working...
+Master: Received finished message from Slave 1, sending new job 45
+Slave 1: finished job, sending to master
+Slave 1: master received finished job, waiting for next message
+Slave 1: Received job from master, working...
+Master: Received finished message from Slave 2, sending new job 46
+Slave 2: finished job, sending to master
+Slave 2: master received finished job, waiting for next message
+Slave 2: Received job from master, working...
+Master: Received finished message from Slave 3, sending new job 47
+Slave 3: finished job, sending to master
+Slave 3: master received finished job, waiting for next message
+Slave 3: Received job from master, working...
+Slave 1: finished job, sending to master
+Master: Received finished message from Slave 1, sending new job 48
+Slave 1: master received finished job, waiting for next message
+Slave 1: Received job from master, working...
+Master: Received finished message from Slave 3, sending new job 49
+Slave 3: finished job, sending to master
+Slave 3: master received finished job, waiting for next message
+Slave 3: Received job from master, working...
+Master: Received finished message from Slave 2, sending new job 50
+Slave 2: finished job, sending to master
+Slave 2: master received finished job, waiting for next message
+Slave 2: Received job from master, working...
+Master: Received finished message from Slave 2, sending new job 51
+Slave 2: finished job, sending to master
+Slave 2: master received finished job, waiting for next message
+Slave 2: Received job from master, working...
+Master: Received finished message from Slave 3, sending new job 52
+Slave 3: finished job, sending to master
+Slave 3: master received finished job, waiting for next message
+Slave 3: Received job from master, working...
+Master: Received finished message from Slave 2, sending new job 53
+Slave 2: finished job, sending to master
+Slave 2: master received finished job, waiting for next message
+Slave 2: Received job from master, working...
+Master: Received finished message from Slave 1, sending new job 54
+Slave 1: finished job, sending to master
+Slave 1: master received finished job, waiting for next message
+Slave 1: Received job from master, working...
+Master: Received finished message from Slave 1, sending new job 55
+Slave 1: finished job, sending to master
+Slave 1: master received finished job, waiting for next message
+Slave 1: Received job from master, working...
+Master: Received finished message from Slave 3, sending new job 56
+Slave 3: finished job, sending to master
+Slave 3: master received finished job, waiting for next message
+Slave 3: Received job from master, working...
+Master: Received finished message from Slave 3, sending new job 57
+Slave 3: finished job, sending to master
+Slave 3: master received finished job, waiting for next message
+Slave 3: Received job from master, working...
+Master: Received finished message from Slave 3, sending new job 58
+Slave 3: finished job, sending to master
+Slave 3: master received finished job, waiting for next message
+Slave 3: Received job from master, working...
+Master: Received finished message from Slave 2, sending new job 59
+Slave 2: finished job, sending to master
+Slave 2: master received finished job, waiting for next message
+Slave 2: Received job from master, working...
+Master: Received finished message from Slave 3, sending new job 60
+Slave 3: finished job, sending to master
+Slave 3: master received finished job, waiting for next message
+Slave 3: Received job from master, working...
+Master: Received finished message from Slave 1, sending new job 61
+Slave 1: finished job, sending to master
+Slave 1: master received finished job, waiting for next message
+Slave 1: Received job from master, working...
+Master: Received finished message from Slave 1, sending new job 62
+Slave 1: finished job, sending to master
+Slave 1: master received finished job, waiting for next message
+Slave 1: Received job from master, working...
+Master: Received finished message from Slave 2, sending new job 63
+Slave 2: finished job, sending to master
+Slave 2: master received finished job, waiting for next message
+Slave 2: Received job from master, working...
+Master: Received finished message from Slave 3, sending new job 64
+Slave 3: finished job, sending to master
+Slave 3: master received finished job, waiting for next message
+Slave 3: Received job from master, working...
+Master: Received finished message from Slave 3, sending new job 65
+Master: All jobs served, killing slaves! 
+Slave 3: finished job, sending to master
+Slave 3: master received finished job, waiting for next message
+Slave 3: Received job from master, working...
+Master: Received finished message from Slave 2, sending kill message
+Slave 2: finished job, sending to master
+Slave 2: master received finished job, waiting for next message
+Slave 2: Received job from master, working...
+Slave 2: received kill message, ending...
+Slave 2: Exiting successfully
+Master: Received finished message from Slave 3, sending kill message
+Slave 3: finished job, sending to master
+Slave 3: master received finished job, waiting for next message
+Slave 3: Received job from master, working...
+Slave 3: received kill message, ending...
+Slave 3: Exiting successfully
+Master: Received finished message from Slave 1, sending kill message
+| Finished in 47.2948 seconds |
+Best solution (20 moves):
+MASTER - exiting successfully
+Slave 1: finished job, sending to master
+Slave 1: master received finished job, waiting for next message
+Slave 1: Received job from master, working...
+Slave 1: received kill message, ending...
+Slave 1: Exiting successfully

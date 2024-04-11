@@ -1,0 +1,32 @@
+[cf-prod-node-041:mpi_rank_0][mv2_get_arch_type] **********************WARNING***********************
+[cf-prod-node-041:mpi_rank_0][mv2_get_arch_type] Failed to automatically detect the CPU architecture.
+[cf-prod-node-041:mpi_rank_0][mv2_get_arch_type] This may lead to subpar communication performance.
+[cf-prod-node-041:mpi_rank_0][mv2_get_arch_type] ****************************************************
+[cf-prod-node-041:mpi_rank_0][mv2_get_arch_type] **********************WARNING***********************
+[cf-prod-node-041:mpi_rank_0][mv2_get_arch_type] Failed to automatically detect the CPU architecture.
+[cf-prod-node-041:mpi_rank_0][mv2_get_arch_type] This may lead to subpar communication performance.
+[cf-prod-node-041:mpi_rank_0][mv2_get_arch_type] ****************************************************
+[cf-prod-node-041:mpi_rank_0][mv2_get_arch_type] **********************WARNING***********************
+[cf-prod-node-041:mpi_rank_0][mv2_get_arch_type] Failed to automatically detect the CPU architecture.
+[cf-prod-node-041:mpi_rank_0][mv2_get_arch_type] This may lead to subpar communication performance.
+[cf-prod-node-041:mpi_rank_0][mv2_get_arch_type] ****************************************************
+Master: Solving input "in_0000.txt", starting timer
+| Finished in 7.2380 seconds |
+Best solution (20 moves):
+[cf-prod-node-041:mpi_rank_0][mv2_get_arch_type] **********************WARNING***********************
+[cf-prod-node-041:mpi_rank_0][mv2_get_arch_type] Failed to automatically detect the CPU architecture.
+[cf-prod-node-041:mpi_rank_0][mv2_get_arch_type] This may lead to subpar communication performance.
+[cf-prod-node-041:mpi_rank_0][mv2_get_arch_type] ****************************************************
+[cf-prod-node-041:mpi_rank_0][mv2_get_arch_type] **********************WARNING***********************
+[cf-prod-node-041:mpi_rank_0][mv2_get_arch_type] Failed to automatically detect the CPU architecture.
+[cf-prod-node-041:mpi_rank_0][mv2_get_arch_type] This may lead to subpar communication performance.
+[cf-prod-node-041:mpi_rank_0][mv2_get_arch_type] ****************************************************
+[cf-prod-node-041:mpi_rank_0][mv2_get_arch_type] **********************WARNING***********************
+[cf-prod-node-041:mpi_rank_0][mv2_get_arch_type] Failed to automatically detect the CPU architecture.
+[cf-prod-node-041:mpi_rank_0][mv2_get_arch_type] This may lead to subpar communication performance.
+[cf-prod-node-041:mpi_rank_0][mv2_get_arch_type] ****************************************************
+Master: Solving input "in_0001.txt", starting timer
+slurmstepd: error: *** JOB 3141 ON cf-prod-node-041 CANCELLED AT 2024-04-11T02:49:49 DUE TO TIME LIMIT ***
+slurmstepd: error: *** STEP 3141.1 ON cf-prod-node-041 CANCELLED AT 2024-04-11T02:49:49 DUE TO TIME LIMIT ***
+srun: Job step aborted: Waiting up to 32 seconds for job step to finish.
+srun: error: cf-prod-node-044: task 3: Terminated

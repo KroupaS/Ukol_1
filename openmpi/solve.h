@@ -12,7 +12,7 @@
 //} msg_master_to_slave;
 
 //NodeState* solve(Board* board, int* my_rank, int* process_count);
-void solve_slave(int* my_rank, int* process_count);
-NodeState* solve_master(Board* board, int* process_count);
+void solve_slave(int* my_rank, int* process_count, const int verbosity);
+NodeState* solve_master(Board* board, int* process_count, const int verbosity);
 
 #endif

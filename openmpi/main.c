@@ -7,6 +7,30 @@ void PrintMoves(NodeState* node, Board* board);
 int main(int argc, char** argv) {
     int my_rank;
     int proc_count;
+    int verbosity;
+
+    // Parse arguments, initialize
+    if (argc != 3) {
+        printf("Error: program expects two arguments - filename and '-v' for verbosity or '-s' for summary\n Example Usage:\n");
+        printf("./vps.out in_0000.txt -s\n");
+        printf("./vps.out in_0002.txt -v\n");
+        return 1;
+    }
+    const char* filename = argv[1];
+    Board* chessboard = load_board(filename);
+    if (chessboard == NULL) {
+        printf("Could not initialize board, aborting\n");
+        return 1;
+    }
+
+    if ((strlen(argv[2]) < 2) || ((argv[2][1] != 'v') && (argv[2][1] != 's'))) {
+        printf("Could not parse verbosity, use '-v' or '-s' as the last commandline option!\n");
+	return 1;
+    } else if (argv[2][1] == 'v') {
+    	verbosity = 1;
+    } else {
+	verbosity = 0;
+    }
 
     /* start up MPI */
     MPI_Init( &argc, &argv );
@@ -22,46 +46,25 @@ int main(int argc, char** argv) {
         struct timespec start, end;
         double cpu_time;
 
-        // Parse arguments, initialize
-        if (argc != 3) {
-            printf("Error: program expects two arguments - filename and '-v' for verbosity or '-s' for summary\n Example Usage:\n");
-            printf("./vps.out in_0000.txt -s\n");
-            printf("./vps.out in_0002.txt -v\n");
-            return 1;
-        }
-        const char* filename = argv[1];
-        Board* chessboard = load_board(filename);
-        if (chessboard == NULL) {
-            printf("Could not initialize board, aborting\n");
-	        return 1;
-        }
-
-        if ((strlen(argv[2]) < 2) || ((argv[2][1] != 'v') && (argv[2][1] != 's'))) {
-            printf("Could not parse verbosity, use '-v' or '-s' as the last commandline option!\n");
-	        return 1;
-        }
-        const char verbosity = argv[2][1];
 
         printf("Master: Solving input \"%s\", starting timer\n", filename); fflush(stdout);
 
         // Time and solve
         clock_gettime(CLOCK_MONOTONIC, &start);
-        NodeState* best_solution = solve_master(chessboard, &proc_count);
+        NodeState* best_solution = solve_master(chessboard, &proc_count, verbosity);
         clock_gettime(CLOCK_MONOTONIC, &end);
-        //printf("Seconds in timer struct = %ld\n", end.tv_sec - start.tv_sec);
-        //printf("Nanoseconds in timer struct = %ld\n", end.tv_nsec - start.tv_nsec);
 
         cpu_time = (double)((end.tv_sec - start.tv_sec)*1000) + ((double)(end.tv_nsec - start.tv_nsec)) / (double)1000000;
 
         if (cpu_time > (double)1000) {
             cpu_time /= (double)1000;
-	    if (verbosity == 'v') {
+	    if (verbosity == 1) {
             	printf("========================================\n");
 	    }
             printf("| Finished in %.4f seconds |\nBest solution (%u moves):\n", cpu_time, best_solution->depth);
         } else {
             // display in ms
-	    if (verbosity == 'v') {
+	    if (verbosity == 1) {
             	printf("========================================\n");
 	    }
             printf("| Finished in %.4f ms |\nBest solution (%u moves):\n", cpu_time, best_solution->depth);
@@ -71,19 +74,24 @@ int main(int argc, char** argv) {
             printf("ERROR best solution has depth 0 - correct solution was never found\n");
             return 1;
         } else {
-            //PrintNode(best_solution);
-	        if (verbosity == 'v') {
-                	PrintMoves(best_solution, chessboard);
-	        }
+	    if (verbosity == 1) {
+              	PrintMoves(best_solution, chessboard);
+	    }
             FreeBestSolution(best_solution);
             free(chessboard);
         }
-        //printf("MASTER - exiting with 0\n"); fflush(stdout);
+	if (verbosity == 1) {
+            printf("MASTER - exiting successfully\n"); fflush(stdout);
+	}
     } else {
         // I am slave
-        //printf("Slave %d: starting\n", my_rank); fflush(stdout);
-        solve_slave(&my_rank, &proc_count);
-        //printf("Slave %d: Exiting with 0\n", my_rank); fflush(stdout);
+	if (verbosity == 1) {
+            printf("Slave %d: starting\n", my_rank); fflush(stdout);
+	}
+        solve_slave(&my_rank, &proc_count, verbosity);
+	if (verbosity == 1) {
+            printf("Slave %d: Exiting successfully\n", my_rank); fflush(stdout);
+	}
     }
     MPI_Finalize();
     return 0;

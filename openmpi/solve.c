@@ -10,7 +10,7 @@ void solve_recurse_slave(Board* board, NodeState* current_node, NodeState* curre
 void solve_recurse_parallel(Board* board, NodeState* current_node, NodeState* current_best);
 int SlavesUnfinished(int* slave_count, int* available_slaves);
 
-NodeState* solve_master(Board* board, int* process_count) {
+NodeState* solve_master(Board* board, int* process_count, const int verbosity) {
     MPI_Status status;
     int dest;
     int tag = 1;
@@ -33,7 +33,9 @@ NodeState* solve_master(Board* board, int* process_count) {
     uint job_count = 0;
 
     solve_recurse_master(board, initial_state, best_solution, state_queue, ptr_counter);
-    //printf("MASTER state queue size = %u\n", state_counter); fflush(stdout);
+    if (verbosity == 1) {
+        printf("Master: state queue size = %u\n", state_counter); fflush(stdout);
+    }
 
     if (slave_count < 1) {
         // Edge case no slaves
@@ -61,6 +63,9 @@ NodeState* solve_master(Board* board, int* process_count) {
         NodeDestructor(state_queue[job_count]);
         job_count++;        
         dest = i + 1;
+    	if (verbosity == 1) {
+            printf("Master: sending job %d to Slave %d\n", job_count-1, dest); fflush(stdout);
+	}
         MPI_Ssend(&task_msg, sizeof(NodeStateSerial), MPI_PACKED, dest, tag, MPI_COMM_WORLD);
         available_slaves[dest] = 1; 
     }
@@ -83,19 +88,27 @@ NodeState* solve_master(Board* board, int* process_count) {
         NodeDestructor(state_queue[job_count]);
         job_count++;        
         int slave_rank = status.MPI_SOURCE;
+    	if (verbosity == 1) {
+            printf("Master: Received finished message from Slave %d, sending new job %d\n", slave_rank, job_count-1); fflush(stdout);
+	}
         MPI_Ssend(&task_msg, sizeof(NodeStateSerial), MPI_PACKED, slave_rank, tag, MPI_COMM_WORLD);
     }
     
     // job_count == state_counter now, so all states have been handed out as tasks 
     // Wait until all workers send final outputs
     tag = 0;    // Set tag to 0 -> kill
-    //printf("Master: Time to kill \n"); fflush(stdout);
+    if (verbosity == 1) {
+        printf("Master: All jobs served, killing slaves!\n"); fflush(stdout);
+    }
     while (SlavesUnfinished(ptr_slave_count, available_slaves)) {
         MPI_Recv(&received_msg, sizeof(NodeStateSerial), MPI_PACKED, MPI_ANY_SOURCE, MPI_ANY_TAG, MPI_COMM_WORLD, &status);
         if (received_msg.depth < best_solution->depth) {
             UpdateSolutionFromSerial(&received_msg, best_solution);
         }
         int slave_rank = status.MPI_SOURCE;
+        if (verbosity == 1) {
+            printf("Master: Received finished message from Slave %d, sending kill message\n", slave_rank); fflush(stdout);
+        }
         MPI_Ssend(&task_msg, sizeof(NodeStateSerial), MPI_PACKED, slave_rank, tag, MPI_COMM_WORLD);
         available_slaves[slave_rank] = 0;
     }
@@ -154,7 +167,7 @@ void solve_recurse_master(Board* board, NodeState* current_node, NodeState* curr
 }
 
     
-void solve_slave(int* my_rank, int* process_count) {
+void solve_slave(int* my_rank, int* process_count, const int verbosity) {
     MPI_Status status;
     NodeStateSerial received_msg;
     NodeStateSerial sent_msg;
@@ -162,6 +175,9 @@ void solve_slave(int* my_rank, int* process_count) {
 
     while (1){
         MPI_Recv(&received_msg, sizeof(NodeStateSerial), MPI_PACKED, MPI_ANY_SOURCE, MPI_ANY_TAG, MPI_COMM_WORLD, &status);
+        if (verbosity == 1) {
+            printf("Slave %d: Received job from master, working...\n", *my_rank); fflush(stdout);
+	}
         if (status.MPI_TAG == 1) {
             // Work time
             uint state_counter = 0;
@@ -183,13 +199,20 @@ void solve_slave(int* my_rank, int* process_count) {
             }
 
             SerializeSolution(&sent_msg, slave_best_solution);
-            //printf("Slave After Serialization\n"); fflush(stdout);
+            if (verbosity == 1) {
+                printf("Slave %d: finished job, sending to master\n", *my_rank); fflush(stdout);
+	    }
             MPI_Ssend(&sent_msg, sizeof(NodeStateSerial), MPI_PACKED, 0, 1, MPI_COMM_WORLD);
-            //printf("Slave After send\n"); fflush(stdout);
+            if (verbosity == 1) {
+                printf("Slave %d: master received finished job, waiting for next message\n", *my_rank); fflush(stdout);
+	    }
             
             NodeDestructor(slave_initial_state);
             FreeBestSolution(slave_best_solution);
         } else if (status.MPI_TAG == 0) {
+            if (verbosity == 1) {
+                printf("Slave %d: received kill message, ending...\n", *my_rank); fflush(stdout);
+	    }
             // Clean up and exit
             free(state_queue);
             return;
@@ -199,27 +222,6 @@ void solve_slave(int* my_rank, int* process_count) {
         }
     }
     
-    //printf("Slave board:\n"); fflush(stdout);
-    //printf("board->m = %u\n", slave_board.m);
-    //printf("board->n = %u\n", slave_board.n);
-    //printf("board->k = %u\n", slave_board.k);
-    //printf("board->W_area.top_left.X = %u\n", slave_board.W_area.top_left.X);
-    //printf("board->W_area.top_left.Y = %u\n", slave_board.W_area.top_left.Y);
-    //printf("board->W_area.bot_right.X = %u\n", slave_board.W_area.bot_right.X);
-    //printf("board->W_area.bot_right.Y = %u\n", slave_board.W_area.bot_right.Y);
-    //printf("board->B_area.top_left.X = %u\n", slave_board.W_area.top_left.X);
-    //printf("board->B_area.top_left.Y = %u\n", slave_board.W_area.top_left.Y);
-    //printf("board->B_area.bot_right.X = %u\n", slave_board.W_area.bot_right.X);
-    //printf("board->B_area.bot_right.Y = %u\n", slave_board.W_area.bot_right.Y);
-    //printf("board->upper_bound = %u\n", slave_board.upper_bound);
-    //fflush(stdout);
-    
-    //printf("SLAVE initial state:\n"); fflush(stdout);
-    //PrintNode(slave_initial_state);
-
-
-    //printf("Slave best solution\n"); fflush(stdout);
-    //PrintNode(slave_best_solution); fflush(stdout);
 
 }
 
