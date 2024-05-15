@@ -8,14 +8,18 @@ int main(int argc, char** argv) {
     int my_rank;
     int proc_count;
     int verbosity;
+    unsigned int number_of_threads;
 
     // Parse arguments, initialize
-    if (argc != 3) {
-        printf("Error: program expects two arguments - filename and '-v' for verbosity or '-s' for summary\n Example Usage:\n");
-        printf("./vps.out in_0000.txt -s\n");
-        printf("./vps.out in_0002.txt -v\n");
+    if (argc != 4) {
+        printf("ERROR: program expects three arguments \n\t1) filename \n\t2) '-v' for verbosity or '-s' for summary \n\t3) number of maximum threads for OpenMP\n\nExample Usage:\n");
+        printf("./vps.out in_0000.txt -s 1\n");
+        printf("./vps.out in_0000.txt -s 12\n");
+        printf("./vps.out in_0002.txt -v 48\n");
         return 1;
     }
+    
+    // First argument - filename of chessboard file
     const char* filename = argv[1];
     Board* chessboard = load_board(filename);
     if (chessboard == NULL) {
@@ -23,17 +27,33 @@ int main(int argc, char** argv) {
         return 1;
     }
 
+    // Second argument - verbosity
     if ((strlen(argv[2]) < 2) || ((argv[2][1] != 'v') && (argv[2][1] != 's'))) {
         printf("Could not parse verbosity, use '-v' or '-s' as the last commandline option!\n");
-	return 1;
+	    return 1;
     } else if (argv[2][1] == 'v') {
     	verbosity = 1;
     } else {
 	verbosity = 0;
     }
+    
+    // Third argument - set max number of threads
+    if (strlen(argv[3]) < 1) {
+        printf("Could not parse number of threads, run program without arguments to see example usage!\n");
+	    return 1;
+    } else {
+        number_of_threads = atoi(argv[3]);
+        if (number_of_threads == 0) {
+            printf("Number of threads must be a positive integer > 0, run program without arguments to see example usage!\n");
+	        return 1;
+        } else {
+            omp_set_num_threads(number_of_threads);
+        }
+    }
+    
 
     /* start up MPI */
-    MPI_Init( &argc, &argv );
+    MPI_Init(&argc, &argv);
 
     /* find out process rank */
     MPI_Comm_rank(MPI_COMM_WORLD, &my_rank);
@@ -47,7 +67,7 @@ int main(int argc, char** argv) {
         double cpu_time;
 
 
-        printf("Master: Solving input \"%s\", starting timer\n", filename); fflush(stdout);
+        printf("Master: Solving input \"%s\", starting timer, max threads %d\n", filename, omp_get_max_threads()); fflush(stdout);
 
         // Time and solve
         clock_gettime(CLOCK_MONOTONIC, &start);
@@ -80,18 +100,18 @@ int main(int argc, char** argv) {
             FreeBestSolution(best_solution);
             free(chessboard);
         }
-	if (verbosity == 1) {
+	    if (verbosity == 1) {
             printf("MASTER - exiting successfully\n"); fflush(stdout);
-	}
+	    }
     } else {
         // I am slave
-	if (verbosity == 1) {
+	    if (verbosity == 1) {
             printf("Slave %d: starting\n", my_rank); fflush(stdout);
-	}
+	    }
         solve_slave(&my_rank, &proc_count, verbosity);
-	if (verbosity == 1) {
+	    if (verbosity == 1) {
             printf("Slave %d: Exiting successfully\n", my_rank); fflush(stdout);
-	}
+	    }
     }
     MPI_Finalize();
     return 0;
