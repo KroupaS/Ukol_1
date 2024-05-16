@@ -63,32 +63,43 @@ int main(int argc, char** argv) {
 
     if (my_rank == 0) {
         // I am master
-        struct timespec start, end;
-        double cpu_time;
+        
+        //struct timespec start, end;
+        //double cpu_time;
 
-
-        printf("Master: Solving input \"%s\", starting timer, max threads %d\n", filename, omp_get_max_threads()); fflush(stdout);
+        printf("Master: Solving input \"%s\", starting timer, (per process) max threads %d\n", filename, omp_get_max_threads()); fflush(stdout);
 
         // Time and solve
-        clock_gettime(CLOCK_MONOTONIC, &start);
+        //clock_gettime(CLOCK_MONOTONIC, &start);
+	    double start_time = MPI_Wtime();
         NodeState* best_solution = solve_master(chessboard, &proc_count, verbosity);
-        clock_gettime(CLOCK_MONOTONIC, &end);
+	    double end_time = MPI_Wtime();
+        //clock_gettime(CLOCK_MONOTONIC, &end);
 
-        cpu_time = (double)((end.tv_sec - start.tv_sec)*1000) + ((double)(end.tv_nsec - start.tv_nsec)) / (double)1000000;
+        //cpu_time = (double)((end.tv_sec - start.tv_sec)*1000) + ((double)(end.tv_nsec - start.tv_nsec)) / (double)1000000;
+        double cpu_time_2 = end_time - start_time;
+	   
+	    if (verbosity == 1) {
+            printf("========================================\n");
+	    }
+        printf("| Finished in %.4f seconds |\nBest solution (%u moves)\n", cpu_time_2, best_solution->depth);
+	    if (verbosity == 1) {
+            printf("========================================\n");
+	    }
 
-        if (cpu_time > (double)1000) {
-            cpu_time /= (double)1000;
-	    if (verbosity == 1) {
-            	printf("========================================\n");
-	    }
-            printf("| Finished in %.4f seconds |\nBest solution (%u moves):\n", cpu_time, best_solution->depth);
-        } else {
-            // display in ms
-	    if (verbosity == 1) {
-            	printf("========================================\n");
-	    }
-            printf("| Finished in %.4f ms |\nBest solution (%u moves):\n", cpu_time, best_solution->depth);
-        }
+        //if (cpu_time > (double)1000) {
+            //cpu_time /= (double)1000;
+	    //if (verbosity == 1) {
+            	//printf("========================================\n");
+	    //}
+            //printf("| Finished in %.4f seconds |\nBest solution (%u moves)\n", cpu_time_2, best_solution->depth);
+        //} else {
+            //// display in ms
+	    //if (verbosity == 1) {
+            	//printf("========================================\n");
+	    //}
+            //printf("| Finished in %.4f ms |\nBest solution (%u moves)\n", cpu_time_2, best_solution->depth);
+        //}
 
         if (best_solution->depth == 0) {
             printf("ERROR best solution has depth 0 - correct solution was never found\n");

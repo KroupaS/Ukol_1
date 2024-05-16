@@ -67,13 +67,13 @@ int main(int argc, char** argv) {
 	if (verbosity == 1) {
             printf("========================================\n");
 	}
-        printf("| Finished in %.4f seconds |\nBest solution (%u moves):\n", cpu_time, best_solution->depth);
+        printf("| Finished in %.4f seconds |\nBest solution (%u moves)\n", cpu_time, best_solution->depth);
     } else {
         // display in ms
 	if (verbosity == 1) {
             printf("========================================\n");
 	}
-        printf("| Finished in %.4f ms |\nBest solution (%u moves):\n", cpu_time, best_solution->depth);
+        printf("| Finished in %.4f ms |\nBest solution (%u moves)\n", cpu_time, best_solution->depth);
     }
 
     if (best_solution->depth == 0) {
