@@ -17,6 +17,6 @@ module load cray-mvapich2_pmix_nogpu
 export MV2_ENABLE_AFFINITY=0
 
 # Run the program on each file
-srun ./vps.out in_0001.txt -s
+srun ./vps.out in_0001.txt -s 48
 
 exit 0

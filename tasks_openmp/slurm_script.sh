@@ -13,6 +13,6 @@ source /etc/profile.d/zz-cray-pe.sh
 #module load cray-mvapich2_pmix_nogpu
 
 # Za příkazem srun napsat cestu k programu i s jeho argumenty, který se má spustit na naplánovaných výpočetních uzlech:
-srun ./vps.out 1 in_0000.txt
+srun ./vps.out in_0001.txt -s 48
 
 exit 0
